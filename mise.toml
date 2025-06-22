@@ -1,0 +1,15 @@
+[tools]
+just = "latest"
+
+[task_config]
+includes = [
+  "mise-tasks",
+  "mise-tasks.toml",
+]
+
+[vars]
+build = "{{ config_root }}/.build"
+out = "{{ config_root }}/firmware"
+
+[hooks]
+enter = "nix develop"

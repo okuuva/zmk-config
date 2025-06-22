@@ -1,0 +1,32 @@
+#:schema https://mise.jdx.dev/schema/mise-task.json
+init = "just init"
+
+upgrade = "just upgrade-sdk"
+
+"clean:artifacts" = "rm -rf {{vars.out}}"
+"clean:cache:build" = "rm -rf {{vars.build}}"
+"clean:cache:nix" = "nix-collect-garbage --delete-old"
+clean = "mise run clean:all"
+
+["clean:_all"]
+hide = true
+run = "just clean-all"
+
+["clean:all"]
+run = "mise run clean:_all ::: clean:artifacts ::: clean:cache:*"
+confirm = "Are you sure you want to clean _everything_?"
+
+[build]
+usage = '''
+arg "<target>" default="corne"
+complete "target" run="just list"
+'''
+run = "just build {{arg(name='target')}}"
+sources = [ "config/*", "zmk/app/*" ]
+outputs = [ "{{vars.out}}/*.uf2" ] # NOTE: would be nice if this supported {{arg(name='target')}}
+depends = [ "update" ]
+
+[update]
+run = "just update"
+sources = [ "config/west.yml" ]
+outputs = [ "zmk/app/*" ]
