@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+#MISE description="Flash the build firmware to the device"
+#MISE env={BUILD_DIR = "{{vars.out}}"}
+#MISE depends=["build"]
+
+shopt -s nullglob globstar
+if test "$BASH" = "" || "$BASH" -uc "a=();true \"\${a[@]}\"" 2>/dev/null; then
+    # Bash 4.4, Zsh
+    set -euo pipefail
+else
+    # Bash 4.3 and older chokes on empty arrays with set -u.
+    set -eo pipefail
+fi
+
+require() { hash "$@" || exit 127; }
+require "system_profiler"
+require "diskutil"
+
+available() {
+    if system_profiler SPUSBDataType 2>/dev/null | grep -Fsq 'nRF UF2'; then
+        while read -r device; do
+            if diskutil info "$device" | grep -Fsq 'nRF UF2'; then
+                diskutil info "$device" | grep -F 'Mount Point:' | cut -d':' -f2 | tr -d '[:space:]'
+            fi
+        done < <(diskutil list | rg -oNI '/dev/[^ ]*')
+    fi
+}
+
+for firmware in "$BUILD_DIR"/*.uf2; do
+    device="$(basename "$firmware" .uf2)"
+    echo -n "Double tap reset and plug in the $device keyboard via USB or press ^C to cancel."
+    mountpoint="$(available)"
+    while [[ -z "$mountpoint" ]]; do
+        echo -n .
+        sleep 1
+        mountpoint="$(available)"
+    done
+    echo
+
+    echo -n "Copying firmware to the $device..."
+    # On macOS, the ZMK firmware finishes its "flashing" process before the
+    # `cp` command finishes its execution. This is normal, and expected
+    # behavior. It just means that error codes are backwards.
+    if ! cp "$firmware" "$mountpoint/" 2>/dev/null; then
+        echo "Done"
+    else
+        echo "ERROR"
+        echo "There was a failure during firmware copy. Your keyboard might still be in 'bootload' mode!"
+        exit 1
+    fi
+
+    sleep 1
+
+    mountpoint=""
+done
