@@ -21,7 +21,7 @@
 
 &mmv_input_listener {
   precision {
-    layers = <FN>;
+    layers = <FUN>;
     input-processors = <&zip_xy_scaler 1 5>;
   };
 };
@@ -42,7 +42,7 @@
     input-processors = <&zip_scroll_scaler 5 1>;
   };
   precision {
-    layers = <FN>;
+    layers = <FUN>;
     input-processors = <&zip_scroll_scaler 1 2>;
   };
 };
