@@ -17,37 +17,37 @@
        base_layer {
            display-name = "Base";
            bindings = <
-//    ┌──────────┬────────────┬────────────┬────────────┬────────────┬──────────────┐                         ┌──────────┬────────────┬────────────┬────────────┬────────────┬─────┐
-//    │  mo FUN  │     Q      │     Y      │     O      │     U      │      ;       │                         │    X     │     L      │     D      │     O      │     Z      │     │
-//    ├──────────┼────────────┼────────────┼────────────┼────────────┼──────────────┤                         ├──────────┼────────────┼────────────┼────────────┼────────────┼─────┤
-//    │ lt MOU B │ hml lctl C │ hml lalt I │ hml lsft E │ hml lgui A │      ,       │                         │    K     │ hmr rgui H │ hmr rsft T │ hmr ralt N │ hmr rctl S │  V  │
-//    ├──────────┼────────────┼────────────┼────────────┼────────────┼──────────────┤                         ├──────────┼────────────┼────────────┼────────────┼────────────┼─────┤
-//    │    ä     │     Z      │     X      │     C      │     V      │      .       │                         │    J     │     M      │     G      │     P      │     F      │     │
-//    └──────────┴────────────┴────────────┴────────────┼────────────┼──────────────┼────────┐   ┌────────────┼──────────┼────────────┼────────────┴────────────┴────────────┴─────┘
-//                                                      │    tab     │ mt HYPER spc │ mo NUM │   │ lt SYM esc │ lt NAV R │   mo NAV   │
-//                                                      └────────────┴──────────────┴────────┘   └────────────┴──────────┴────────────┘
-  &mo FUN     &kp Q          &kp Y         &kp O          &kp U         &kp SEMICOLON                                 &kp X       &kp L         &kp D          &kp O         &kp Z          &none
-  &lt MOU B   &hml LCTRL C   &hml LALT I   &hml LSHFT E   &hml LGUI A   &kp COMMA                                     &kp K       &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &kp V
-  &kp ISO     &kp Z          &kp X         &kp C          &kp V         &kp PERIOD                                    &kp J       &kp M         &kp G          &kp P         &kp F          &none
-                                                          &kp TAB       &mt HYPER SPACE   &mo NUM       &lt SYM ESC   &lt NAV R   &mo NAV
+//    ┌──────────┬────────────┬────────────┬────────────┬──────────────┬────────┐   ┌────────────┬────────────┬────────────┬────────────┬────────────┬─────┐
+//    │  mo FUN  │     Q      │     Y      │     O      │      U       │   ;    │   │     X      │     L      │     D      │     O      │     Z      │     │
+//    ├──────────┼────────────┼────────────┼────────────┼──────────────┼────────┤   ├────────────┼────────────┼────────────┼────────────┼────────────┼─────┤
+//    │ lt MOU B │ hml lctl C │ hml lalt I │ hml lsft E │  hml lgui A  │   ,    │   │     K      │ hmr rgui H │ hmr rsft T │ hmr ralt N │ hmr rctl S │  V  │
+//    ├──────────┼────────────┼────────────┼────────────┼──────────────┼────────┤   ├────────────┼────────────┼────────────┼────────────┼────────────┼─────┤
+//    │    ä     │     Z      │     X      │     C      │      V       │   .    │   │     J      │     M      │     G      │     P      │     F      │     │
+//    └──────────┴────────────┴────────────┼────────────┼──────────────┼────────┤   ├────────────┼────────────┼────────────┼────────────┴────────────┴─────┘
+//                                         │    tab     │ mt HYPER spc │ mo NUM │   │ lt SYM esc │  lt NAV R  │   mo NAV   │
+//                                         └────────────┴──────────────┴────────┘   └────────────┴────────────┴────────────┘
+  &mo FUN     &kp Q          &kp Y         &kp O          &kp U             &kp SEMICOLON       &kp X         &kp L         &kp D          &kp O         &kp Z          &none
+  &lt MOU B   &hml LCTRL C   &hml LALT I   &hml LSHFT E   &hml LGUI A       &kp COMMA           &kp K         &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &kp V
+  &kp ISO     &kp Z          &kp X         &kp C          &kp V             &kp PERIOD          &kp J         &kp M         &kp G          &kp P         &kp F          &none
+                                           &kp TAB        &mt HYPER SPACE   &mo NUM             &lt SYM ESC   &lt NAV R     &mo NAV
            >;
        };
 
        nav_layer {
            bindings = <
-//    ┌──────────┬──────────┬──────────┬───────────┬──────────┬──────┐             ┌────────────┬───────┬──────┬──────┬──────┬────┐
-//    │          │          │ PrevTab  │  NewTab   │ NextTab  │      │             │            │ home  │ pgdn │ pgup │ end  │    │
-//    ├──────────┼──────────┼──────────┼───────────┼──────────┼──────┤             ├────────────┼───────┼──────┼──────┼──────┼────┤
-//    │          │   caps   │ PrevDesk │ SwitchApp │ NextDesk │      │             │ Fullscreen │ left  │ down │  up  │ rght │    │
-//    ├──────────┼──────────┼──────────┼───────────┼──────────┼──────┤             ├────────────┼───────┼──────┼──────┼──────┼────┤
-//    │ PrevPage │ ShowDesk │ NextPage │ CloseWin  │          │      │             │   again    │ paste │ copy │ cut  │ undo │    │
-//    └──────────┴──────────┴──────────┴───────────┼──────────┼──────┼────┐   ┌────┼────────────┼───────┼──────┴──────┴──────┴────┘
-//                                                 │          │ bspc │    │   │    │            │       │
-//                                                 └──────────┴──────┴────┘   └────┴────────────┴───────┘
-  ___            ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___                        ___              &kp HOME      &kp PG_DN    &kp PG_UP   &kp END      ___
-  ___            &kp CAPSLOCK   &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___                        &kp Fullscreen   &kp LEFT      &kp DOWN     &kp UP      &kp RIGHT    ___
-  &kp PrevPage   &kp ShowDesk   &kp NextPage   &kp CloseWin    ___            ___                        &kp K_REDO       &kp K_PASTE   &kp K_COPY   &kp K_CUT   &kp K_UNDO   ___
-                                                               ___            &kp BSPC   ___       ___   ___              ___
+//    ┌──────────┬──────────┬──────────┬───────────┬──────────┬────┐   ┌────────────┬───────┬──────┬──────┬──────┬────┐
+//    │          │          │ PrevTab  │  NewTab   │ NextTab  │    │   │            │ home  │ pgdn │ pgup │ end  │    │
+//    ├──────────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼───────┼──────┼──────┼──────┼────┤
+//    │          │   caps   │ PrevDesk │ SwitchApp │ NextDesk │    │   │ Fullscreen │ left  │ down │  up  │ rght │    │
+//    ├──────────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼───────┼──────┼──────┼──────┼────┤
+//    │ PrevPage │ ShowDesk │ NextPage │ CloseWin  │          │    │   │   again    │ paste │ copy │ cut  │ undo │    │
+//    └──────────┴──────────┴──────────┼───────────┼──────────┼────┤   ├────────────┼───────┼──────┼──────┴──────┴────┘
+//                                     │           │   bspc   │    │   │            │       │      │
+//                                     └───────────┴──────────┴────┘   └────────────┴───────┴──────┘
+  ___            ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___       ___              &kp HOME      &kp PG_DN    &kp PG_UP   &kp END      ___
+  ___            &kp CAPSLOCK   &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___       &kp Fullscreen   &kp LEFT      &kp DOWN     &kp UP      &kp RIGHT    ___
+  &kp PrevPage   &kp ShowDesk   &kp NextPage   &kp CloseWin    ___            ___       &kp K_REDO       &kp K_PASTE   &kp K_COPY   &kp K_CUT   &kp K_UNDO   ___
+                                               ___             &kp BSPC       ___       ___              ___           ___
            >;
 
            label = "Navigation";
@@ -55,19 +55,19 @@
 
        num_layer {
            bindings = <
-//    ┌────┬──────┬──────┬──────┬──────┬────┐             ┌────┬────┬───┬───┬─────┬────┐
-//    │    │      │      │      │      │    │             │    │ 7  │ 8 │ 9 │     │    │
-//    ├────┼──────┼──────┼──────┼──────┼────┤             ├────┼────┼───┼───┼─────┼────┤
-//    │    │ lctl │ lalt │ lsft │ lgui │    │             │    │ 4  │ 5 │ 6 │     │    │
-//    ├────┼──────┼──────┼──────┼──────┼────┤             ├────┼────┼───┼───┼─────┼────┤
-//    │    │      │      │      │      │    │             │    │ 1  │ 2 │ 3 │     │    │
-//    └────┴──────┴──────┴──────┼──────┼────┼────┐   ┌────┼────┼────┼───┴───┴─────┴────┘
-//                              │      │    │    │   │    │ 0  │    │
-//                              └──────┴────┴────┘   └────┴────┴────┘
-  ___   ___         ___        ___         ___        ___                   ___      &kp N7   &kp N8   &kp N9   ___     ___
-  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___                   ___      &kp N4   &kp N5   &kp N6   &none   ___
-  ___   ___         ___        ___         ___        ___                   ___      &kp N1   &kp N2   &kp N3   ___     ___
-                                           ___        ___   ___       ___   &kp N0   ___
+//    ┌────┬──────┬──────┬──────┬──────┬────┐   ┌────┬───┬────┬───┬─────┬────┐
+//    │    │      │      │      │      │    │   │    │ 7 │ 8  │ 9 │     │    │
+//    ├────┼──────┼──────┼──────┼──────┼────┤   ├────┼───┼────┼───┼─────┼────┤
+//    │    │ lctl │ lalt │ lsft │ lgui │    │   │    │ 4 │ 5  │ 6 │     │    │
+//    ├────┼──────┼──────┼──────┼──────┼────┤   ├────┼───┼────┼───┼─────┼────┤
+//    │    │      │      │      │      │    │   │    │ 1 │ 2  │ 3 │     │    │
+//    └────┴──────┴──────┼──────┼──────┼────┤   ├────┼───┼────┼───┴─────┴────┘
+//                       │      │      │    │   │    │ 0 │    │
+//                       └──────┴──────┴────┘   └────┴───┴────┘
+  ___   ___         ___        ___         ___        ___       ___   &kp N7   &kp N8   &kp N9   ___     ___
+  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___       ___   &kp N4   &kp N5   &kp N6   &none   ___
+  ___   ___         ___        ___         ___        ___       ___   &kp N1   &kp N2   &kp N3   ___     ___
+                               ___         ___        ___       ___   &kp N0   ___
            >;
 
            label = "Numbers";
@@ -75,19 +75,19 @@
 
        sym_layer {
            bindings = <
-//    ┌───┬───┬───┬───┬───┬───┐            ┌────┬──────┬───────────┬─────┬─────┬────┐
-//    │ ` │ { │ ( │ ) │ } │ ? │            │ `  │ del  │ lsft(tab) │  -  │  +  │    │
-//    ├───┼───┼───┼───┼───┼───┤            ├────┼──────┼───────────┼─────┼─────┼────┤
-//    │ # │ ^ │ = │ _ │ $ │ * │            │ "  │ bspc │    tab    │ ent │ spc │    │
-//    ├───┼───┼───┼───┼───┼───┤            ├────┼──────┼───────────┼─────┼─────┼────┤
-//    │ & │ ~ │ / │ \ │ | │ . │            │ '  │  [   │     <     │  >  │  ]  │    │
-//    └───┴───┴───┴───┼───┼───┼───┐   ┌────┼────┼──────┼───────────┴─────┴─────┴────┘
-//                    │ @ │ % │ ! │   │    │    │      │
-//                    └───┴───┴───┘   └────┴────┴──────┘
-  &kp GRAVE       &kp LEFT_BRACE   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp RIGHT_BRACE   &kp QUESTION                               &kp GRAVE           &kp DELETE         &kp LS(TAB)     &kp MINUS          &kp PLUS            ___
-  &kp HASH        &kp CARET        &kp EQUAL              &kp UNDERSCORE          &kp DOLLAR        &kp ASTERISK                               &kp DOUBLE_QUOTES   &kp BACKSPACE      &kp TAB         &kp ENTER          &kp SPACE           ___
-  &kp AMPERSAND   &kp TILDE        &kp SLASH              &kp BACKSLASH           &kp PIPE          &kp DOT                                    &kp SQT             &kp LEFT_BRACKET   &kp LESS_THAN   &kp GREATER_THAN   &kp RIGHT_BRACKET   ___
-                                                                                  &kp AT_SIGN       &kp PERCENT    &kp EXCLAMATION       ___   ___                 ___
+//    ┌───┬───┬───┬───┬───┬───┐   ┌────┬──────┬───────────┬─────┬─────┬────┐
+//    │ ` │ { │ ( │ ) │ } │ ? │   │ `  │ del  │ lsft(tab) │  -  │  +  │    │
+//    ├───┼───┼───┼───┼───┼───┤   ├────┼──────┼───────────┼─────┼─────┼────┤
+//    │ # │ ^ │ = │ _ │ $ │ * │   │ "  │ bspc │    tab    │ ent │ spc │    │
+//    ├───┼───┼───┼───┼───┼───┤   ├────┼──────┼───────────┼─────┼─────┼────┤
+//    │ & │ ~ │ / │ \ │ | │ . │   │ '  │  [   │     <     │  >  │  ]  │    │
+//    └───┴───┴───┼───┼───┼───┤   ├────┼──────┼───────────┼─────┴─────┴────┘
+//                │ @ │ % │ ! │   │    │      │           │
+//                └───┴───┴───┘   └────┴──────┴───────────┘
+  &kp GRAVE       &kp LEFT_BRACE   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp RIGHT_BRACE   &kp QUESTION          &kp GRAVE           &kp DELETE         &kp LS(TAB)     &kp MINUS          &kp PLUS            ___
+  &kp HASH        &kp CARET        &kp EQUAL              &kp UNDERSCORE          &kp DOLLAR        &kp ASTERISK          &kp DOUBLE_QUOTES   &kp BACKSPACE      &kp TAB         &kp ENTER          &kp SPACE           ___
+  &kp AMPERSAND   &kp TILDE        &kp SLASH              &kp BACKSLASH           &kp PIPE          &kp DOT               &kp SQT             &kp LEFT_BRACKET   &kp LESS_THAN   &kp GREATER_THAN   &kp RIGHT_BRACKET   ___
+                                                          &kp AT_SIGN             &kp PERCENT       &kp EXCLAMATION       ___                 ___                ___
            >;
 
            label = "Symbols";
@@ -95,19 +95,19 @@
 
        fn_layer {
            bindings = <
-//    ┌────┬─────┬──────┬──────┬──────┬─────┐              ┌─────┬─────┬────┬────┬─────────┬─────────┐
-//    │    │     │      │ bri- │ bri+ │ pwr │              │     │ f7  │ f8 │ f9 │         │ bt_nxt  │
-//    ├────┼─────┼──────┼──────┼──────┼─────┤              ├─────┼─────┼────┼────┼─────────┼─────────┤
-//    │    │     │ mute │ vold │ volu │     │              │     │ f4  │ f5 │ f6 │ out_usb │ out_ble │
-//    ├────┼─────┼──────┼──────┼──────┼─────┤              ├─────┼─────┼────┼────┼─────────┼─────────┤
-//    │    │     │ prev │ play │ next │     │              │     │ f1  │ f2 │ f3 │         │ bt_prv  │
-//    └────┴─────┴──────┴──────┼──────┼─────┼────┐   ┌─────┼─────┼─────┼────┴────┴─────────┴─────────┘
-//                             │      │     │    │   │ f12 │ f11 │ f10 │
-//                             └──────┴─────┴────┘   └─────┴─────┴─────┘
-  ___   ___     ___              &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER                       ___       &kp F7    &kp F8   &kp F9   ___            &bt BT_NXT
-  ___   &none   &kp C_MUTE       &kp C_VOL_DN           &kp C_VOLUME_UP        ___                               ___       &kp F4    &kp F5   &kp F6   &out OUT_USB   &out OUT_BLE
-  ___   ___     &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             ___                               ___       &kp F1    &kp F2   &kp F3   ___            &bt BT_PRV
-                                                        ___                    ___           ___       &kp F12   &kp F11   &kp F10
+//    ┌────┬─────┬──────┬──────┬──────┬─────┐   ┌─────┬─────┬─────┬────┬─────────┬─────────┐
+//    │    │     │      │ bri- │ bri+ │ pwr │   │     │ f7  │ f8  │ f9 │         │ bt_nxt  │
+//    ├────┼─────┼──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼────┼─────────┼─────────┤
+//    │    │     │ mute │ vold │ volu │     │   │     │ f4  │ f5  │ f6 │ out_usb │ out_ble │
+//    ├────┼─────┼──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼────┼─────────┼─────────┤
+//    │    │     │ prev │ play │ next │     │   │     │ f1  │ f2  │ f3 │         │ bt_prv  │
+//    └────┴─────┴──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼────┴─────────┴─────────┘
+//                      │      │      │     │   │ f12 │ f11 │ f10 │
+//                      └──────┴──────┴─────┘   └─────┴─────┴─────┘
+  ___   ___     ___              &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER       ___       &kp F7    &kp F8    &kp F9   ___            &bt BT_NXT
+  ___   &none   &kp C_MUTE       &kp C_VOL_DN           &kp C_VOLUME_UP        ___               ___       &kp F4    &kp F5    &kp F6   &out OUT_USB   &out OUT_BLE
+  ___   ___     &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             ___               ___       &kp F1    &kp F2    &kp F3   ___            &bt BT_PRV
+                                 ___                    ___                    ___               &kp F12   &kp F11   &kp F10
            >;
 
            label = "Function";
@@ -115,19 +115,19 @@
 
        mouse_layer {
            bindings = <
-//    ┌────┬──────┬──────┬──────┬──────┬────────┐                   ┌──────┬────────┬────────┬────────┬────────┬────┐
-//    │    │      │      │      │      │        │                   │      │ SCRL_R │ SCRL_U │ SCRL_D │ SCRL_L │    │
-//    ├────┼──────┼──────┼──────┼──────┼────────┤                   ├──────┼────────┼────────┼────────┼────────┼────┤
-//    │    │ lctl │ lalt │ lsft │ lgui │        │                   │      │  MS_L  │  MS_D  │  MS_U  │  MS_R  │    │
-//    ├────┼──────┼──────┼──────┼──────┼────────┤                   ├──────┼────────┼────────┼────────┼────────┼────┤
-//    │    │      │      │      │      │        │                   │      │        │        │        │        │    │
-//    └────┴──────┴──────┴──────┼──────┼────────┼────────┐   ┌──────┼──────┼────────┼────────┴────────┴────────┴────┘
-//                              │      │ mo FUN │ mo NAV │   │ mclk │ lclk │  rclk  │
-//                              └──────┴────────┴────────┘   └──────┴──────┴────────┘
-  ___   ___         ___        ___         ___        ___                                ___        &msc SCRL_R   &msc SCRL_U   &msc SCRL_D   &msc SCRL_L   ___
-  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___                                ___        &mmv MS_L     &mmv MS_D     &mmv MS_U     &mmv MS_R     ___
-  ___   ___         ___        ___         ___        ___                                ___        ___           ___           ___           ___           ___
-                                           ___        &mo FUN   &mo NAV       &mkp MB3   &mkp MB1   &mkp MB2
+//    ┌────┬──────┬──────┬──────┬────────┬────────┐   ┌──────┬────────┬────────┬────────┬────────┬────┐
+//    │    │      │      │      │        │        │   │      │ SCRL_R │ SCRL_U │ SCRL_D │ SCRL_L │    │
+//    ├────┼──────┼──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┼────────┼────┤
+//    │    │ lctl │ lalt │ lsft │  lgui  │        │   │      │  MS_L  │  MS_D  │  MS_U  │  MS_R  │    │
+//    ├────┼──────┼──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┼────────┼────┤
+//    │    │      │      │      │        │        │   │      │        │        │        │        │    │
+//    └────┴──────┴──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┴────────┴────┘
+//                       │      │ mo FUN │ mo NAV │   │ mclk │  lclk  │  rclk  │
+//                       └──────┴────────┴────────┘   └──────┴────────┴────────┘
+  ___   ___         ___        ___         ___        ___           ___        &msc SCRL_R   &msc SCRL_U   &msc SCRL_D   &msc SCRL_L   ___
+  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___           ___        &mmv MS_L     &mmv MS_D     &mmv MS_U     &mmv MS_R     ___
+  ___   ___         ___        ___         ___        ___           ___        ___           ___           ___           ___           ___
+                               ___         &mo FUN    &mo NAV       &mkp MB3   &mkp MB1      &mkp MB2
            >;
 
            label = "Mouse";
@@ -138,10 +138,10 @@
 qmk:json:start
 {
   "layout": [
-    "x x x x x x _ _ _ x x x x x x",
-    "x x x x x x _ _ _ x x x x x x",
-    "x x x x x x _ _ _ x x x x x x",
-    "_ _ _ _ x x x _ x x x _ _ _ _"
+    "x x x x x x _ x x x x x x",
+    "x x x x x x _ x x x x x x",
+    "x x x x x x _ x x x x x x",
+    "_ _ _ x x x _ x x x _ _ _"
   ],
   "comment_preview": {
     "position": "top",
