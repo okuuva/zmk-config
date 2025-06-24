@@ -47,11 +47,11 @@
   };
 };
 
-#define U_MS_U &mmv MOVE_UP
-#define U_MS_D &mmv MOVE_DOWN
-#define U_MS_L &mmv MOVE_LEFT
-#define U_MS_R &mmv MOVE_RIGHT
-#define U_WH_U &msc SCRL_UP
-#define U_WH_D &msc SCRL_DOWN
-#define U_WH_L &msc SCRL_LEFT
-#define U_WH_R &msc SCRL_RIGHT
+#define MS_U MOVE_UP
+#define MS_D MOVE_DOWN
+#define MS_L MOVE_LEFT
+#define MS_R MOVE_RIGHT
+#define SCRL_U SCRL_UP
+#define SCRL_D SCRL_DOWN
+#define SCRL_L SCRL_LEFT
+#define SCRL_R SCRL_RIGHT
