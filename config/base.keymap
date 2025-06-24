@@ -80,19 +80,19 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
        nav_layer {
            bindings = <
-//    ┌───────────┬─────────────────┬──────────────┬──────────────┬──────────────┬──────┐               ┌────────────┬───────┬──────┬──────┬──────┬─────┐
-//    │           │                 │   Prev tab   │   New tab    │   Next tab   │      │               │            │ home  │ pgdn │ pgup │ end  │     │
-//    ├───────────┼─────────────────┼──────────────┼──────────────┼──────────────┼──────┤               ├────────────┼───────┼──────┼──────┼──────┼─────┤
-//    │           │      caps       │ Prev desktop │  Switch app  │ Next desktop │      │               │ Fullscreen │ left  │ down │  up  │ rght │     │
-//    ├───────────┼─────────────────┼──────────────┼──────────────┼──────────────┼──────┤               ├────────────┼───────┼──────┼──────┼──────┼─────┤
-//    │ Prev page │ Mission Control │  Next page   │ Close window │              │      │               │   again    │ paste │ copy │ cut  │ undo │     │
-//    └───────────┴─────────────────┴──────────────┴──────────────┼──────────────┼──────┼─────┐   ┌─────┼────────────┼───────┼──────┴──────┴──────┴─────┘
-//                                                                │              │ bspc │     │   │     │            │       │
-//                                                                └──────────────┴──────┴─────┘   └─────┴────────────┴───────┘
-  &trans         &trans         &kp LA(LG(LEFT))   &kp RG(T)     &kp LA(LG(RIGHT))   &trans                           &trans          &kp HOME      &kp PG_DN    &kp PG_UP   &kp END      &trans
-  &trans         &kp CAPSLOCK   &kp RC(LEFT)       &kp RG(TAB)   &kp RC(RIGHT)       &trans                           &kp LS(LG(F))   &kp LEFT      &kp DOWN     &kp UP      &kp RIGHT    &trans
-  &kp RG(LEFT)   &kp RC(UP)     &kp RG(RIGHT)      &kp RG(W)     &trans              &trans                           &kp K_REDO      &kp K_PASTE   &kp K_COPY   &kp K_CUT   &kp K_UNDO   &trans
-                                                                 &trans              &kp BSPC   &trans       &trans   &trans          &trans
+//    ┌───────────┬─────────────────┬──────────────┬──────────────┬──────────────┬──────┐             ┌────────────┬───────┬──────┬──────┬──────┬────┐
+//    │           │                 │   Prev tab   │   New tab    │   Next tab   │      │             │            │ home  │ pgdn │ pgup │ end  │    │
+//    ├───────────┼─────────────────┼──────────────┼──────────────┼──────────────┼──────┤             ├────────────┼───────┼──────┼──────┼──────┼────┤
+//    │           │      caps       │ Prev desktop │  Switch app  │ Next desktop │      │             │ Fullscreen │ left  │ down │  up  │ rght │    │
+//    ├───────────┼─────────────────┼──────────────┼──────────────┼──────────────┼──────┤             ├────────────┼───────┼──────┼──────┼──────┼────┤
+//    │ Prev page │ Mission Control │  Next page   │ Close window │              │      │             │   again    │ paste │ copy │ cut  │ undo │    │
+//    └───────────┴─────────────────┴──────────────┴──────────────┼──────────────┼──────┼────┐   ┌────┼────────────┼───────┼──────┴──────┴──────┴────┘
+//                                                                │              │ bspc │    │   │    │            │       │
+//                                                                └──────────────┴──────┴────┘   └────┴────────────┴───────┘
+  ___            ___            &kp LA(LG(LEFT))   &kp RG(T)     &kp LA(LG(RIGHT))   ___                        ___             &kp HOME      &kp PG_DN    &kp PG_UP   &kp END      ___
+  ___            &kp CAPSLOCK   &kp RC(LEFT)       &kp RG(TAB)   &kp RC(RIGHT)       ___                        &kp LS(LG(F))   &kp LEFT      &kp DOWN     &kp UP      &kp RIGHT    ___
+  &kp RG(LEFT)   &kp RC(UP)     &kp RG(RIGHT)      &kp RG(W)     ___                 ___                        &kp K_REDO      &kp K_PASTE   &kp K_COPY   &kp K_CUT   &kp K_UNDO   ___
+                                                                 ___                 &kp BSPC   ___       ___   ___             ___
            >;
 
            label = "Navigation";
@@ -100,19 +100,19 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
        num_layer {
            bindings = <
-//    ┌─────┬──────┬──────┬──────┬──────┬─────┐               ┌─────┬─────┬───┬───┬─────┬─────┐
-//    │     │      │      │      │      │     │               │     │  7  │ 8 │ 9 │     │     │
-//    ├─────┼──────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼───┼───┼─────┼─────┤
-//    │     │ lctl │ lalt │ lsft │ lgui │     │               │     │  4  │ 5 │ 6 │     │     │
-//    ├─────┼──────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼───┼───┼─────┼─────┤
-//    │     │      │      │      │      │     │               │     │  1  │ 2 │ 3 │     │     │
-//    └─────┴──────┴──────┴──────┼──────┼─────┼─────┐   ┌─────┼─────┼─────┼───┴───┴─────┴─────┘
-//                               │      │     │     │   │     │  0  │     │
-//                               └──────┴─────┴─────┘   └─────┴─────┴─────┘
-  &trans   &trans      &trans     &trans      &trans     &trans                         &trans   &kp N7   &kp N8   &kp N9   &trans   &trans
-  &trans   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   &trans                         &trans   &kp N4   &kp N5   &kp N6   &none    &trans
-  &trans   &trans      &trans     &trans      &trans     &trans                         &trans   &kp N1   &kp N2   &kp N3   &trans   &trans
-                                              &trans     &trans   &trans       &trans   &kp N0   &trans
+//    ┌────┬──────┬──────┬──────┬──────┬────┐             ┌────┬────┬───┬───┬─────┬────┐
+//    │    │      │      │      │      │    │             │    │ 7  │ 8 │ 9 │     │    │
+//    ├────┼──────┼──────┼──────┼──────┼────┤             ├────┼────┼───┼───┼─────┼────┤
+//    │    │ lctl │ lalt │ lsft │ lgui │    │             │    │ 4  │ 5 │ 6 │     │    │
+//    ├────┼──────┼──────┼──────┼──────┼────┤             ├────┼────┼───┼───┼─────┼────┤
+//    │    │      │      │      │      │    │             │    │ 1  │ 2 │ 3 │     │    │
+//    └────┴──────┴──────┴──────┼──────┼────┼────┐   ┌────┼────┼────┼───┴───┴─────┴────┘
+//                              │      │    │    │   │    │ 0  │    │
+//                              └──────┴────┴────┘   └────┴────┴────┘
+  ___   ___         ___        ___         ___        ___                   ___      &kp N7   &kp N8   &kp N9   ___     ___
+  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___                   ___      &kp N4   &kp N5   &kp N6   &none   ___
+  ___   ___         ___        ___         ___        ___                   ___      &kp N1   &kp N2   &kp N3   ___     ___
+                                           ___        ___   ___       ___   &kp N0   ___
            >;
 
            label = "Numbers";
@@ -120,19 +120,19 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
        sym_layer {
            bindings = <
-//    ┌───┬───┬───┬───┬───┬───┐             ┌─────┬──────┬───────────┬─────┬─────┬─────┐
-//    │ ` │ { │ ( │ ) │ } │ ? │             │  `  │ del  │ lsft(tab) │  -  │  +  │     │
-//    ├───┼───┼───┼───┼───┼───┤             ├─────┼──────┼───────────┼─────┼─────┼─────┤
-//    │ # │ ^ │ = │ _ │ $ │ * │             │  "  │ bspc │    tab    │ ent │ spc │     │
-//    ├───┼───┼───┼───┼───┼───┤             ├─────┼──────┼───────────┼─────┼─────┼─────┤
-//    │ & │ ~ │ / │ \ │ | │ . │             │  '  │  [   │     <     │  >  │  ]  │     │
-//    └───┴───┴───┴───┼───┼───┼───┐   ┌─────┼─────┼──────┼───────────┴─────┴─────┴─────┘
-//                    │ @ │ % │ ! │   │     │     │      │
-//                    └───┴───┴───┘   └─────┴─────┴──────┘
-  &kp GRAVE       &kp LEFT_BRACE   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp RIGHT_BRACE   &kp QUESTION                                  &kp GRAVE           &kp DELETE         &kp LS(TAB)     &kp MINUS          &kp PLUS            &trans
-  &kp HASH        &kp CARET        &kp EQUAL              &kp UNDERSCORE          &kp DOLLAR        &kp ASTERISK                                  &kp DOUBLE_QUOTES   &kp BACKSPACE      &kp TAB         &kp ENTER          &kp SPACE           &trans
-  &kp AMPERSAND   &kp TILDE        &kp SLASH              &kp BACKSLASH           &kp PIPE          &kp DOT                                       &kp SQT             &kp LEFT_BRACKET   &kp LESS_THAN   &kp GREATER_THAN   &kp RIGHT_BRACKET   &trans
-                                                                                  &kp AT_SIGN       &kp PERCENT    &kp EXCLAMATION       &trans   &trans              &trans
+//    ┌───┬───┬───┬───┬───┬───┐            ┌────┬──────┬───────────┬─────┬─────┬────┐
+//    │ ` │ { │ ( │ ) │ } │ ? │            │ `  │ del  │ lsft(tab) │  -  │  +  │    │
+//    ├───┼───┼───┼───┼───┼───┤            ├────┼──────┼───────────┼─────┼─────┼────┤
+//    │ # │ ^ │ = │ _ │ $ │ * │            │ "  │ bspc │    tab    │ ent │ spc │    │
+//    ├───┼───┼───┼───┼───┼───┤            ├────┼──────┼───────────┼─────┼─────┼────┤
+//    │ & │ ~ │ / │ \ │ | │ . │            │ '  │  [   │     <     │  >  │  ]  │    │
+//    └───┴───┴───┴───┼───┼───┼───┐   ┌────┼────┼──────┼───────────┴─────┴─────┴────┘
+//                    │ @ │ % │ ! │   │    │    │      │
+//                    └───┴───┴───┘   └────┴────┴──────┘
+  &kp GRAVE       &kp LEFT_BRACE   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp RIGHT_BRACE   &kp QUESTION                               &kp GRAVE           &kp DELETE         &kp LS(TAB)     &kp MINUS          &kp PLUS            ___
+  &kp HASH        &kp CARET        &kp EQUAL              &kp UNDERSCORE          &kp DOLLAR        &kp ASTERISK                               &kp DOUBLE_QUOTES   &kp BACKSPACE      &kp TAB         &kp ENTER          &kp SPACE           ___
+  &kp AMPERSAND   &kp TILDE        &kp SLASH              &kp BACKSLASH           &kp PIPE          &kp DOT                                    &kp SQT             &kp LEFT_BRACKET   &kp LESS_THAN   &kp GREATER_THAN   &kp RIGHT_BRACKET   ___
+                                                                                  &kp AT_SIGN       &kp PERCENT    &kp EXCLAMATION       ___   ___                 ___
            >;
 
            label = "Symbols";
@@ -140,19 +140,19 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
        fn_layer {
            bindings = <
-//    ┌─────┬─────┬──────┬──────┬──────┬─────┐               ┌─────┬─────┬────┬────┬─────────┬─────────┐
-//    │     │     │      │ bri- │ bri+ │ pwr │               │     │ f7  │ f8 │ f9 │         │ bt_nxt  │
-//    ├─────┼─────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼────┼────┼─────────┼─────────┤
-//    │     │     │ mute │ vold │ volu │     │               │     │ f4  │ f5 │ f6 │ out_usb │ out_ble │
-//    ├─────┼─────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼────┼────┼─────────┼─────────┤
-//    │     │     │ prev │ play │ next │     │               │     │ f1  │ f2 │ f3 │         │ bt_prv  │
-//    └─────┴─────┴──────┴──────┼──────┼─────┼─────┐   ┌─────┼─────┼─────┼────┴────┴─────────┴─────────┘
-//                              │      │     │     │   │ f12 │ f11 │ f10 │
-//                              └──────┴─────┴─────┘   └─────┴─────┴─────┘
-  &trans   &trans   &trans           &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER                          &trans    &kp F7    &kp F8   &kp F9   &trans         &bt BT_NXT
-  &trans   &none    &kp C_MUTE       &kp C_VOL_DN           &kp C_VOLUME_UP        &trans                               &trans    &kp F4    &kp F5   &kp F6   &out OUT_USB   &out OUT_BLE
-  &trans   &trans   &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             &trans                               &trans    &kp F1    &kp F2   &kp F3   &trans         &bt BT_PRV
-                                                            &trans                 &trans        &trans       &kp F12   &kp F11   &kp F10
+//    ┌────┬─────┬──────┬──────┬──────┬─────┐              ┌─────┬─────┬────┬────┬─────────┬─────────┐
+//    │    │     │      │ bri- │ bri+ │ pwr │              │     │ f7  │ f8 │ f9 │         │ bt_nxt  │
+//    ├────┼─────┼──────┼──────┼──────┼─────┤              ├─────┼─────┼────┼────┼─────────┼─────────┤
+//    │    │     │ mute │ vold │ volu │     │              │     │ f4  │ f5 │ f6 │ out_usb │ out_ble │
+//    ├────┼─────┼──────┼──────┼──────┼─────┤              ├─────┼─────┼────┼────┼─────────┼─────────┤
+//    │    │     │ prev │ play │ next │     │              │     │ f1  │ f2 │ f3 │         │ bt_prv  │
+//    └────┴─────┴──────┴──────┼──────┼─────┼────┐   ┌─────┼─────┼─────┼────┴────┴─────────┴─────────┘
+//                             │      │     │    │   │ f12 │ f11 │ f10 │
+//                             └──────┴─────┴────┘   └─────┴─────┴─────┘
+  ___   ___     ___              &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER                       ___       &kp F7    &kp F8   &kp F9   ___            &bt BT_NXT
+  ___   &none   &kp C_MUTE       &kp C_VOL_DN           &kp C_VOLUME_UP        ___                               ___       &kp F4    &kp F5   &kp F6   &out OUT_USB   &out OUT_BLE
+  ___   ___     &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             ___                               ___       &kp F1    &kp F2   &kp F3   ___            &bt BT_PRV
+                                                        ___                    ___           ___       &kp F12   &kp F11   &kp F10
            >;
 
            label = "Function";
@@ -160,19 +160,19 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
        mouse_layer {
            bindings = <
-//    ┌─────┬──────┬──────┬──────┬──────┬───────┐                   ┌──────┬───────────┬───────────┬───────────┬───────────┬─────┐
-//    │     │      │      │      │      │       │                   │      │ SCRL_rght │  SCRL_up  │ SCRL_down │ SCRL_left │     │
-//    ├─────┼──────┼──────┼──────┼──────┼───────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼─────┤
-//    │     │ lctl │ lalt │ lsft │ lgui │       │                   │      │ MOVE_left │ MOVE_down │  MOVE_up  │ MOVE_rght │     │
-//    ├─────┼──────┼──────┼──────┼──────┼───────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼─────┤
-//    │     │      │      │      │      │       │                   │      │           │           │           │           │     │
-//    └─────┴──────┴──────┴──────┼──────┼───────┼────────┐   ┌──────┼──────┼───────────┼───────────┴───────────┴───────────┴─────┘
-//                               │      │ mo FN │ mo NAV │   │ mclk │ lclk │   rclk    │
-//                               └──────┴───────┴────────┘   └──────┴──────┴───────────┘
-  &trans   &trans      &trans     &trans      &trans     &trans                            &trans     &msc SCRL_RIGHT   &msc SCRL_UP     &msc SCRL_DOWN   &msc SCRL_LEFT    &trans
-  &trans   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   &trans                            &trans     &mmv MOVE_LEFT    &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT   &trans
-  &trans   &trans      &trans     &trans      &trans     &trans                            &trans     &trans            &trans           &trans           &trans            &trans
-                                              &trans     &mo FN   &mo NAV       &mkp MB3   &mkp MB1   &mkp MB2
+//    ┌────┬──────┬──────┬──────┬──────┬───────┐                   ┌──────┬───────────┬───────────┬───────────┬───────────┬────┐
+//    │    │      │      │      │      │       │                   │      │ SCRL_rght │  SCRL_up  │ SCRL_down │ SCRL_left │    │
+//    ├────┼──────┼──────┼──────┼──────┼───────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼────┤
+//    │    │ lctl │ lalt │ lsft │ lgui │       │                   │      │ MOVE_left │ MOVE_down │  MOVE_up  │ MOVE_rght │    │
+//    ├────┼──────┼──────┼──────┼──────┼───────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼────┤
+//    │    │      │      │      │      │       │                   │      │           │           │           │           │    │
+//    └────┴──────┴──────┴──────┼──────┼───────┼────────┐   ┌──────┼──────┼───────────┼───────────┴───────────┴───────────┴────┘
+//                              │      │ mo FN │ mo NAV │   │ mclk │ lclk │   rclk    │
+//                              └──────┴───────┴────────┘   └──────┴──────┴───────────┘
+  ___   ___         ___        ___         ___        ___                               ___        &msc SCRL_RIGHT   &msc SCRL_UP     &msc SCRL_DOWN   &msc SCRL_LEFT    ___
+  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___                               ___        &mmv MOVE_LEFT    &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT   ___
+  ___   ___         ___        ___         ___        ___                               ___        ___               ___              ___              ___               ___
+                                           ___        &mo FN   &mo NAV       &mkp MB3   &mkp MB1   &mkp MB2
            >;
 
            label = "Mouse";
@@ -191,6 +191,7 @@ qmk:json:start
   "comment_preview": {
     "position": "top",
     "keymap_overrides": {
+      "___": "  ",
       "LS(LA(LC(LEFT_GUI)))": "hyper",
       "NON_US_BSLH": "ä",
       "LA(LG(LEFT))": "Prev tab",
