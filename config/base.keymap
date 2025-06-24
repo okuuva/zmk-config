@@ -24,30 +24,30 @@
 //    ├──────────┼────────────┼────────────┼────────────┼────────────┼──────────────┤                         ├──────────┼────────────┼────────────┼────────────┼────────────┼─────┤
 //    │    ä     │     Z      │     X      │     C      │     V      │      .       │                         │    J     │     M      │     G      │     P      │     F      │     │
 //    └──────────┴────────────┴────────────┴────────────┼────────────┼──────────────┼────────┐   ┌────────────┼──────────┼────────────┼────────────┴────────────┴────────────┴─────┘
-//                                                      │    tab     │ mt hyper spc │ mo NUM │   │ lt SYM esc │ lt NAV R │   mo NAV   │
+//                                                      │    tab     │ mt HYPER spc │ mo NUM │   │ lt SYM esc │ lt NAV R │   mo NAV   │
 //                                                      └────────────┴──────────────┴────────┘   └────────────┴──────────┴────────────┘
-  &mo FUN     &kp Q          &kp Y         &kp O          &kp U         &kp SEMICOLON                                                &kp X       &kp L         &kp D          &kp O         &kp Z          &none
-  &lt MOU B   &hml LCTRL C   &hml LALT I   &hml LSHFT E   &hml LGUI A   &kp COMMA                                                    &kp K       &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &kp V
-  &kp ISO     &kp Z          &kp X         &kp C          &kp V         &kp PERIOD                                                   &kp J       &kp M         &kp G          &kp P         &kp F          &none
-                                                          &kp TAB       &mt LS(LA(LC(LEFT_GUI))) SPACE   &mo NUM       &lt SYM ESC   &lt NAV R   &mo NAV
+  &mo FUN     &kp Q          &kp Y         &kp O          &kp U         &kp SEMICOLON                                 &kp X       &kp L         &kp D          &kp O         &kp Z          &none
+  &lt MOU B   &hml LCTRL C   &hml LALT I   &hml LSHFT E   &hml LGUI A   &kp COMMA                                     &kp K       &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &kp V
+  &kp ISO     &kp Z          &kp X         &kp C          &kp V         &kp PERIOD                                    &kp J       &kp M         &kp G          &kp P         &kp F          &none
+                                                          &kp TAB       &mt HYPER SPACE   &mo NUM       &lt SYM ESC   &lt NAV R   &mo NAV
            >;
        };
 
        nav_layer {
            bindings = <
-//    ┌───────────┬─────────────────┬──────────────┬──────────────┬──────────────┬──────┐             ┌────────────┬───────┬──────┬──────┬──────┬────┐
-//    │           │                 │   Prev tab   │   New tab    │   Next tab   │      │             │            │ home  │ pgdn │ pgup │ end  │    │
-//    ├───────────┼─────────────────┼──────────────┼──────────────┼──────────────┼──────┤             ├────────────┼───────┼──────┼──────┼──────┼────┤
-//    │           │      caps       │ Prev desktop │  Switch app  │ Next desktop │      │             │ Fullscreen │ left  │ down │  up  │ rght │    │
-//    ├───────────┼─────────────────┼──────────────┼──────────────┼──────────────┼──────┤             ├────────────┼───────┼──────┼──────┼──────┼────┤
-//    │ Prev page │ Mission Control │  Next page   │ Close window │              │      │             │   again    │ paste │ copy │ cut  │ undo │    │
-//    └───────────┴─────────────────┴──────────────┴──────────────┼──────────────┼──────┼────┐   ┌────┼────────────┼───────┼──────┴──────┴──────┴────┘
-//                                                                │              │ bspc │    │   │    │            │       │
-//                                                                └──────────────┴──────┴────┘   └────┴────────────┴───────┘
-  ___            ___            &kp LA(LG(LEFT))   &kp RG(T)     &kp LA(LG(RIGHT))   ___                        ___             &kp HOME      &kp PG_DN    &kp PG_UP   &kp END      ___
-  ___            &kp CAPSLOCK   &kp RC(LEFT)       &kp RG(TAB)   &kp RC(RIGHT)       ___                        &kp LS(LG(F))   &kp LEFT      &kp DOWN     &kp UP      &kp RIGHT    ___
-  &kp RG(LEFT)   &kp RC(UP)     &kp RG(RIGHT)      &kp RG(W)     ___                 ___                        &kp K_REDO      &kp K_PASTE   &kp K_COPY   &kp K_CUT   &kp K_UNDO   ___
-                                                                 ___                 &kp BSPC   ___       ___   ___             ___
+//    ┌──────────┬──────────┬──────────┬───────────┬──────────┬──────┐             ┌────────────┬───────┬──────┬──────┬──────┬────┐
+//    │          │          │ PrevTab  │  NewTab   │ NextTab  │      │             │            │ home  │ pgdn │ pgup │ end  │    │
+//    ├──────────┼──────────┼──────────┼───────────┼──────────┼──────┤             ├────────────┼───────┼──────┼──────┼──────┼────┤
+//    │          │   caps   │ PrevDesk │ SwitchApp │ NextDesk │      │             │ Fullscreen │ left  │ down │  up  │ rght │    │
+//    ├──────────┼──────────┼──────────┼───────────┼──────────┼──────┤             ├────────────┼───────┼──────┼──────┼──────┼────┤
+//    │ PrevPage │ ShowDesk │ NextPage │ CloseWin  │          │      │             │   again    │ paste │ copy │ cut  │ undo │    │
+//    └──────────┴──────────┴──────────┴───────────┼──────────┼──────┼────┐   ┌────┼────────────┼───────┼──────┴──────┴──────┴────┘
+//                                                 │          │ bspc │    │   │    │            │       │
+//                                                 └──────────┴──────┴────┘   └────┴────────────┴───────┘
+  ___            ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___                        ___              &kp HOME      &kp PG_DN    &kp PG_UP   &kp END      ___
+  ___            &kp CAPSLOCK   &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___                        &kp Fullscreen   &kp LEFT      &kp DOWN     &kp UP      &kp RIGHT    ___
+  &kp PrevPage   &kp ShowDesk   &kp NextPage   &kp CloseWin    ___            ___                        &kp K_REDO       &kp K_PASTE   &kp K_COPY   &kp K_CUT   &kp K_UNDO   ___
+                                                               ___            &kp BSPC   ___       ___   ___              ___
            >;
 
            label = "Navigation";
@@ -115,18 +115,18 @@
 
        mouse_layer {
            bindings = <
-//    ┌────┬──────┬──────┬──────┬──────┬────────┐                   ┌──────┬───────────┬───────────┬───────────┬───────────┬────┐
-//    │    │      │      │      │      │        │                   │      │ SCRL_rght │  SCRL_up  │ SCRL_down │ SCRL_left │    │
-//    ├────┼──────┼──────┼──────┼──────┼────────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼────┤
-//    │    │ lctl │ lalt │ lsft │ lgui │        │                   │      │ MOVE_left │ MOVE_down │  MOVE_up  │ MOVE_rght │    │
-//    ├────┼──────┼──────┼──────┼──────┼────────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼────┤
-//    │    │      │      │      │      │        │                   │      │           │           │           │           │    │
-//    └────┴──────┴──────┴──────┼──────┼────────┼────────┐   ┌──────┼──────┼───────────┼───────────┴───────────┴───────────┴────┘
-//                              │      │ mo FUN │ mo NAV │   │ mclk │ lclk │   rclk    │
-//                              └──────┴────────┴────────┘   └──────┴──────┴───────────┘
-  ___   ___         ___        ___         ___        ___                                ___        &msc SCRL_RIGHT   &msc SCRL_UP     &msc SCRL_DOWN   &msc SCRL_LEFT    ___
-  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___                                ___        &mmv MOVE_LEFT    &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT   ___
-  ___   ___         ___        ___         ___        ___                                ___        ___               ___              ___              ___               ___
+//    ┌────┬──────┬──────┬──────┬──────┬────────┐                   ┌──────┬────────┬────────┬────────┬────────┬────┐
+//    │    │      │      │      │      │        │                   │      │ SCRL_R │ SCRL_U │ SCRL_D │ SCRL_L │    │
+//    ├────┼──────┼──────┼──────┼──────┼────────┤                   ├──────┼────────┼────────┼────────┼────────┼────┤
+//    │    │ lctl │ lalt │ lsft │ lgui │        │                   │      │  MS_L  │  MS_D  │  MS_U  │  MS_R  │    │
+//    ├────┼──────┼──────┼──────┼──────┼────────┤                   ├──────┼────────┼────────┼────────┼────────┼────┤
+//    │    │      │      │      │      │        │                   │      │        │        │        │        │    │
+//    └────┴──────┴──────┴──────┼──────┼────────┼────────┐   ┌──────┼──────┼────────┼────────┴────────┴────────┴────┘
+//                              │      │ mo FUN │ mo NAV │   │ mclk │ lclk │  rclk  │
+//                              └──────┴────────┴────────┘   └──────┴──────┴────────┘
+  ___   ___         ___        ___         ___        ___                                ___        &msc SCRL_R   &msc SCRL_U   &msc SCRL_D   &msc SCRL_L   ___
+  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___                                ___        &mmv MS_L     &mmv MS_D     &mmv MS_U     &mmv MS_R     ___
+  ___   ___         ___        ___         ___        ___                                ___        ___           ___           ___           ___           ___
                                            ___        &mo FUN   &mo NAV       &mkp MB3   &mkp MB1   &mkp MB2
            >;
 
@@ -149,20 +149,7 @@ qmk:json:start
       "___": "  ",
       "&hml": "hml",
       "&hmr": "hmr",
-      "LS(LA(LC(LEFT_GUI)))": "hyper",
-      "NON_US_BSLH": "ä",
-      "ISO": "ä",
-      "LA(LG(LEFT))": "Prev tab",
-      "RG(T)": "New tab",
-      "LA(LG(RIGHT))": "Next tab",
-      "RG(TAB)": "Switch app",
-      "RC(LEFT)": "Prev desktop",
-      "RC(RIGHT)": "Next desktop",
-      "RG(W)": "Close window",
-      "RG(LEFT)": "Prev page",
-      "RG(RIGHT)": "Next page",
-      "RC(UP)": "Mission Control",
-      "LS(LG(F))": "Fullscreen"
+      "ISO": "ä"
     }
   },
   "variant": "zmk"

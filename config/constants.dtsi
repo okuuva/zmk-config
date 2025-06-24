@@ -3,7 +3,20 @@
 
 // Keys
 #define ___ &trans
+#define XXX &none
+#define HYPER LS(LA(LC(LEFT_GUI)))
 #define ISO NON_US_BSLH
+#define NewTab RG(T)
+#define PrevTab LA(LG(LEFT))
+#define NextTab LA(LG(RIGHT))
+#define SwitchApp RG(TAB)
+#define PrevDesk RC(LEFT)
+#define NextDesk RC(RIGHT)
+#define ShowDesk RC(UP)
+#define CloseWin RG(W)
+#define PrevPage RG(LEFT)
+#define NextPage RG(RIGHT)
+#define Fullscreen LS(LG(F))
 
 // Layers
 // Must match order in which they are defined
