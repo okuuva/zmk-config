@@ -5,52 +5,7 @@
   #include <dt-bindings/zmk/outputs.h>
 #endif
 
-#include "zmk-helpers/helper.h"
-
-#define BASE 0
-#define NAV 1
-#define NUM 2
-#define SYM 3
-#define FN 4
-#define MOUSE 5
-
-#define XXX &none
-#define ___ &trans
-
-/* Global defaults */
-
-#define QUICK_TAP_MS 175
-
-&sk {
-  release-after-ms = <900>;
-  quick-release;
-};
-
-&sl { // Allow sticky mods to chord across sticky layers.
-  ignore-modifiers;
-};
-
-&lt {
-  flavor = "balanced";
-  tapping-term-ms = <200>;
-  quick-tap-ms = <QUICK_TAP_MS>;
-};
-
-/* Homerow mods */
-
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 LT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
-#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2 // Thumbs on 36+ keys.
-
-#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
-  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
-               tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
-               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
-               hold-trigger-key-positions = <TRIGGER_POS>;)
-
-MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
-MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
-
+#include "constants.dtsi"
 #include "mouse.dtsi"
 
 /* Keymap */
@@ -62,19 +17,19 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
        base_layer {
            display-name = "Base";
            bindings = <
-//    ┌────────────┬─────────────┬─────────────┬─────────────┬─────────────┬──────────────┐                         ┌──────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────┐
-//    │   mo FN    │      Q      │      Y      │      O      │      U      │      ;       │                         │    X     │      L      │      D      │      O      │      Z      │     │
-//    ├────────────┼─────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                         ├──────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────┤
-//    │ lt MOUSE B │ &hml lctl C │ &hml lalt I │ &hml lsft E │ &hml lgui A │      ,       │                         │    K     │ &hmr rgui H │ &hmr rsft T │ &hmr ralt N │ &hmr rctl S │  V  │
-//    ├────────────┼─────────────┼─────────────┼─────────────┼─────────────┼──────────────┤                         ├──────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────┤
-//    │     ä      │      Z      │      X      │      C      │      V      │      .       │                         │    J     │      M      │      G      │      P      │      F      │     │
-//    └────────────┴─────────────┴─────────────┴─────────────┼─────────────┼──────────────┼────────┐   ┌────────────┼──────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────┘
-//                                                           │     tab     │ mt hyper spc │ mo NUM │   │ lt SYM esc │ lt NAV R │   mo NAV    │
-//                                                           └─────────────┴──────────────┴────────┘   └────────────┴──────────┴─────────────┘
-  &mo FN            &kp Q                 &kp Y             &kp O               &kp U         &kp SEMICOLON                                                &kp X       &kp L              &kp D                &kp O              &kp Z                  &none
-  &lt MOUSE B       &hml LEFT_CONTROL C   &hml LEFT_ALT I   &hml LEFT_SHIFT E   &hml LCMD A   &kp COMMA                                                    &kp K       &hmr RIGHT_GUI H   &hmr RIGHT_SHIFT T   &hmr RIGHT_ALT N   &hmr RIGHT_CONTROL S   &kp V
-  &kp NON_US_BSLH   &kp Z                 &kp X             &kp C               &kp V         &kp PERIOD                                                   &kp J       &kp M              &kp G                &kp P              &kp F                  &none
-                                                                                &kp TAB       &mt LS(LA(LC(LEFT_GUI))) SPACE   &mo NUM       &lt SYM ESC   &lt NAV R   &mo NAV
+//    ┌──────────┬────────────┬────────────┬────────────┬────────────┬──────────────┐                         ┌──────────┬────────────┬────────────┬────────────┬────────────┬─────┐
+//    │  mo FUN  │     Q      │     Y      │     O      │     U      │      ;       │                         │    X     │     L      │     D      │     O      │     Z      │     │
+//    ├──────────┼────────────┼────────────┼────────────┼────────────┼──────────────┤                         ├──────────┼────────────┼────────────┼────────────┼────────────┼─────┤
+//    │ lt MOU B │ hml lctl C │ hml lalt I │ hml lsft E │ hml lgui A │      ,       │                         │    K     │ hmr rgui H │ hmr rsft T │ hmr ralt N │ hmr rctl S │  V  │
+//    ├──────────┼────────────┼────────────┼────────────┼────────────┼──────────────┤                         ├──────────┼────────────┼────────────┼────────────┼────────────┼─────┤
+//    │    ä     │     Z      │     X      │     C      │     V      │      .       │                         │    J     │     M      │     G      │     P      │     F      │     │
+//    └──────────┴────────────┴────────────┴────────────┼────────────┼──────────────┼────────┐   ┌────────────┼──────────┼────────────┼────────────┴────────────┴────────────┴─────┘
+//                                                      │    tab     │ mt hyper spc │ mo NUM │   │ lt SYM esc │ lt NAV R │   mo NAV   │
+//                                                      └────────────┴──────────────┴────────┘   └────────────┴──────────┴────────────┘
+  &mo FUN     &kp Q          &kp Y         &kp O          &kp U         &kp SEMICOLON                                                &kp X       &kp L         &kp D          &kp O         &kp Z          &none
+  &lt MOU B   &hml LCTRL C   &hml LALT I   &hml LSHFT E   &hml LGUI A   &kp COMMA                                                    &kp K       &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &kp V
+  &kp ISO     &kp Z          &kp X         &kp C          &kp V         &kp PERIOD                                                   &kp J       &kp M         &kp G          &kp P         &kp F          &none
+                                                          &kp TAB       &mt LS(LA(LC(LEFT_GUI))) SPACE   &mo NUM       &lt SYM ESC   &lt NAV R   &mo NAV
            >;
        };
 
@@ -160,19 +115,19 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
        mouse_layer {
            bindings = <
-//    ┌────┬──────┬──────┬──────┬──────┬───────┐                   ┌──────┬───────────┬───────────┬───────────┬───────────┬────┐
-//    │    │      │      │      │      │       │                   │      │ SCRL_rght │  SCRL_up  │ SCRL_down │ SCRL_left │    │
-//    ├────┼──────┼──────┼──────┼──────┼───────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼────┤
-//    │    │ lctl │ lalt │ lsft │ lgui │       │                   │      │ MOVE_left │ MOVE_down │  MOVE_up  │ MOVE_rght │    │
-//    ├────┼──────┼──────┼──────┼──────┼───────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼────┤
-//    │    │      │      │      │      │       │                   │      │           │           │           │           │    │
-//    └────┴──────┴──────┴──────┼──────┼───────┼────────┐   ┌──────┼──────┼───────────┼───────────┴───────────┴───────────┴────┘
-//                              │      │ mo FN │ mo NAV │   │ mclk │ lclk │   rclk    │
-//                              └──────┴───────┴────────┘   └──────┴──────┴───────────┘
-  ___   ___         ___        ___         ___        ___                               ___        &msc SCRL_RIGHT   &msc SCRL_UP     &msc SCRL_DOWN   &msc SCRL_LEFT    ___
-  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___                               ___        &mmv MOVE_LEFT    &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT   ___
-  ___   ___         ___        ___         ___        ___                               ___        ___               ___              ___              ___               ___
-                                           ___        &mo FN   &mo NAV       &mkp MB3   &mkp MB1   &mkp MB2
+//    ┌────┬──────┬──────┬──────┬──────┬────────┐                   ┌──────┬───────────┬───────────┬───────────┬───────────┬────┐
+//    │    │      │      │      │      │        │                   │      │ SCRL_rght │  SCRL_up  │ SCRL_down │ SCRL_left │    │
+//    ├────┼──────┼──────┼──────┼──────┼────────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼────┤
+//    │    │ lctl │ lalt │ lsft │ lgui │        │                   │      │ MOVE_left │ MOVE_down │  MOVE_up  │ MOVE_rght │    │
+//    ├────┼──────┼──────┼──────┼──────┼────────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼────┤
+//    │    │      │      │      │      │        │                   │      │           │           │           │           │    │
+//    └────┴──────┴──────┴──────┼──────┼────────┼────────┐   ┌──────┼──────┼───────────┼───────────┴───────────┴───────────┴────┘
+//                              │      │ mo FUN │ mo NAV │   │ mclk │ lclk │   rclk    │
+//                              └──────┴────────┴────────┘   └──────┴──────┴───────────┘
+  ___   ___         ___        ___         ___        ___                                ___        &msc SCRL_RIGHT   &msc SCRL_UP     &msc SCRL_DOWN   &msc SCRL_LEFT    ___
+  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___                                ___        &mmv MOVE_LEFT    &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT   ___
+  ___   ___         ___        ___         ___        ___                                ___        ___               ___              ___              ___               ___
+                                           ___        &mo FUN   &mo NAV       &mkp MB3   &mkp MB1   &mkp MB2
            >;
 
            label = "Mouse";
@@ -192,8 +147,11 @@ qmk:json:start
     "position": "top",
     "keymap_overrides": {
       "___": "  ",
+      "&hml": "hml",
+      "&hmr": "hmr",
       "LS(LA(LC(LEFT_GUI)))": "hyper",
       "NON_US_BSLH": "ä",
+      "ISO": "ä",
       "LA(LG(LEFT))": "Prev tab",
       "RG(T)": "New tab",
       "LA(LG(RIGHT))": "Next tab",

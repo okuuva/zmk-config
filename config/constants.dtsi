@@ -1,0 +1,55 @@
+// https://github.com/JeffDess/zmk-config/blob/5d12b29c4598c2e8b99e4e72208bd0cbeb28ca0b/config/constants.h
+#include "zmk-helpers/helper.h"
+
+// Keys
+#define ___ &trans
+#define ISO NON_US_BSLH
+
+// Layers
+// Must match order in which they are defined
+#define ENT 0
+#define NAV 1
+#define NUM 2
+#define SYM 3
+#define FUN 4
+#define MOU 5
+
+// OS
+// https://github.com/urob/zmk-helpers/tree/main?tab=readme-ov-file#unicode-characters-and-language-collection
+#define WINDOWS 0
+#define LINUX 1
+#define MAC_OS 2
+
+/* Global defaults */
+
+#define QUICK_TAP_MS 175
+
+&sk {
+  release-after-ms = <900>;
+  quick-release;
+};
+
+&sl { // Allow sticky mods to chord across sticky layers.
+  ignore-modifiers;
+};
+
+&lt {
+  flavor = "balanced";
+  tapping-term-ms = <200>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+};
+
+/* Homerow mods */
+
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 LT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2 // Thumbs on 36+ keys.
+
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
+  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
+               tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
+               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
+               hold-trigger-key-positions = <TRIGGER_POS>;)
+
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
