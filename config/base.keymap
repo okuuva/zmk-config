@@ -160,19 +160,19 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
        mouse_layer {
            bindings = <
-//    ┌─────┬──────┬──────┬──────┬──────┬─────┐                ┌──────┬───────────┬───────────┬───────────┬───────────┬─────┐
-//    │     │      │      │      │      │     │                │      │ SCRL_rght │  SCRL_up  │ SCRL_down │ SCRL_left │     │
-//    ├─────┼──────┼──────┼──────┼──────┼─────┤                ├──────┼───────────┼───────────┼───────────┼───────────┼─────┤
-//    │     │ lctl │ lalt │ lsft │ lgui │     │                │      │ MOVE_left │ MOVE_down │  MOVE_up  │ MOVE_rght │     │
-//    ├─────┼──────┼──────┼──────┼──────┼─────┤                ├──────┼───────────┼───────────┼───────────┼───────────┼─────┤
-//    │     │      │      │      │      │     │                │      │           │           │           │           │     │
-//    └─────┴──────┴──────┴──────┼──────┼─────┼─────┐   ┌──────┼──────┼───────────┼───────────┴───────────┴───────────┴─────┘
-//                               │      │     │     │   │ mclk │ lclk │   rclk    │
-//                               └──────┴─────┴─────┘   └──────┴──────┴───────────┘
-  &trans   &trans      &trans     &trans      &trans     &trans                           &trans     &msc SCRL_RIGHT   &msc SCRL_UP     &msc SCRL_DOWN   &msc SCRL_LEFT    &trans
-  &trans   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   &trans                           &trans     &mmv MOVE_LEFT    &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT   &trans
-  &trans   &trans      &trans     &trans      &trans     &trans                           &trans     &trans            &trans           &trans           &trans            &trans
-                                              &trans     &trans   &trans       &mkp MB3   &mkp MB1   &mkp MB2
+//    ┌─────┬──────┬──────┬──────┬──────┬───────┐                   ┌──────┬───────────┬───────────┬───────────┬───────────┬─────┐
+//    │     │      │      │      │      │       │                   │      │ SCRL_rght │  SCRL_up  │ SCRL_down │ SCRL_left │     │
+//    ├─────┼──────┼──────┼──────┼──────┼───────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼─────┤
+//    │     │ lctl │ lalt │ lsft │ lgui │       │                   │      │ MOVE_left │ MOVE_down │  MOVE_up  │ MOVE_rght │     │
+//    ├─────┼──────┼──────┼──────┼──────┼───────┤                   ├──────┼───────────┼───────────┼───────────┼───────────┼─────┤
+//    │     │      │      │      │      │       │                   │      │           │           │           │           │     │
+//    └─────┴──────┴──────┴──────┼──────┼───────┼────────┐   ┌──────┼──────┼───────────┼───────────┴───────────┴───────────┴─────┘
+//                               │      │ mo FN │ mo NAV │   │ mclk │ lclk │   rclk    │
+//                               └──────┴───────┴────────┘   └──────┴──────┴───────────┘
+  &trans   &trans      &trans     &trans      &trans     &trans                            &trans     &msc SCRL_RIGHT   &msc SCRL_UP     &msc SCRL_DOWN   &msc SCRL_LEFT    &trans
+  &trans   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   &trans                            &trans     &mmv MOVE_LEFT    &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT   &trans
+  &trans   &trans      &trans     &trans      &trans     &trans                            &trans     &trans            &trans           &trans           &trans            &trans
+                                              &trans     &mo FN   &mo NAV       &mkp MB3   &mkp MB1   &mkp MB2
            >;
 
            label = "Mouse";
