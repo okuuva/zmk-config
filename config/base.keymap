@@ -18,7 +18,7 @@
            display-name = "Base";
            bindings = <
 //    ┌──────────┬────────────┬────────────┬────────────┬──────────────┬────────┐   ┌────────────┬────────────┬────────────┬────────────┬────────────┬─────┐
-//    │  mo FUN  │     Q      │     Y      │     O      │      U       │   ;    │   │     X      │     L      │     D      │     O      │     Z      │     │
+//    │  mo FUN  │     Q      │     Y      │     O      │      U       │   ;    │   │     X      │     L      │     D      │     W      │     Z      │     │
 //    ├──────────┼────────────┼────────────┼────────────┼──────────────┼────────┤   ├────────────┼────────────┼────────────┼────────────┼────────────┼─────┤
 //    │ lt MOU B │ hml lctl C │ hml lalt I │ hml lsft E │  hml lgui A  │   ,    │   │     K      │ hmr rgui H │ hmr rsft T │ hmr ralt N │ hmr rctl S │  V  │
 //    ├──────────┼────────────┼────────────┼────────────┼──────────────┼────────┤   ├────────────┼────────────┼────────────┼────────────┼────────────┼─────┤
@@ -26,7 +26,7 @@
 //    └──────────┴────────────┴────────────┼────────────┼──────────────┼────────┤   ├────────────┼────────────┼────────────┼────────────┴────────────┴─────┘
 //                                         │    tab     │ mt HYPER spc │ mo NUM │   │ lt SYM esc │  lt NAV R  │   mo NAV   │
 //                                         └────────────┴──────────────┴────────┘   └────────────┴────────────┴────────────┘
-  &mo FUN     &kp Q          &kp Y         &kp O          &kp U             &kp SEMICOLON       &kp X         &kp L         &kp D          &kp O         &kp Z          &none
+  &mo FUN     &kp Q          &kp Y         &kp O          &kp U             &kp SEMICOLON       &kp X         &kp L         &kp D          &kp W         &kp Z          &none
   &lt MOU B   &hml LCTRL C   &hml LALT I   &hml LSHFT E   &hml LGUI A       &kp COMMA           &kp K         &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &kp V
   &kp ISO     &kp Z          &kp X         &kp C          &kp V             &kp PERIOD          &kp J         &kp M         &kp G          &kp P         &kp F          &none
                                            &kp TAB        &mt HYPER SPACE   &mo NUM             &lt SYM ESC   &lt NAV R     &mo NAV
