@@ -10,6 +10,3 @@ includes = [
 [vars]
 build = "{{ config_root }}/.build"
 out = "{{ config_root }}/firmware"
-
-[hooks]
-enter = "nix develop"
