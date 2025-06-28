@@ -1,4 +1,6 @@
 #:schema https://mise.jdx.dev/schema/mise-task.json
+dev = "nix develop"
+
 init = "just init"
 
 upgrade = "just upgrade-sdk"
