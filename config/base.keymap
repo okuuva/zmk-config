@@ -149,7 +149,10 @@ qmk:json:start
       "___": "  ",
       "&hml": "hml",
       "&hmr": "hmr",
-      "ISO": "ä"
+      "&mmv ": "",
+      "&msc ": "",
+      "ISO": "ä",
+      "K_PASTE": "paste"
     }
   },
   "variant": "zmk"
