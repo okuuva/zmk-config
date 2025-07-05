@@ -96,17 +96,17 @@
        fn_layer {
            bindings = <
 //    ┌────────┬─────┬──────┬──────┬──────┬─────┐   ┌─────┬─────┬─────┬────┬──────────┬──────────┐
-//    │        │     │      │ bri- │ bri+ │ pwr │   │     │ f7  │ f8  │ f9 │          │  bt_nxt  │
+//    │        │     │      │ bri- │ bri+ │ pwr │   │     │ f7  │ f8  │ f9 │          │  bt_prv  │
 //    ├────────┼─────┼──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼────┼──────────┼──────────┤
 //    │        │     │ mute │ vold │ volu │     │   │     │ f4  │ f5  │ f6 │ out_ usb │ out_ ble │
 //    ├────────┼─────┼──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼────┼──────────┼──────────┤
-//    │ bt_clr │     │ prev │ play │ next │     │   │     │ f1  │ f2  │ f3 │          │  bt_prv  │
+//    │ bt_clr │     │ prev │ play │ next │     │   │     │ f1  │ f2  │ f3 │          │  bt_nxt  │
 //    └────────┴─────┴──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼────┴──────────┴──────────┘
 //                          │      │      │     │   │ f12 │ f11 │ f10 │
 //                          └──────┴──────┴─────┘   └─────┴─────┴─────┘
-  ___          ___     ___              &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER       ___       &kp F7    &kp F8    &kp F9   ___            &bt BT_NXT
+  ___          ___     ___              &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER       ___       &kp F7    &kp F8    &kp F9   ___            &bt BT_PRV
   ___          &none   &kp C_MUTE       &kp C_VOL_DN           &kp C_VOLUME_UP        ___               ___       &kp F4    &kp F5    &kp F6   &out OUT_USB   &out OUT_BLE
-  &bt BT_CLR   ___     &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             ___               ___       &kp F1    &kp F2    &kp F3   ___            &bt BT_PRV
+  &bt BT_CLR   ___     &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             ___               ___       &kp F1    &kp F2    &kp F3   ___            &bt BT_NXT
                                         ___                    ___                    ___               &kp F12   &kp F11   &kp F10
            >;
 
