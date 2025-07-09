@@ -9,7 +9,7 @@
 // Based on @caksoylar's config, defaults in comments
 &mmv {
   acceleration-exponent = <1>;          // 1
-  time-to-max-speed-ms = <100>;         // 300
+  time-to-max-speed-ms = <10>;          // 300
   delay-ms = <0>;                       // 0
 };
 
