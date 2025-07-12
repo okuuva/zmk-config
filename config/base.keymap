@@ -76,18 +76,18 @@
        sym_layer {
            bindings = <
 //    ┌───┬───┬───┬───┬───┬───┐   ┌────┬──────┬───────────┬─────┬─────┬────┐
-//    │ ` │ { │ ( │ ) │ } │ ? │   │ `  │ del  │ lsft(tab) │  -  │  +  │    │
+//    │ ` │ < │ ( │ ) │ > │ ? │   │ `  │ del  │ lsft(tab) │  -  │  +  │    │
 //    ├───┼───┼───┼───┼───┼───┤   ├────┼──────┼───────────┼─────┼─────┼────┤
 //    │ # │ ^ │ = │ _ │ $ │ * │   │ "  │ bspc │    tab    │ ent │ spc │    │
 //    ├───┼───┼───┼───┼───┼───┤   ├────┼──────┼───────────┼─────┼─────┼────┤
-//    │ & │ ~ │ / │ \ │ | │ . │   │ '  │  [   │     <     │  >  │  ]  │    │
+//    │ & │ ~ │ / │ \ │ | │ . │   │ '  │  [   │     {     │  }  │  ]  │    │
 //    └───┴───┴───┼───┼───┼───┤   ├────┼──────┼───────────┼─────┴─────┴────┘
 //                │ @ │ % │ ! │   │    │      │           │
 //                └───┴───┴───┘   └────┴──────┴───────────┘
-  &kp GRAVE       &kp LEFT_BRACE   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp RIGHT_BRACE   &kp QUESTION          &kp GRAVE           &kp DELETE         &kp LS(TAB)     &kp MINUS          &kp PLUS            ___
-  &kp HASH        &kp CARET        &kp EQUAL              &kp UNDERSCORE          &kp DOLLAR        &kp ASTERISK          &kp DOUBLE_QUOTES   &kp BACKSPACE      &kp TAB         &kp ENTER          &kp SPACE           ___
-  &kp AMPERSAND   &kp TILDE        &kp SLASH              &kp BACKSLASH           &kp PIPE          &kp DOT               &kp SQT             &kp LEFT_BRACKET   &kp LESS_THAN   &kp GREATER_THAN   &kp RIGHT_BRACKET   ___
-                                                          &kp AT_SIGN             &kp PERCENT       &kp EXCLAMATION       ___                 ___                ___
+  &kp GRAVE       &kp LESS_THAN   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GREATER_THAN   &kp QUESTION          &kp GRAVE           &kp DELETE         &kp LS(TAB)      &kp MINUS         &kp PLUS            ___
+  &kp HASH        &kp CARET       &kp EQUAL              &kp UNDERSCORE          &kp DOLLAR         &kp ASTERISK          &kp DOUBLE_QUOTES   &kp BACKSPACE      &kp TAB          &kp ENTER         &kp SPACE           ___
+  &kp AMPERSAND   &kp TILDE       &kp SLASH              &kp BACKSLASH           &kp PIPE           &kp DOT               &kp SQT             &kp LEFT_BRACKET   &kp LEFT_BRACE   &kp RIGHT_BRACE   &kp RIGHT_BRACKET   ___
+                                                         &kp AT_SIGN             &kp PERCENT        &kp EXCLAMATION       ___                 ___                ___
            >;
 
            label = "Symbols";
