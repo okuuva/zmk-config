@@ -39,6 +39,7 @@
 #define CUT LG(X)
 #define UNDO LG(Z)
 #define REDO LS(LG(Z))
+#define LockScreen LC(LG(Q))
 
 /* Global defaults */
 
