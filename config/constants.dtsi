@@ -33,6 +33,13 @@
 #define LINUX 1
 #define MAC_OS 2
 
+// TODO: make these OS agnostic
+#define COPY LG(C)
+#define PASTE LG(V)
+#define CUT LG(X)
+#define UNDO LG(Z)
+#define REDO LS(LG(Z))
+
 /* Global defaults */
 
 #define QUICK_TAP_MS 175
