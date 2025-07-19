@@ -74,6 +74,12 @@
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
+ZMK_CAPS_WORD(caps_word,
+    continue-list = <
+      UNDERSCORE MINUS
+      BACKSPACE
+    >;
+)
 
 /*                KEY POSITIONS
 

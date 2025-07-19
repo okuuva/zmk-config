@@ -38,14 +38,14 @@
 //    ┌──────────┬──────────┬──────────┬───────────┬──────────┬────┐   ┌────────────┬──────┬──────┬───────┬──────┬────┐
 //    │          │          │ PrevTab  │  NewTab   │ NextTab  │    │   │            │ home │ pgdn │ pgup  │ end  │    │
 //    ├──────────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼────┤
-//    │          │   caps   │ PrevDesk │ SwitchApp │ NextDesk │    │   │ Fullscreen │ left │ down │  up   │ rght │    │
+//    │          │  capsw   │ PrevDesk │ SwitchApp │ NextDesk │    │   │ Fullscreen │ left │ down │  up   │ rght │    │
 //    ├──────────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼────┤
 //    │ PrevPage │ ShowDesk │ NextPage │ CloseWin  │          │    │   │    redo    │ copy │ cut  │ paste │ undo │    │
 //    └──────────┴──────────┴──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┴──────┴────┘
 //                                     │           │   bspc   │    │   │            │      │      │
 //                                     └───────────┴──────────┴────┘   └────────────┴──────┴──────┘
   ___            ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     ___
-  ___            &kp CAPSLOCK   &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___       &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   ___
+  ___            &caps_word     &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___       &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   ___
   &kp PrevPage   &kp ShowDesk   &kp NextPage   &kp CloseWin    ___            ___       &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
                                                ___             &kp BSPC       ___       ___              ___        ___
            >;
