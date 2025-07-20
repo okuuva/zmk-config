@@ -24,9 +24,10 @@
 #define ENT 0
 #define NUM 1
 #define SYM 2
-#define NAV 3
-#define FUN 4
-#define MOU 5
+#define PAD 3
+#define NAV 4
+#define FUN 5
+#define MOU 6
 
 // OS
 // https://github.com/urob/zmk-helpers/tree/main?tab=readme-ov-file#unicode-characters-and-language-collection
