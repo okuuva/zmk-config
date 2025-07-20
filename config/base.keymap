@@ -34,26 +34,6 @@
            >;
        };
 
-       nav_layer {
-           bindings = <
-//    ┌──────────┬──────────┬──────────┬───────────┬──────────┬────┐   ┌────────────┬──────┬──────┬───────┬──────┬────┐
-//    │          │          │ PrevTab  │  NewTab   │ NextTab  │    │   │            │ home │ pgdn │ pgup  │ end  │    │
-//    ├──────────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼────┤
-//    │          │  capsw   │ PrevDesk │ SwitchApp │ NextDesk │    │   │ Fullscreen │ left │ down │  up   │ rght │    │
-//    ├──────────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼────┤
-//    │ PrevPage │ ShowDesk │ NextPage │ CloseWin  │          │    │   │    redo    │ copy │ cut  │ paste │ undo │    │
-//    └──────────┴──────────┴──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┴──────┴────┘
-//                                     │           │   bspc   │    │   │            │      │      │
-//                                     └───────────┴──────────┴────┘   └────────────┴──────┴──────┘
-  ___            ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     ___
-  ___            &caps_word     &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___       &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   ___
-  &kp PrevPage   &kp ShowDesk   &kp NextPage   &kp CloseWin    ___            ___       &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
-                                               ___             &kp BSPC       ___       ___              ___        ___
-           >;
-
-           label = "Navigation";
-       };
-
        num_layer {
            bindings = <
 //    ┌─────────┬────────────┬────────────┬────────────┬────────────┬────┐   ┌────┬────────────┬────────────┬────────────┬────────────┬────┐
@@ -63,12 +43,12 @@
 //    ├─────────┼────────────┼────────────┼────────────┼────────────┼────┤   ├────┼────────────┼────────────┼────────────┼────────────┼────┤
 //    │         │            │            │            │            │    │   │    │            │            │            │            │    │
 //    └─────────┴────────────┴────────────┼────────────┼────────────┼────┤   ├────┼────────────┼────────────┼────────────┴────────────┴────┘
-//                                        │            │    bspc    │    │   │    │            │            │
+//                                        │            │            │    │   │    │            │            │
 //                                        └────────────┴────────────┴────┘   └────┴────────────┴────────────┘
   ___         ___             ___            ___             ___            &kp COLON       ___      ___            ___             ___            ___             ___
   &kp LC(B)   &hml LCTRL N1   &hml LALT N2   &hml LSHFT N3   &hml LGUI N4   &kp N5          &kp N6   &hmr RGUI N7   &hmr RSHFT N8   &hml RALT N9   &hml RCTRL N0   &kp COLON
   ___         ___             ___            ___             ___            ___             ___      ___            ___             ___            ___             ___
-                                             ___             &kp BSPC       ___             ___      ___            ___
+                                             ___             ___            ___             ___      ___            ___
            >;
 
            label = "Numbers";
@@ -92,6 +72,26 @@
            >;
 
            label = "Symbols";
+       };
+
+       nav_layer {
+           bindings = <
+//    ┌──────────┬──────────┬──────────┬───────────┬──────────┬────┐   ┌────────────┬──────┬──────┬───────┬──────┬────┐
+//    │          │          │ PrevTab  │  NewTab   │ NextTab  │    │   │            │ home │ pgdn │ pgup  │ end  │    │
+//    ├──────────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼────┤
+//    │          │  capsw   │ PrevDesk │ SwitchApp │ NextDesk │    │   │ Fullscreen │ left │ down │  up   │ rght │    │
+//    ├──────────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼────┤
+//    │ PrevPage │ ShowDesk │ NextPage │ CloseWin  │          │    │   │    redo    │ copy │ cut  │ paste │ undo │    │
+//    └──────────┴──────────┴──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┴──────┴────┘
+//                                     │           │   bspc   │    │   │            │      │      │
+//                                     └───────────┴──────────┴────┘   └────────────┴──────┴──────┘
+  ___            ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     ___
+  ___            &caps_word     &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___       &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   ___
+  &kp PrevPage   &kp ShowDesk   &kp NextPage   &kp CloseWin    ___            ___       &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
+                                               ___             &kp BSPC       ___       ___              ___        ___
+           >;
+
+           label = "Navigation";
        };
 
        fn_layer {
