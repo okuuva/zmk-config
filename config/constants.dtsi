@@ -22,8 +22,8 @@
 // Layers
 // Must match order in which they are defined
 #define ENT 0
-#define NUM 1
-#define SYM 2
+#define SYM 1
+#define NUM 2
 #define PAD 3
 #define NAV 4
 #define FUN 5
