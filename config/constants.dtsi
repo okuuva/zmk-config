@@ -35,6 +35,11 @@
 #define LINUX 1
 #define MAC_OS 2
 
+#undef COPY
+#undef PASTE
+#undef CUT
+#undef UNDO
+#undef REDO
 // TODO: make these OS agnostic
 #define COPY LG(C)
 #define PASTE LG(V)
