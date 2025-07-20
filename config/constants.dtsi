@@ -1,5 +1,6 @@
 // https://github.com/JeffDess/zmk-config/blob/5d12b29c4598c2e8b99e4e72208bd0cbeb28ca0b/config/constants.h
 #include "zmk-helpers/helper.h"
+#include <behaviors/num_word.dtsi>
 
 // Keys
 #define ___ &trans
@@ -81,6 +82,10 @@ ZMK_CAPS_WORD(caps_word,
       BACKSPACE
     >;
 )
+
+&num_word {
+  continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL COLON>;
+};
 
 /*                KEY POSITIONS
 
