@@ -16,6 +16,8 @@ include:
   - board: nice_nano@2.0.0//zmk
     shield: corne_left nice_view_adapter nice_view
     artifact-name: corne_left+nice_view_adapter+nice_view-nice_nano_v2
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: nice_nano@2.0.0//zmk
     shield: corne_right nice_view_adapter nice_view
     artifact-name: corne_right+nice_view_adapter+nice_view-nice_nano_v2
