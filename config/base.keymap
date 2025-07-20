@@ -23,14 +23,14 @@
 //    ├──────────┼────────────┼────────────┼──────────────┼────────────┼──────────┤   ├──────┼────────────┼────────────┼────────────┼────────────┼─────────┤
 //    │ lt MOU B │ hml lctl C │ hml lalt I │  hml lsft E  │ hml lgui A │    ,     │   │  K   │ hmr rgui H │ hmr rsft T │ hmr ralt N │ hmr rctl S │    V    │
 //    ├──────────┼────────────┼────────────┼──────────────┼────────────┼──────────┤   ├──────┼────────────┼────────────┼────────────┼────────────┼─────────┤
-//    │    ä     │     '      │     /      │      =       │     -      │    .     │   │  J   │     M      │     G      │     P      │     F      │ tog NUM │
+//    │    ä     │     '      │     /      │      =       │     -      │    .     │   │  J   │     M      │     G      │     P      │     F      │ tog PAD │
 //    └──────────┴────────────┴────────────┼──────────────┼────────────┼──────────┤   ├──────┼────────────┼────────────┼────────────┴────────────┴─────────┘
 //                                         │ mt HYPER tab │ lt SYM spc │ mo HYPER │   │ numw │  lt NAV R  │ lt NUM esc │
 //                                         └──────────────┴────────────┴──────────┘   └──────┴────────────┴────────────┘
   &mo FUN     &kp Q          &kp Y         &kp O           &kp U           &kp SEMICOLON       &kp X           &kp L         &kp D          &kp W         &kp Z          &none
   &lt MOU B   &hml LCTRL C   &hml LALT I   &hml LSHFT E    &hml LGUI A     &kp COMMA           &kp K           &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &kp V
-  &kp ISO     &kp SQT        &kp SLASH     &kp EQUAL       &kp MINUS       &kp PERIOD          &kp J           &kp M         &kp G          &kp P         &kp F          &tog NUM
-                                           &mt HYPER TAB   &lt SYM SPACE   &mo HYPER           &num_word NUM   &lt NAV R     &lt NUM ESC
+  &kp ISO     &kp SQT        &kp SLASH     &kp EQUAL       &kp MINUS       &kp PERIOD          &kp J           &kp M         &kp G          &kp P         &kp F          &tog PAD
+                                           &mt HYPER TAB   &lt SYM SPACE   &mo HYPER           &num_word PAD   &lt NAV R     &lt NUM ESC
            >;
        };
 
@@ -72,6 +72,27 @@
            >;
 
            label = "Symbols";
+       };
+
+       pad_layer {
+           display-name = "Numpad";
+           bindings = <
+//    ┌────┬──────┬──────┬──────┬──────┬────┐   ┌────┬──────────┬────┬───┬────┬────┐
+//    │    │      │      │      │      │    │   │    │    7     │ 8  │ 9 │    │    │
+//    ├────┼──────┼──────┼──────┼──────┼────┤   ├────┼──────────┼────┼───┼────┼────┤
+//    │    │ lctl │ lalt │ lsft │ lgui │    │   │ +  │    4     │ 5  │ 6 │ -  │    │
+//    ├────┼──────┼──────┼──────┼──────┼────┤   ├────┼──────────┼────┼───┼────┼────┤
+//    │    │      │      │      │      │    │   │ *  │    1     │ 2  │ 3 │ /  │    │
+//    └────┴──────┴──────┼──────┼──────┼────┤   ├────┼──────────┼────┼───┴────┴────┘
+//                       │      │      │    │   │ =  │ lt NAV 0 │    │
+//                       └──────┴──────┴────┘   └────┴──────────┴────┘
+  ___   ___         ___        ___         ___        ___       ___         &kp N7       &kp N8   &kp N9   ___         ___
+  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___       &kp PLUS    &kp N4       &kp N5   &kp N6   &kp MINUS   ___
+  ___   ___         ___        ___         ___        ___       &kp STAR    &kp N1       &kp N2   &kp N3   &kp SLASH   ___
+                               ___         ___        ___       &kp EQUAL   &lt NAV N0   ___
+           >;
+
+           label = "Numpad";
        };
 
        nav_layer {
@@ -152,7 +173,7 @@ qmk:json:start
       "&hmr": "hmr",
       "&mmv ": "",
       "&msc ": "",
-      "&num_word NUM": "numw",
+      "&num_word PAD": "numw",
       "&num_word": "numw",
       "ISO": "ä",
       "REDO": "redo",
