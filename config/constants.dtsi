@@ -67,6 +67,17 @@
   quick-tap-ms = <QUICK_TAP_MS>;
 };
 
+ZMK_CAPS_WORD(caps_word,
+    continue-list = <
+      UNDERSCORE MINUS
+      BACKSPACE
+    >;
+)
+
+&num_word {
+  continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL COLON>;
+};
+
 /* Homerow mods */
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
@@ -81,17 +92,6 @@
 
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
-
-ZMK_CAPS_WORD(caps_word,
-    continue-list = <
-      UNDERSCORE MINUS
-      BACKSPACE
-    >;
-)
-
-&num_word {
-  continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL COLON>;
-};
 
 /*                KEY POSITIONS
 
