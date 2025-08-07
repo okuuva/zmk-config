@@ -51,6 +51,7 @@
 /* Global defaults */
 
 #define QUICK_TAP_MS 175
+#define PRIOR_IDLE_MS 100
 
 &sk {
   release-after-ms = <900>;
@@ -78,16 +79,16 @@ ZMK_CAPS_WORD(caps_word,
   continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL COLON>;
 };
 
-// num_word tap
 / {
     behaviors {
+        // num_word tap
         nwt: nwt {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
             quick-tap-ms = <QUICK_TAP_MS>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <PRIOR_IDLE_MS>;
             bindings = <&kp>, <&num_word>;
         };
     };
@@ -101,7 +102,7 @@ ZMK_CAPS_WORD(caps_word,
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
                tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
-               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
+               require-prior-idle-ms = <PRIOR_IDLE_MS>; hold-trigger-on-release;         \
                hold-trigger-key-positions = <TRIGGER_POS>;)
 
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
