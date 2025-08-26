@@ -94,6 +94,16 @@ ZMK_CAPS_WORD(caps_word,
             require-prior-idle-ms = <PRIOR_IDLE_MS>;
             bindings = <&kp>, <&num_word>;
         };
+        // caps_word tap
+        cwt: cwt {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <PRIOR_IDLE_MS>;
+            bindings = <&kp>, <&caps_word>;
+        };
     };
 };
 /* Homerow mods */
