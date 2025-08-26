@@ -105,6 +105,16 @@ ZMK_CAPS_WORD(caps_word,
             bindings = <&kp>, <&caps_word>;
         };
     };
+    macros {
+        // <3
+        lt3: lt3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LESS_THAN &kp N3 >
+                ;
+        };
+    };
 };
 /* Homerow mods */
 
