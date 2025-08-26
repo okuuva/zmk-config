@@ -18,6 +18,9 @@
 #define PrevPage RG(LEFT)
 #define NextPage RG(RIGHT)
 #define Fullscreen LS(LG(F))
+#define EURO LS(LA(N2))
+#define POUNDS LA(N3)
+#define YEN LA(Y)
 
 // Layers
 // Must match order in which they are defined
