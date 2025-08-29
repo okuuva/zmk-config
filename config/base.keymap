@@ -36,19 +36,19 @@
 
        sym_layer {
            bindings = <
-//    ┌────┬───┬───┬────┬────┬────┐   ┌───┬───┬───┬───┬─────┬──────┐
-//    │    │ < │ ( │ )  │ >  │ ?  │   │ ` │ + │ # │ % │  \  │ del  │
-//    ├────┼───┼───┼────┼────┼────┤   ├───┼───┼───┼───┼─────┼──────┤
-//    │    │ ^ │ _ │ =  │ $  │ ,  │   │ " │ - │ * │ & │ spc │ bspc │
-//    ├────┼───┼───┼────┼────┼────┤   ├───┼───┼───┼───┼─────┼──────┤
-//    │    │ ~ │ / │ |  │ .  │ ;  │   │ € │ [ │ { │ } │  ]  │      │
-//    └────┴───┴───┼────┼────┼────┤   ├───┼───┼───┼───┴─────┴──────┘
-//                 │    │    │    │   │ @ │ : │ ! │
-//                 └────┴────┴────┘   └───┴───┴───┘
-  ___   &kp LESS_THAN   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GREATER_THAN   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH          &kp PERCENT       &kp BACKSLASH       &kp DELETE
-  ___   &kp CARET       &kp UNDERSCORE         &kp EQUAL               &kp DOLLAR         &kp COMMA           &kp DOUBLE_QUOTES   &kp MINUS          &kp ASTERISK      &kp AMPERSAND     &kp SPACE           &kp BACKSPACE
-  ___   &kp TILDE       &kp SLASH              &kp PIPE                &kp DOT            &kp SEMICOLON       &kp EURO            &kp LEFT_BRACKET   &kp LEFT_BRACE    &kp RIGHT_BRACE   &kp RIGHT_BRACKET   ___
-                                               ___                     ___                ___                 &kp AT_SIGN         &kp COLON          &kp EXCLAMATION
+//    ┌────┬────────────┬────────────┬────────────┬────────────┬────┐   ┌───┬────────────┬────────────┬────────────┬──────────────┬──────┐
+//    │    │     <      │     (      │     )      │     >      │ ?  │   │ ` │     +      │     #      │     %      │      \       │ del  │
+//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┼──────────────┼──────┤
+//    │    │ hml lctl ^ │ hml lalt _ │ hml lsft = │ hml lgui $ │ ,  │   │ " │ hmr rgui - │ hmr rsft * │ hmr ralt & │ hmr rctl spc │ bspc │
+//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┼──────────────┼──────┤
+//    │    │     ~      │     /      │     |      │     .      │ ;  │   │ € │     [      │     {      │     }      │      ]       │      │
+//    └────┴────────────┴────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┴──────────────┴──────┘
+//                                   │            │            │    │   │ @ │     :      │     !      │
+//                                   └────────────┴────────────┴────┘   └───┴────────────┴────────────┘
+  ___   &kp LESS_THAN      &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GREATER_THAN   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH              &kp PERCENT           &kp BACKSLASH       &kp DELETE
+  ___   &hml LCTRL CARET   &hml LALT UNDERSCORE   &hml LSHFT EQUAL        &hml LGUI DOLLAR   &kp COMMA           &kp DOUBLE_QUOTES   &hmr RGUI MINUS    &hmr RSHFT ASTERISK   &hmr RALT AMPERSAND   &hmr RCTRL SPACE    &kp BACKSPACE
+  ___   &kp TILDE          &kp SLASH              &kp PIPE                &kp DOT            &kp SEMICOLON       &kp EURO            &kp LEFT_BRACKET   &kp LEFT_BRACE        &kp RIGHT_BRACE       &kp RIGHT_BRACKET   ___
+                                                  ___                     ___                ___                 &kp AT_SIGN         &kp COLON          &kp EXCLAMATION
            >;
 
            label = "Symbols";
