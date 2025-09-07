@@ -97,19 +97,19 @@
 
        nav_layer {
            bindings = <
-//    ┌────┬──────────┬──────────┬───────────┬──────────┬────┐   ┌────────────┬──────┬──────┬───────┬──────┬────┐
-//    │    │          │ PrevTab  │  NewTab   │ NextTab  │    │   │            │ home │ pgdn │ pgup  │ end  │    │
-//    ├────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼────┤
-//    │    │ ShowDesk │ PrevDesk │ SwitchApp │ NextDesk │    │   │ Fullscreen │ left │ down │  up   │ rght │    │
-//    ├────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼────┤
-//    │    │ PrevPage │          │ CloseWin  │ NextPage │    │   │    redo    │ copy │ cut  │ paste │ undo │    │
-//    └────┴──────────┴──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┴──────┴────┘
-//                               │           │   bspc   │    │   │            │      │      │
+//    ┌────┬──────────┬──────────┬───────────┬──────────┬────┐   ┌────────────┬──────┬──────┬───────┬──────┬──────┐
+//    │    │          │ PrevTab  │  NewTab   │ NextTab  │    │   │            │ home │ pgdn │ pgup  │ end  │ del  │
+//    ├────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
+//    │    │ ShowDesk │ PrevDesk │ SwitchApp │ NextDesk │    │   │ Fullscreen │ left │ down │  up   │ rght │ bspc │
+//    ├────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
+//    │    │ PrevPage │          │ CloseWin  │ NextPage │    │   │    redo    │ copy │ cut  │ paste │ undo │      │
+//    └────┴──────────┴──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┴──────┴──────┘
+//                               │    del    │   bspc   │    │   │            │      │      │
 //                               └───────────┴──────────┴────┘   └────────────┴──────┴──────┘
-  ___   ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     ___
-  ___   &kp ShowDesk   &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___       &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   ___
+  ___   ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     &kp DEL
+  ___   &kp ShowDesk   &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___       &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   &kp BSPC
   ___   &kp PrevPage   ___            &kp CloseWin    &kp NextPage   ___       &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
-                                      ___             &kp BSPC       ___       ___              ___        ___
+                                      &kp DEL         &kp BSPC       ___       ___              ___        ___
            >;
 
            label = "Navigation";
