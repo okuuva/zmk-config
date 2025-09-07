@@ -144,12 +144,12 @@
 //    ├────┼──────┼──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┼────────┼────┤
 //    │    │      │      │      │        │        │   │      │        │        │        │        │    │
 //    └────┴──────┴──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┴────────┴────┘
-//                       │      │ mo FUN │ mo NAV │   │ mclk │  lclk  │  rclk  │
+//                       │      │ mo NAV │ mo FUN │   │ mclk │  lclk  │  rclk  │
 //                       └──────┴────────┴────────┘   └──────┴────────┴────────┘
   ___   ___         &mkp MB2   &mkp MB3    &mkp MB1   ___           ___        &msc SCRL_R   &msc SCRL_U   &msc SCRL_D   &msc SCRL_L   ___
   ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___           ___        &mmv MS_L     &mmv MS_D     &mmv MS_U     &mmv MS_R     ___
   ___   ___         ___        ___         ___        ___           ___        ___           ___           ___           ___           ___
-                               ___         &mo FUN    &mo NAV       &mkp MB3   &mkp MB1      &mkp MB2
+                               ___         &mo NAV    &mo FUN       &mkp MB3   &mkp MB1      &mkp MB2
            >;
 
            label = "Mouse";
