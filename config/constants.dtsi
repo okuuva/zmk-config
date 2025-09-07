@@ -55,7 +55,7 @@
 /* Global defaults */
 #define TAPPING_TERM_MS 200
 #define QUICK_TAP_MS 175
-#define PRIOR_IDLE_MS 100
+#define PRIOR_IDLE_MS 75
 
 &sk {
   release-after-ms = <900>;
