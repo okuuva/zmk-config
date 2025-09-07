@@ -53,7 +53,7 @@
 #define LockScreen LC(LG(Q))
 
 /* Global defaults */
-
+#define TAPPING_TERM_MS 200
 #define QUICK_TAP_MS 175
 #define PRIOR_IDLE_MS 100
 
@@ -68,7 +68,7 @@
 
 &lt {
   flavor = "balanced";
-  tapping-term-ms = <200>;
+  tapping-term-ms = <TAPPING_TERM_MS>;
   quick-tap-ms = <QUICK_TAP_MS>;
 };
 
@@ -90,7 +90,7 @@ ZMK_CAPS_WORD(caps_word,
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <TAPPING_TERM_MS>;
             quick-tap-ms = <QUICK_TAP_MS>;
             require-prior-idle-ms = <PRIOR_IDLE_MS>;
             bindings = <&kp>, <&num_word>;
@@ -100,7 +100,7 @@ ZMK_CAPS_WORD(caps_word,
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <TAPPING_TERM_MS>;
             quick-tap-ms = <QUICK_TAP_MS>;
             require-prior-idle-ms = <PRIOR_IDLE_MS>;
             bindings = <&kp>, <&caps_word>;
@@ -127,7 +127,7 @@ ZMK_CAPS_WORD(caps_word,
   ZMK_HOLD_TAP(NAME, \
     bindings = <HOLD>, <TAP>; \
     flavor = "balanced"; \
-    tapping-term-ms = <280>; \
+    tapping-term-ms = <TAPPING_TERM_MS>; \
     quick-tap-ms = <QUICK_TAP_MS>; \
     require-prior-idle-ms = <PRIOR_IDLE_MS>; \
     hold-trigger-on-release; \
