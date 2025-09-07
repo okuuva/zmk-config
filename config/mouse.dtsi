@@ -21,7 +21,7 @@
 
 &mmv_input_listener {
   precision {
-    layers = <FUN>;
+    layers = <NAV>;
     input-processors = <&zip_xy_scaler 1 5>;
   };
 };
@@ -38,11 +38,11 @@
 
 &msc_input_listener {
   warp {
-    layers = <NAV>;
+    layers = <FUN>;
     input-processors = <&zip_scroll_scaler 5 1>;
   };
   precision {
-    layers = <FUN>;
+    layers = <NAV>;
     input-processors = <&zip_scroll_scaler 1 2>;
   };
 };
