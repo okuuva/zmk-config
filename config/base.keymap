@@ -97,19 +97,19 @@
 
        nav_layer {
            bindings = <
-//    ┌────┬──────────┬──────────┬───────────┬──────────┬────┐   ┌────────────┬──────┬──────┬───────┬──────┬──────┐
-//    │    │          │ PrevTab  │  NewTab   │ NextTab  │    │   │            │ home │ pgdn │ pgup  │ end  │ del  │
-//    ├────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
-//    │    │ ShowDesk │ PrevDesk │ SwitchApp │ NextDesk │    │   │ Fullscreen │ left │ down │  up   │ rght │ bspc │
-//    ├────┼──────────┼──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
-//    │    │ PrevPage │          │ CloseWin  │ NextPage │    │   │    redo    │ copy │ cut  │ paste │ undo │      │
-//    └────┴──────────┴──────────┼───────────┼──────────┼────┤   ├────────────┼──────┼──────┼───────┴──────┴──────┘
-//                               │    del    │   bspc   │    │   │            │      │      │
-//                               └───────────┴──────────┴────┘   └────────────┴──────┴──────┘
-  ___   ___            &kp PrevTab    &kp NewTab      &kp NextTab    ___       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     &kp DEL
-  ___   &kp ShowDesk   &kp PrevDesk   &kp SwitchApp   &kp NextDesk   ___       &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   &kp BSPC
-  ___   &kp PrevPage   ___            &kp CloseWin    &kp NextPage   ___       &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
-                                      &kp DEL         &kp BSPC       ___       ___              ___        ___
+//    ┌────┬───────────────────┬───────────────────┬────────────────────┬───────────────────┬─────────────┐   ┌────────────┬──────┬──────┬───────┬──────┬──────┐
+//    │    │    PrevWorkspc    │      PrevTab      │       NewTab       │      NextTab      │ NextWorkspc │   │            │ home │ pgdn │ pgup  │ end  │ del  │
+//    ├────┼───────────────────┼───────────────────┼────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
+//    │    │ hml lctl ShowDesk │ hml lalt PrevDesk │ hml lsft SwitchApp │ hml lgui NextDesk │             │   │ Fullscreen │ left │ down │  up   │ rght │ bspc │
+//    ├────┼───────────────────┼───────────────────┼────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
+//    │    │     PrevPage      │                   │      CloseWin      │     NextPage      │             │   │    redo    │ copy │ cut  │ paste │ undo │      │
+//    └────┴───────────────────┴───────────────────┼────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┴──────┴──────┘
+//                                                 │        del         │       bspc        │             │   │            │      │      │
+//                                                 └────────────────────┴───────────────────┴─────────────┘   └────────────┴──────┴──────┘
+  ___   &kp PrevWorkspc       &kp PrevTab          &kp NewTab             &kp NextTab          &kp NextWorkspc       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     &kp DEL
+  ___   &hml LCTRL ShowDesk   &hml LALT PrevDesk   &hml LSHFT SwitchApp   &hml LGUI NextDesk   ___                   &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   &kp BSPC
+  ___   &kp PrevPage          ___                  &kp CloseWin           &kp NextPage         ___                   &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
+                                                   &kp DEL                &kp BSPC             ___                   ___              ___        ___
            >;
 
            label = "Navigation";
