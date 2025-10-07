@@ -3,7 +3,9 @@
 #MISE env={BUILD_DIR = "{{vars.out}}"}
 #MISE depends=["build"]
 
-shopt -s nullglob globstar
+shopt -s nullglob
+# Enable globstar if available (bash 4+)
+shopt -s globstar 2>/dev/null || true
 if test "$BASH" = "" || "$BASH" -uc "a=();true \"\${a[@]}\"" 2>/dev/null; then
     # Bash 4.4, Zsh
     set -euo pipefail
@@ -13,17 +15,42 @@ else
 fi
 
 require() { hash "$@" || exit 127; }
-require "system_profiler"
 require "diskutil"
 
+# Check if ripgrep is available, fallback to grep if not
+if hash rg 2>/dev/null; then
+    RG_CMD="rg -oNI"
+else
+    RG_CMD="grep -oE"
+fi
+
 available() {
-    if system_profiler SPUSBDataType 2>/dev/null | grep -Fsq 'nRF UF2'; then
-        while read -r device; do
-            if diskutil info "$device" | grep -Fsq 'nRF UF2'; then
-                diskutil info "$device" | grep -F 'Mount Point:' | cut -d':' -f2 | tr -d '[:space:]'
+    # Method 1: Check all external disks for UF2 bootloaders by examining diskutil info
+    while read -r device; do
+        if [[ -n "$device" ]]; then
+            # Check if this device has "nRF UF2" as Device/Media Name and is mounted
+            local info=$(diskutil info "$device" 2>/dev/null)
+            if echo "$info" | grep -Fsq 'nRF UF2' && echo "$info" | grep -Fsq 'Mounted:               Yes'; then
+                echo "$info" | grep -F 'Mount Point:' | cut -d':' -f2 | tr -d '[:space:]'
+                return
             fi
-        done < <(diskutil list | rg -oNI '/dev/[^ ]*')
-    fi
+            # Also check for common UF2 bootloader volume names
+            if echo "$info" | grep -E 'Volume Name:.*NICENANO|Volume Name:.*UF2|Volume Name:.*BOOT' >/dev/null 2>&1; then
+                if echo "$info" | grep -E 'File System Personality:.*FAT|Type \(Bundle\):.*msdos' >/dev/null 2>&1; then
+                    echo "$info" | grep -F 'Mount Point:' | cut -d':' -f2 | tr -d '[:space:]'
+                    return
+                fi
+            fi
+        fi
+    done < <(diskutil list | grep -oE '/dev/disk[0-9]+' | head -20)
+
+    # Method 2: Direct volume check for common UF2 bootloader names
+    for volume in /Volumes/NICENANO /Volumes/*UF2* /Volumes/BOOT /Volumes/RPI-RP2; do
+        if [[ -d "$volume" ]]; then
+            echo "$volume"
+            return
+        fi
+    done
 }
 
 for firmware in "$BUILD_DIR"/*.uf2; do
@@ -37,11 +64,12 @@ for firmware in "$BUILD_DIR"/*.uf2; do
     done
     echo
 
+    echo "Found $device at $mountpoint"
     echo -n "Copying firmware to the $device..."
     # On macOS, the ZMK firmware finishes its "flashing" process before the
     # `cp` command finishes its execution. This is normal, and expected
     # behavior. It just means that error codes are backwards.
-    if ! cp "$firmware" "$mountpoint/" 2>/dev/null; then
+    if cp "$firmware" "$mountpoint/"; then
         echo "Done"
     else
         echo "ERROR"
