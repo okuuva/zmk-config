@@ -18,6 +18,8 @@
 #define PrevPage RG(LEFT)
 #define NextPage RG(RIGHT)
 #define Fullscreen LS(LG(F))
+#define PrevWorkspc RG(RA(Q))
+#define NextWorkspc RG(RA(E))
 #define EURO LS(LA(N2))
 #define POUNDS LA(N3)
 #define YEN LA(Y)
