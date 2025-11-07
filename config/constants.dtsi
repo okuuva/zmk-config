@@ -17,7 +17,7 @@
 #define CloseWin RG(W)
 #define PrevPage RG(LEFT)
 #define NextPage RG(RIGHT)
-#define Fullscreen LS(LG(F))
+#define Fullscreen LG(LC(F))
 #define PrevWorkspc RG(RA(Q))
 #define NextWorkspc RG(RA(E))
 #define EURO LS(LA(N2))
