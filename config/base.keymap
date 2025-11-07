@@ -25,32 +25,32 @@
 //    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼────────────┼────────────┼────────────┼─────┤
 //    │ k_cancel │ hml lctl C │ hml lalt I │  hml lsft E  │ hml lgui A │      ,      │   │       K       │ hmr rgui H │ hmr rsft T │ hmr ralt N │ hmr rctl S │     │
 //    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼────────────┼────────────┼────────────┼─────┤
-//    │ tog MOU  │     B      │     Z      │      '       │     .      │      ä      │   │       J       │     M      │     G      │     P      │     F      │ <3  │
+//    │ tog MOU  │     B      │     Z      │      '       │     .      │      ä      │   │       J       │     M      │     G      │     P      │     F      │     │
 //    └──────────┴────────────┴────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼────────────┼────────────┴────────────┴─────┘
 //                                         │ mt HYPER tab │ lt SYM spc │ cwt HYPER 0 │   │ nwt HYPER PAD │  lt NAV R  │ lt NUM esc │
 //                                         └──────────────┴────────────┴─────────────┘   └───────────────┴────────────┴────────────┘
   &mo FUN        &lt MOU Q      &kp Y         &kp U           &kp O           &kp SLASH          &kp X            &kp L         &kp D          &kp W         &kp V          &kp MINUS
   &kp K_CANCEL   &hml LCTRL C   &hml LALT I   &hml LSHFT E    &hml LGUI A     &kp COMMA          &kp K            &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &none
-  &tog MOU       &kp B          &kp Z         &kp SQT         &kp DOT         &kp ISO            &kp J            &kp M         &kp G          &kp P         &kp F          &lt3
+  &tog MOU       &kp B          &kp Z         &kp SQT         &kp DOT         &kp ISO            &kp J            &kp M         &kp G          &kp P         &kp F          &none
                                               &mt HYPER TAB   &lt SYM SPACE   &cwt HYPER 0       &nwt HYPER PAD   &lt NAV R     &lt NUM ESC
            >;
        };
 
        sym_layer {
            bindings = <
-//    ┌────┬────────────┬────────────┬────────────┬────────────┬────┐   ┌───┬────────────┬────────────┬────────────┬──────────────┬──────┐
-//    │    │     <      │     (      │     )      │     >      │ ?  │   │ ` │     +      │     #      │     %      │      \       │ del  │
-//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┼──────────────┼──────┤
-//    │    │ hml lctl ^ │ hml lalt _ │ hml lsft = │ hml lgui $ │ ,  │   │ " │ hmr rgui - │ hmr rsft & │ hmr ralt * │ hmr rctl spc │ bspc │
-//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┼──────────────┼──────┤
-//    │    │     ~      │     /      │     |      │     .      │ ;  │   │ € │     [      │     {      │     }      │      ]       │  ™   │
-//    └────┴────────────┴────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┴──────────────┴──────┘
-//                                   │            │            │    │   │ @ │     :      │     !      │
+//    ┌────┬────────────┬────────────┬────────────┬────────────┬────┐   ┌───┬────────────┬────────────┬────────────┬────────────┬─────┐
+//    │    │     <      │     (      │     )      │     >      │ ?  │   │ ` │     +      │     #      │     %      │     !      │ <3  │
+//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┼────────────┼─────┤
+//    │    │ hml lctl ^ │ hml lalt _ │ hml lsft = │ hml lgui $ │ ,  │   │ " │ hmr rgui - │ hmr rsft & │ hmr ralt * │ hmr rctl : │ del │
+//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┼────────────┼─────┤
+//    │    │     ~      │     /      │     |      │     .      │ ;  │   │ \ │     [      │     {      │     }      │     ]      │  ™  │
+//    └────┴────────────┴────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┴────────────┴─────┘
+//                                   │            │            │    │   │ @ │    spc     │    bspc    │
 //                                   └────────────┴────────────┴────┘   └───┴────────────┴────────────┘
-  ___   &kp LESS_THAN      &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GREATER_THAN   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH               &kp PERCENT          &kp BACKSLASH       &kp DELETE
-  ___   &hml LCTRL CARET   &hml LALT UNDERSCORE   &hml LSHFT EQUAL        &hml LGUI DOLLAR   &kp COMMA           &kp DOUBLE_QUOTES   &hmr RGUI MINUS    &hmr RSHFT AMPERSAND   &hmr RALT ASTERISK   &hmr RCTRL SPACE    &kp BACKSPACE
-  ___   &kp TILDE          &kp SLASH              &kp PIPE                &kp DOT            &kp SEMICOLON       &kp EURO            &kp LEFT_BRACKET   &kp LEFT_BRACE         &kp RIGHT_BRACE      &kp RIGHT_BRACKET   &kp TM
-                                                  ___                     ___                ___                 &kp AT_SIGN         &kp COLON          &kp EXCLAMATION
+  ___   &kp LESS_THAN      &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GREATER_THAN   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH               &kp PERCENT          &kp EXCLAMATION     &lt3
+  ___   &hml LCTRL CARET   &hml LALT UNDERSCORE   &hml LSHFT EQUAL        &hml LGUI DOLLAR   &kp COMMA           &kp DOUBLE_QUOTES   &hmr RGUI MINUS    &hmr RSHFT AMPERSAND   &hmr RALT ASTERISK   &hmr RCTRL COLON    &kp DELETE
+  ___   &kp TILDE          &kp SLASH              &kp PIPE                &kp DOT            &kp SEMICOLON       &kp BACKSLASH       &kp LEFT_BRACKET   &kp LEFT_BRACE         &kp RIGHT_BRACE      &kp RIGHT_BRACKET   &kp TM
+                                                  ___                     ___                ___                 &kp AT_SIGN         &kp SPACE          &kp BACKSPACE
            >;
 
            label = "Symbols";
