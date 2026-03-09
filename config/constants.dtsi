@@ -8,8 +8,8 @@
 #define HYPER LS(LA(LC(LEFT_GUI)))
 #define ISO NON_US_BSLH
 #define NewTab RG(T)
-#define PrevTab RC(RS(TAB))
-#define NextTab RC(TAB)
+#define PrevTab RG(RS(LEFT_BRACKET))
+#define NextTab RG(RS(RIGHT_BRACKET))
 #define SwitchApp RG(TAB)
 #define PrevDesk RC(LEFT)
 #define NextDesk RC(RIGHT)
