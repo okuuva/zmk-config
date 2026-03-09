@@ -66,10 +66,9 @@ for firmware in "$BUILD_DIR"/*.uf2; do
 
     echo "Found $device at $mountpoint"
     echo -n "Copying firmware to the $device..."
-    # On macOS, the ZMK firmware finishes its "flashing" process before the
-    # `cp` command finishes its execution. This is normal, and expected
-    # behavior. It just means that error codes are backwards.
-    if cp "$firmware" "$mountpoint/"; then
+    # FAT UF2 volumes cannot represent Unix metadata, so --no-preserve=all skips it.
+    # Separately, a successful data copy can reboot and unmount the device before cp returns.
+    if cp --no-preserve=all "$firmware" "$mountpoint/" 2>/dev/null || { sleep 1; [[ ! -d "$mountpoint" ]]; }; then
         echo "Done"
     else
         echo "ERROR"
