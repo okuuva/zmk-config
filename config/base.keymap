@@ -18,36 +18,36 @@
        base_layer {
            display-name = "Base";
            bindings = <
-//    ┌──────────┬────────────┬────────────┬──────────────┬────────────┬─────────────┐   ┌───────────────┬────────────┬────────────┬────────────┬────────────┬─────┐
-//    │  mo FUN  │  lt MOU Q  │     Y      │      U       │     O      │      /      │   │       X       │     L      │     D      │     W      │     V      │  -  │
-//    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼────────────┼────────────┼────────────┼─────┤
-//    │ k_cancel │ hml lctl C │ hml lalt I │  hml lsft E  │ hml lgui A │      ,      │   │       K       │ hmr rgui H │ hmr rsft T │ hmr ralt N │ hmr rctl S │     │
-//    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼────────────┼────────────┼────────────┼─────┤
-//    │ tog MOU  │     B      │     Z      │      '       │     .      │      ä      │   │       J       │     M      │     G      │     P      │     F      │     │
-//    └──────────┴────────────┴────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼────────────┼────────────┴────────────┴─────┘
-//                                         │ mt HYPER tab │ lt SYM spc │ cwt HYPER 0 │   │ nwt HYPER PAD │  lt NAV R  │ lt NUM esc │
-//                                         └──────────────┴────────────┴─────────────┘   └───────────────┴────────────┴────────────┘
-  &mo FUN        &lt MOU Q      &kp Y         &kp U           &kp O           &kp SLASH          &kp X            &kp L         &kp D          &kp W         &kp V          &kp MINUS
-  &kp K_CANCEL   &hml LCTRL C   &hml LALT I   &hml LSHFT E    &hml LGUI A     &kp COMMA          &kp K            &hmr RGUI H   &hmr RSHFT T   &hmr RALT N   &hmr RCTRL S   &none
-  &tog MOU       &kp B          &kp Z         &kp SQT         &kp DOT         &kp ISO            &kp J            &kp M         &kp G          &kp P         &kp F          &none
+//    ┌──────────┬────────────┬────────────┬──────────────┬────────────┬─────────────┐   ┌───────────────┬────────────┬─────────────┬────────────┬────────────┬─────┐
+//    │  mo FUN  │  lt MOU Q  │     Y      │      U       │     O      │      /      │   │       X       │     L      │      D      │     W      │     V      │  -  │
+//    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┼────────────┼─────┤
+//    │ k_cancel │ hml lctl C │ hml lalt I │ hmls lsft E  │ hml lgui A │      ,      │   │       K       │ hmr rgui H │ hmrs rsft T │ hmr ralt N │ hmr rctl S │     │
+//    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┼────────────┼─────┤
+//    │ tog MOU  │     B      │     Z      │      '       │     .      │      ä      │   │       J       │     M      │      G      │     P      │     F      │     │
+//    └──────────┴────────────┴────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┴────────────┴─────┘
+//                                         │ mt HYPER tab │ lt SYM spc │ cwt HYPER 0 │   │ nwt HYPER PAD │  lt NAV R  │ lt NUM esc  │
+//                                         └──────────────┴────────────┴─────────────┘   └───────────────┴────────────┴─────────────┘
+  &mo FUN        &lt MOU Q      &kp Y         &kp U           &kp O           &kp SLASH          &kp X            &kp L         &kp D           &kp W         &kp V          &kp MINUS
+  &kp K_CANCEL   &hml LCTRL C   &hml LALT I   &hmls LSHFT E   &hml LGUI A     &kp COMMA          &kp K            &hmr RGUI H   &hmrs RSHFT T   &hmr RALT N   &hmr RCTRL S   &none
+  &tog MOU       &kp B          &kp Z         &kp SQT         &kp DOT         &kp ISO            &kp J            &kp M         &kp G           &kp P         &kp F          &none
                                               &mt HYPER TAB   &lt SYM SPACE   &cwt HYPER 0       &nwt HYPER PAD   &lt NAV R     &lt NUM ESC
            >;
        };
 
        sym_layer {
            bindings = <
-//    ┌────┬────────────┬────────────┬────────────┬────────────┬────┐   ┌───┬────────────┬────────────┬────────────┬────────────┬─────┐
-//    │    │     <      │     (      │     )      │     >      │ ?  │   │ ` │     +      │     #      │     %      │     !      │ <3  │
-//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┼────────────┼─────┤
-//    │    │ hml lctl ^ │ hml lalt & │ hml lsft * │ hml lgui $ │ ,  │   │ " │ hmr rgui - │ hmr rsft _ │ hmr ralt = │ hmr rctl : │ del │
-//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┼────────────┼─────┤
-//    │    │     ~      │     /      │     |      │     .      │ ;  │   │ \ │     [      │     {      │     }      │     ]      │  ™  │
-//    └────┴────────────┴────────────┼────────────┼────────────┼────┤   ├───┼────────────┼────────────┼────────────┴────────────┴─────┘
-//                                   │            │            │    │   │ @ │    spc     │    bspc    │
-//                                   └────────────┴────────────┴────┘   └───┴────────────┴────────────┘
-  ___   &kp LESS_THAN      &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GREATER_THAN   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH                &kp PERCENT       &kp EXCLAMATION     &lt3
-  ___   &hml LCTRL CARET   &hml LALT AMPERSAND    &hml LSHFT ASTERISK     &hml LGUI DOLLAR   &kp COMMA           &kp DOUBLE_QUOTES   &hmr RGUI MINUS    &hmr RSHFT UNDERSCORE   &hmr RALT EQUAL   &hmr RCTRL COLON    &kp DELETE
-  ___   &kp TILDE          &kp SLASH              &kp PIPE                &kp DOT            &kp SEMICOLON       &kp BACKSLASH       &kp LEFT_BRACKET   &kp LEFT_BRACE          &kp RIGHT_BRACE   &kp RIGHT_BRACKET   &kp TM
+//    ┌────┬────────────┬────────────┬─────────────┬────────────┬────┐   ┌───┬────────────┬─────────────┬────────────┬────────────┬─────┐
+//    │    │     <      │     (      │      )      │     >      │ ?  │   │ ` │     +      │      #      │     %      │     !      │ <3  │
+//    ├────┼────────────┼────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┼────────────┼─────┤
+//    │    │ hml lctl ^ │ hml lalt & │ hmls lsft * │ hml lgui $ │ ,  │   │ " │ hmr rgui - │ hmrs rsft _ │ hmr ralt = │ hmr rctl : │ del │
+//    ├────┼────────────┼────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┼────────────┼─────┤
+//    │    │     ~      │     /      │      |      │     .      │ ;  │   │ \ │     [      │      {      │     }      │     ]      │  ™  │
+//    └────┴────────────┴────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┴────────────┴─────┘
+//                                   │             │            │    │   │ @ │    spc     │    bspc     │
+//                                   └─────────────┴────────────┴────┘   └───┴────────────┴─────────────┘
+  ___   &kp LESS_THAN      &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GREATER_THAN   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH                 &kp PERCENT       &kp EXCLAMATION     &lt3
+  ___   &hml LCTRL CARET   &hml LALT AMPERSAND    &hmls LSHFT ASTERISK    &hml LGUI DOLLAR   &kp COMMA           &kp DOUBLE_QUOTES   &hmr RGUI MINUS    &hmrs RSHFT UNDERSCORE   &hmr RALT EQUAL   &hmr RCTRL COLON    &kp DELETE
+  ___   &kp TILDE          &kp SLASH              &kp PIPE                &kp DOT            &kp SEMICOLON       &kp BACKSLASH       &kp LEFT_BRACKET   &kp LEFT_BRACE           &kp RIGHT_BRACE   &kp RIGHT_BRACKET   &kp TM
                                                   ___                     ___                ___                 &kp AT_SIGN         &kp SPACE          &kp BACKSPACE
            >;
 
@@ -56,19 +56,19 @@
 
        num_layer {
            bindings = <
-//    ┌────┬────────────┬────────────┬────────────┬────────────┬────┐   ┌────┬────────────┬────────────┬────────────┬────────────┬────┐
-//    │    │     ¥      │     £      │     €      │     $      │    │   │    │            │            │            │     :      │    │
-//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├────┼────────────┼────────────┼────────────┼────────────┼────┤
-//    │    │ hml lctl 1 │ hml lalt 2 │ hml lsft 3 │ hml lgui 4 │ 5  │   │ 6  │ hmr rgui 7 │ hmr rsft 8 │ hml ralt 9 │ hml rctl 0 │    │
-//    ├────┼────────────┼────────────┼────────────┼────────────┼────┤   ├────┼────────────┼────────────┼────────────┼────────────┼────┤
-//    │    │            │            │            │            │    │   │    │            │            │            │            │    │
-//    └────┴────────────┴────────────┼────────────┼────────────┼────┤   ├────┼────────────┼────────────┼────────────┴────────────┴────┘
-//                                   │  lctl(B)   │    bspc    │    │   │    │            │            │
-//                                   └────────────┴────────────┴────┘   └────┴────────────┴────────────┘
-  ___   &kp YEN         &kp POUNDS     &kp EURO        &kp DOLLAR      ___          ___      ___            ___             ___            &kp COLON       ___
-  ___   &hml LCTRL N1   &hml LALT N2   &hml LSHFT N3   &hml LGUI N4    &kp N5       &kp N6   &hmr RGUI N7   &hmr RSHFT N8   &hml RALT N9   &hml RCTRL N0   ___
-  ___   ___             ___            ___             ___             ___          ___      ___            ___             ___            ___             ___
-                                       &kp LC(B)       &kp BACKSPACE   ___          ___      ___            ___
+//    ┌────┬────────────┬────────────┬─────────────┬────────────┬────┐   ┌────┬────────────┬─────────────┬────────────┬────────────┬────┐
+//    │    │     ¥      │     £      │      €      │     $      │    │   │    │            │             │            │     :      │    │
+//    ├────┼────────────┼────────────┼─────────────┼────────────┼────┤   ├────┼────────────┼─────────────┼────────────┼────────────┼────┤
+//    │    │ hml lctl 1 │ hml lalt 2 │ hmls lsft 3 │ hml lgui 4 │ 5  │   │ 6  │ hmr rgui 7 │ hmrs rsft 8 │ hml ralt 9 │ hml rctl 0 │    │
+//    ├────┼────────────┼────────────┼─────────────┼────────────┼────┤   ├────┼────────────┼─────────────┼────────────┼────────────┼────┤
+//    │    │            │            │             │            │    │   │    │            │             │            │            │    │
+//    └────┴────────────┴────────────┼─────────────┼────────────┼────┤   ├────┼────────────┼─────────────┼────────────┴────────────┴────┘
+//                                   │   lctl(B)   │    bspc    │    │   │    │            │             │
+//                                   └─────────────┴────────────┴────┘   └────┴────────────┴─────────────┘
+  ___   &kp YEN         &kp POUNDS     &kp EURO         &kp DOLLAR      ___          ___      ___            ___              ___            &kp COLON       ___
+  ___   &hml LCTRL N1   &hml LALT N2   &hmls LSHFT N3   &hml LGUI N4    &kp N5       &kp N6   &hmr RGUI N7   &hmrs RSHFT N8   &hml RALT N9   &hml RCTRL N0   ___
+  ___   ___             ___            ___              ___             ___          ___      ___            ___              ___            ___             ___
+                                       &kp LC(B)        &kp BACKSPACE   ___          ___      ___            ___
            >;
 
            label = "Numbers";
@@ -97,19 +97,19 @@
 
        nav_layer {
            bindings = <
-//    ┌────┬───────────────────┬───────────────────┬────────────────────┬───────────────────┬─────────────┐   ┌────────────┬──────┬──────┬───────┬──────┬──────┐
-//    │    │    PrevWorkspc    │      PrevTab      │       NewTab       │      NextTab      │ NextWorkspc │   │            │ home │ pgdn │ pgup  │ end  │ del  │
-//    ├────┼───────────────────┼───────────────────┼────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
-//    │    │ hml lctl ShowDesk │ hml lalt PrevDesk │ hml lsft SwitchApp │ hml lgui NextDesk │             │   │ Fullscreen │ left │ down │  up   │ rght │ bspc │
-//    ├────┼───────────────────┼───────────────────┼────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
-//    │    │     PrevPage      │                   │      CloseWin      │     NextPage      │             │   │    redo    │ copy │ cut  │ paste │ undo │      │
-//    └────┴───────────────────┴───────────────────┼────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┴──────┴──────┘
-//                                                 │        del         │       bspc        │             │   │            │      │      │
-//                                                 └────────────────────┴───────────────────┴─────────────┘   └────────────┴──────┴──────┘
-  ___   &kp PrevWorkspc       &kp PrevTab          &kp NewTab             &kp NextTab          &kp NextWorkspc       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     &kp DEL
-  ___   &hml LCTRL ShowDesk   &hml LALT PrevDesk   &hml LSHFT SwitchApp   &hml LGUI NextDesk   ___                   &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   &kp BSPC
-  ___   &kp PrevPage          ___                  &kp CloseWin           &kp NextPage         ___                   &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
-                                                   &kp DEL                &kp BSPC             ___                   ___              ___        ___
+//    ┌────┬───────────────────┬───────────────────┬─────────────────────┬───────────────────┬─────────────┐   ┌────────────┬──────┬──────┬───────┬──────┬──────┐
+//    │    │    PrevWorkspc    │      PrevTab      │       NewTab        │      NextTab      │ NextWorkspc │   │            │ home │ pgdn │ pgup  │ end  │ del  │
+//    ├────┼───────────────────┼───────────────────┼─────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
+//    │    │ hml lctl ShowDesk │ hml lalt PrevDesk │ hmls lsft SwitchApp │ hml lgui NextDesk │             │   │ Fullscreen │ left │ down │  up   │ rght │ bspc │
+//    ├────┼───────────────────┼───────────────────┼─────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
+//    │    │     PrevPage      │                   │      CloseWin       │     NextPage      │             │   │    redo    │ copy │ cut  │ paste │ undo │      │
+//    └────┴───────────────────┴───────────────────┼─────────────────────┼───────────────────┼─────────────┤   ├────────────┼──────┼──────┼───────┴──────┴──────┘
+//                                                 │         del         │       bspc        │             │   │            │      │      │
+//                                                 └─────────────────────┴───────────────────┴─────────────┘   └────────────┴──────┴──────┘
+  ___   &kp PrevWorkspc       &kp PrevTab          &kp NewTab              &kp NextTab          &kp NextWorkspc       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     &kp DEL
+  ___   &hml LCTRL ShowDesk   &hml LALT PrevDesk   &hmls LSHFT SwitchApp   &hml LGUI NextDesk   ___                   &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   &kp BSPC
+  ___   &kp PrevPage          ___                  &kp CloseWin            &kp NextPage         ___                   &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
+                                                   &kp DEL                 &kp BSPC             ___                   ___              ___        ___
            >;
 
            label = "Navigation";
@@ -172,6 +172,8 @@ qmk:json:start
       "&cwt": "cwt",
       "&hml": "hml",
       "&hmr": "hmr",
+      "&hmls": "hmls",
+      "&hmrs": "hmrs",
       "&nwt": "nwt",
       "&mmv ": "",
       "&msc ": "",
