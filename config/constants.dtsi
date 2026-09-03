@@ -18,6 +18,8 @@
 #define PrevPage RG(LEFT)
 #define NextPage RG(RIGHT)
 #define Fullscreen LG(LC(F))
+#define TmuxPrefix LC(B)
+#define ZmxDetach LC(BACKSLASH)
 #define PrevWorkspc RG(RA(Q))
 #define NextWorkspc RG(RA(E))
 #define EURO LS(LA(N2))
