@@ -59,6 +59,7 @@
 #define TAPPING_TERM_MS 200
 #define QUICK_TAP_MS 175
 #define PRIOR_IDLE_MS 75
+#define SHIFT_PRIOR_IDLE_MS 0 // cross-hand shift rolls; other mods keep PRIOR_IDLE_MS
 
 &sk {
   release-after-ms = <900>;
@@ -139,6 +140,20 @@ ZMK_CAPS_WORD(caps_word,
 
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
+
+#define MAKE_HRM_SHIFT(NAME, HOLD, TAP, TRIGGER_POS) \
+  ZMK_HOLD_TAP(NAME, \
+    bindings = <HOLD>, <TAP>; \
+    flavor = "balanced"; \
+    tapping-term-ms = <TAPPING_TERM_MS>; \
+    quick-tap-ms = <QUICK_TAP_MS>; \
+    require-prior-idle-ms = <SHIFT_PRIOR_IDLE_MS>; \
+    hold-trigger-on-release; \
+    hold-trigger-key-positions = <TRIGGER_POS>; \
+  )
+
+MAKE_HRM_SHIFT(hmls, &kp, &kp, KEYS_R THUMBS) // Left-hand shift HRMs.
+MAKE_HRM_SHIFT(hmrs, &kp, &kp, KEYS_L THUMBS) // Right-hand shift HRMs.
 
 /*                     KEY POSITIONS
 
