@@ -141,7 +141,7 @@
        mouse_layer {
            bindings = <
 //    ┌────┬──────┬──────┬──────┬────────┬────────┐   ┌──────┬────────┬────────┬────────┬────────┬────┐
-//    │    │      │ rclk │ mclk │  lclk  │        │   │      │ SCRL_R │ SCRL_U │ SCRL_D │ SCRL_L │    │
+//    │    │      │ rclk │ mclk │  lclk  │        │   │      │ SCRL_R │ SCRL_D │ SCRL_U │ SCRL_L │    │
 //    ├────┼──────┼──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┼────────┼────┤
 //    │    │ lctl │ lalt │ lsft │  lgui  │        │   │      │  MS_L  │  MS_D  │  MS_U  │  MS_R  │    │
 //    ├────┼──────┼──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┼────────┼────┤
@@ -149,7 +149,7 @@
 //    └────┴──────┴──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┴────────┴────┘
 //                       │      │ mo NAV │ mo FUN │   │ mclk │  lclk  │  rclk  │
 //                       └──────┴────────┴────────┘   └──────┴────────┴────────┘
-  ___   ___         &mkp MB2   &mkp MB3    &mkp MB1   ___           ___        &msc SCRL_R   &msc SCRL_U   &msc SCRL_D   &msc SCRL_L   ___
+  ___   ___         &mkp MB2   &mkp MB3    &mkp MB1   ___           ___        &msc SCRL_R   &msc SCRL_D   &msc SCRL_U   &msc SCRL_L   ___
   ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___           ___        &mmv MS_L     &mmv MS_D     &mmv MS_U     &mmv MS_R     ___
   ___   ___         ___        ___         ___        ___           ___        ___           ___           ___           ___           ___
                                ___         &mo NAV    &mo FUN       &mkp MB3   &mkp MB1      &mkp MB2
