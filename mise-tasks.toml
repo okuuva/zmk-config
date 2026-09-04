@@ -1,5 +1,5 @@
 #:schema https://mise.jdx.dev/schema/mise-task.json
-dev = "nix develop"
+dev = "nix develop --command $SHELL"
 
 init = "just init"
 
@@ -28,7 +28,7 @@ usage = '''
 arg "<target>" default="corne"
 complete "target" run="just list"
 '''
-run = "just build {{arg(name='target')}}"
+run = 'just build "${usage_target?}"'
 sources = [ "config/*", "modules/*", "build.yaml" ]
 outputs = [ "{{vars.out}}/*.uf2" ] # NOTE: would be nice if this supported {{arg(name='target')}}
 depends = [ "update" ]
