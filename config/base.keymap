@@ -93,7 +93,7 @@ ZMK_MACRO(mac_ble,
        num_layer {
            bindings = <
 //    ┌────┬────────────┬────────────┬─────────────┬────────────┬────────────┐   ┌────┬────────────┬─────────────┬────────────┬────────────┬────┐
-//    │    │     ¥      │     £      │      €      │     $      │            │   │ *  │     +      │      -      │     :      │     /      │    │
+//    │    │     ¥      │     €      │      £      │     $      │            │   │ *  │     +      │      -      │     :      │     /      │    │
 //    ├────┼────────────┼────────────┼─────────────┼────────────┼────────────┤   ├────┼────────────┼─────────────┼────────────┼────────────┼────┤
 //    │    │ hml lctl 1 │ hml lalt 2 │ hmls lsft 3 │ hml lgui 4 │     5      │   │ 6  │ hmr rgui 7 │ hmrs rsft 8 │ hml ralt 9 │ hml rctl 0 │    │
 //    ├────┼────────────┼────────────┼─────────────┼────────────┼────────────┤   ├────┼────────────┼─────────────┼────────────┼────────────┼────┤
@@ -101,7 +101,7 @@ ZMK_MACRO(mac_ble,
 //    └────┴────────────┴────────────┼─────────────┼────────────┼────────────┤   ├────┼────────────┼─────────────┼────────────┴────────────┴────┘
 //                                   │  ZmxDetach  │    bspc    │ TmuxPrefix │   │    │            │             │
 //                                   └─────────────┴────────────┴────────────┘   └────┴────────────┴─────────────┘
-  ___   &kp YEN         &kp POUNDS     &kp EURO         &kp DOLLAR      ___                  &kp STAR   &kp PLUS       &kp MINUS        &kp COLON      &kp SLASH       ___
+  ___   &kp YEN         &kp EURO       &kp POUNDS       &kp DOLLAR      ___                  &kp STAR   &kp PLUS       &kp MINUS        &kp COLON      &kp SLASH       ___
   ___   &hml LCTRL N1   &hml LALT N2   &hmls LSHFT N3   &hml LGUI N4    &kp N5               &kp N6     &hmr RGUI N7   &hmrs RSHFT N8   &hml RALT N9   &hml RCTRL N0   ___
   ___   ___             ___            ___              ___             ___                  ___        &kp EQUAL      ___              ___            &kp COLON       ___
                                        &kp ZmxDetach    &kp BACKSPACE   &kp TmuxPrefix       ___        ___            ___
@@ -115,7 +115,7 @@ ZMK_MACRO(mac_ble,
            display-name = "Numpad";
            bindings = <
 //    ┌────┬────┬────┬────┬────┬────┐   ┌──────────┬──────────┬───┬───┬───┬────┐
-//    │    │ ¥  │ £  │ €  │ $  │    │   │    *     │    7     │ 8 │ 9 │ / │    │
+//    │    │ ¥  │ €  │ £  │ $  │    │   │    *     │    7     │ 8 │ 9 │ / │    │
 //    ├────┼────┼────┼────┼────┼────┤   ├──────────┼──────────┼───┼───┼───┼────┤
 //    │    │    │    │    │    │    │   │    +     │    4     │ 5 │ 6 │ - │    │
 //    ├────┼────┼────┼────┼────┼────┤   ├──────────┼──────────┼───┼───┼───┼────┤
@@ -123,10 +123,10 @@ ZMK_MACRO(mac_ble,
 //    └────┴────┴────┼────┼────┼────┤   ├──────────┼──────────┼───┼───┴───┴────┘
 //                   │    │    │    │   │ k_cancel │ lt NAV 0 │ = │
 //                   └────┴────┴────┘   └──────────┴──────────┴───┘
-  ___   &kp YEN   &kp POUNDS   &kp EURO   &kp DOLLAR   ___       &kp STAR       &kp N7       &kp N8      &kp N9   &kp SLASH   ___
-  ___   ___       ___          ___        ___          ___       &kp PLUS       &kp N4       &kp N5      &kp N6   &kp MINUS   ___
-  ___   ___       ___          ___        ___          ___       &kp PERCENT    &kp N1       &kp N2      &kp N3   &kp COLON   ___
-                               ___        ___          ___       &kp K_CANCEL   &lt NAV N0   &kp EQUAL
+  ___   &kp YEN   &kp EURO   &kp POUNDS   &kp DOLLAR   ___       &kp STAR       &kp N7       &kp N8      &kp N9   &kp SLASH   ___
+  ___   ___       ___        ___          ___          ___       &kp PLUS       &kp N4       &kp N5      &kp N6   &kp MINUS   ___
+  ___   ___       ___        ___          ___          ___       &kp PERCENT    &kp N1       &kp N2      &kp N3   &kp COLON   ___
+                             ___          ___          ___       &kp K_CANCEL   &lt NAV N0   &kp EQUAL
            >;
 
            label = "Numpad";
