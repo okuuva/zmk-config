@@ -73,7 +73,7 @@ ZMK_MACRO(mac_ble,
        sym_layer {
            bindings = <
 //    ┌────┬────────────┬────────────┬─────────────┬────────────┬────┐   ┌───┬────────────┬─────────────┬────────────┬────────────┬─────┐
-//    │    │     <      │     (      │      )      │     >      │ ?  │   │ ` │     +      │      #      │     %      │     !      │ <3  │
+//    │    │     (      │     <      │      >      │     )      │ ?  │   │ ` │     +      │      #      │     %      │     !      │ <3  │
 //    ├────┼────────────┼────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┼────────────┼─────┤
 //    │    │ hml lctl ^ │ hml lalt & │ hmls lsft * │ hml lgui $ │ ,  │   │ " │ hmr rgui - │ hmrs rsft _ │ hmr ralt = │ hmr rctl : │ del │
 //    ├────┼────────────┼────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┼────────────┼─────┤
@@ -81,10 +81,10 @@ ZMK_MACRO(mac_ble,
 //    └────┴────────────┴────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┴────────────┴─────┘
 //                                   │             │            │    │   │ @ │    spc     │    bspc     │
 //                                   └─────────────┴────────────┴────┘   └───┴────────────┴─────────────┘
-  ___   &kp LESS_THAN      &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GREATER_THAN   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH                 &kp PERCENT       &kp EXCLAMATION     &lt3
-  ___   &hml LCTRL CARET   &hml LALT AMPERSAND    &hmls LSHFT ASTERISK    &hml LGUI DOLLAR   &kp COMMA           &kp DOUBLE_QUOTES   &hmr RGUI MINUS    &hmrs RSHFT UNDERSCORE   &hmr RALT EQUAL   &hmr RCTRL COLON    &kp DELETE
-  ___   &kp TILDE          &kp SLASH              &kp PIPE                &kp DOT            &kp SEMICOLON       &kp BACKSLASH       &kp LEFT_BRACKET   &kp LEFT_BRACE           &kp RIGHT_BRACE   &kp RIGHT_BRACKET   &kp TM
-                                                  ___                     ___                ___                 &kp AT_SIGN         &kp SPACE          &kp BACKSPACE
+  ___   &kp LEFT_PARENTHESIS   &kp LESS_THAN         &kp GREATER_THAN       &kp RIGHT_PARENTHESIS   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH                 &kp PERCENT       &kp EXCLAMATION     &lt3
+  ___   &hml LCTRL CARET       &hml LALT AMPERSAND   &hmls LSHFT ASTERISK   &hml LGUI DOLLAR        &kp COMMA           &kp DOUBLE_QUOTES   &hmr RGUI MINUS    &hmrs RSHFT UNDERSCORE   &hmr RALT EQUAL   &hmr RCTRL COLON    &kp DELETE
+  ___   &kp TILDE              &kp SLASH             &kp PIPE               &kp DOT                 &kp SEMICOLON       &kp BACKSLASH       &kp LEFT_BRACKET   &kp LEFT_BRACE           &kp RIGHT_BRACE   &kp RIGHT_BRACKET   &kp TM
+                                                     ___                    ___                     ___                 &kp AT_SIGN         &kp SPACE          &kp BACKSPACE
            >;
 
            label = "Symbols";
