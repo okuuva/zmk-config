@@ -1,132 +1,94 @@
 # Manual macOS and Windows modes
 
 The keymap starts in macOS mode.
-Press `FUN+C` to enable Windows mode, and press it again to return to macOS mode.
+Hold `FUN` and press the leftmost thumb key to enable Windows mode, then repeat the chord to return to macOS mode.
 The selection lasts until it is toggled again or the keyboard restarts.
+
+## Modifier placement
+
+Windows mode keeps Ctrl on the existing outer home-row positions and adds Ctrl to the former GUI positions.
+GUI moves to the two innermost home-row positions.
+
+| Position | Tap on Base | Windows hold |
+| --- | --- | --- |
+| `LM4` | `C` | Left Ctrl |
+| `LM1` | `A` | Left Ctrl |
+| `LM0` | `,` | Left GUI |
+| `RM0` | `K` | Right GUI |
+| `RM1` | `H` | Right Ctrl |
+| `RM4` | `S` | Right Ctrl |
+
+The Symbols and Numbers layers preserve the same modifier positions while retaining their own tap keys.
+The Mouse layer uses Left Ctrl on `LM1` and dedicated GUI keys on `LM0` and `RM0`.
+Layer-specific actions still win where a position is used for navigation, media, or another function.
 
 ## Layers involved
 
-The mode uses three layers defined in `config/constants.dtsi`:
+The layer numbers in `config/constants.dtsi` match their definition order in `config/base.keymap`:
 
-| Layer      | Number | Purpose                                        |
-|------------|-------:|------------------------------------------------|
-| `WIN_MODE` | 7      | Records whether Windows mode is enabled        |
-| `WIN_NAV`  | 8      | Replaces macOS shortcuts while `NAV` is active |
-| `WIN_FUN`  | 9      | Replaces macOS shortcuts while `FUN` is active |
+| Layer | Number | Purpose |
+| --- | ---: | --- |
+| Base | 0 | macOS typing bindings |
+| `WIN_MODE` | 1 | Windows Base bindings and Windows-mode state |
+| `SYM` | 2 | Shared Symbols layer |
+| `NUM` | 3 | Shared Numbers layer |
+| `PAD` | 4 | Shared Numpad layer |
+| `NAV` | 5 | macOS Navigation layer |
+| `FUN` | 6 | macOS Function layer |
+| `MOU` | 7 | Shared Mouse layer |
+| `WIN_SYM` | 8 | Windows Symbols modifier overrides |
+| `WIN_NUM` | 9 | Windows Numbers modifier overrides |
+| `WIN_MOU` | 10 | Windows Mouse modifier overrides |
+| `WIN_NAV` | 11 | Windows Navigation shortcuts and modifiers |
+| `WIN_FUN` | 12 | Windows Function shortcuts |
 
-`WIN_MODE` is not an alternative base layer.
-It is a state-only marker whose bindings are all transparent.
+`WIN_MODE` now has two jobs.
+Its active bit records that Windows mode is enabled, and its sparse bindings provide the Windows Base modifier layout.
+All unaffected positions remain transparent.
+
+## Conditional overlays
 
 The conditional layers are declared in `config/base.keymap`:
 
 ```c
+ZMK_CONDITIONAL_LAYER(win_sym, WIN_MODE SYM, WIN_SYM)
+ZMK_CONDITIONAL_LAYER(win_num, WIN_MODE NUM, WIN_NUM)
+ZMK_CONDITIONAL_LAYER(win_mou, WIN_MODE MOU, WIN_MOU)
 ZMK_CONDITIONAL_LAYER(win_nav, WIN_MODE NAV, WIN_NAV)
 ZMK_CONDITIONAL_LAYER(win_fun, WIN_MODE FUN, WIN_FUN)
 ```
 
-Conceptually, these declarations mean:
+Each declaration activates its Windows overlay only while Windows mode and the corresponding shared layer are both active.
+For example:
 
-```c
-if (WIN_MODE is active && NAV is active)
-    activate WIN_NAV;
-else
-    deactivate WIN_NAV;
-
-if (WIN_MODE is active && FUN is active)
-    activate WIN_FUN;
-else
-    deactivate WIN_FUN;
+```text
+WIN_MODE off + NAV active → NAV
+WIN_MODE on  + NAV active → WIN_NAV and NAV
 ```
 
 ZMK implements this active-layer check in `zmk/app/src/conditional_layer.c`.
-It checks layer state, not the bindings stored in those layers.
-This is why a fully transparent layer can still be useful as a mode marker.
+It checks layer state independently from key bindings.
 
-## Layer state and key lookup are separate
-
-Each ZMK layer has an active or inactive state and a table of key bindings.
-Conditional layers inspect the state.
-Key lookup inspects the bindings.
-
-When Windows mode is enabled, `&tog WIN_MODE` sets the active bit for layer 7.
-The transparent bindings on that layer do not emit any keys.
-They only allow key lookup to continue into lower active layers.
-
-The lookup arrows below show priority order, not inheritance between adjacent layers:
-
-```text
-macOS + NAV:   NAV → Base
-Windows base:  WIN_MODE → Base
-Windows + NAV: WIN_NAV → WIN_MODE → NAV → Base
-Windows + FUN: WIN_FUN → WIN_MODE → FUN → Base
-```
+## Key lookup
 
 ZMK scans active layers from the highest-numbered layer downward.
-It skips inactive layers, so active layers do not need to be adjacent.
-
-## Entering Windows mode
-
-Initially, only Base is active:
+It skips inactive layers and continues downward whenever a binding is transparent.
+The arrows below show lookup priority, not inheritance between adjacent layers:
 
 ```text
-Active: Base
+macOS Base:      Base
+Windows Base:    WIN_MODE → Base
+macOS + NAV:     NAV → Base
+Windows + NAV:   WIN_NAV → NAV → WIN_MODE → Base
+Windows + SYM:   WIN_SYM → SYM → WIN_MODE → Base
+Windows + NUM:   WIN_NUM → NUM → WIN_MODE → Base
+Windows + MOU:   WIN_MOU → MOU → WIN_MODE → Base
+Windows + FUN:   WIN_FUN → FUN → WIN_MODE → Base
 ```
 
-Holding `FUN` and pressing `C` invokes:
+A layer appears in these chains only when it is active.
 
-```c
-&tog WIN_MODE
-```
-
-After `FUN` is released, the active layers are:
-
-```text
-Active: Base, WIN_MODE
-```
-
-Ordinary typing then resolves like this:
-
-```text
-WIN_MODE: transparent, continue
-Base:     produce the key, stop
-```
-
-The marker changes no bindings by itself.
-It records that Windows mode is enabled so conditional layers can react later.
-
-## Using NAV in Windows mode
-
-Holding the NAV layer-tap activates `NAV`:
-
-```text
-Active: Base, NAV, WIN_MODE
-```
-
-The conditional-layer listener sees that both `NAV` and `WIN_MODE` are active and activates `WIN_NAV`:
-
-```text
-Active: Base, NAV, WIN_MODE, WIN_NAV
-```
-
-The active layer table is now:
-
-| Layer      | Number | Active |
-|------------|-------:|--------|
-| `WIN_FUN`  | 9      | No     |
-| `WIN_NAV`  | 8      | Yes    |
-| `WIN_MODE` | 7      | Yes    |
-| `MOU`      | 6      | No     |
-| `FUN`      | 5      | No     |
-| `NAV`      | 4      | Yes    |
-| Base       | 0      | Yes    |
-
-ZMK skips the inactive layers and checks bindings in this order:
-
-```text
-WIN_NAV → WIN_MODE → NAV → Base
-```
-
-### Windows override example
+### Windows shortcut example
 
 At the Copy position, `WIN_NAV` contains:
 
@@ -135,58 +97,54 @@ At the Copy position, `WIN_NAV` contains:
 ```
 
 `WCOPY` is defined as `LC(C)` in `config/constants.dtsi`.
-That binding sends `Ctrl+C` and stops lookup:
+That binding sends `Ctrl+C` and stops lookup, so the macOS `COPY` binding on NAV is never reached.
 
-```text
-WIN_NAV: Ctrl+C, stop
-```
-
-The lower layers do not receive that key press.
-
-### Shared NAV binding example
+### Shared binding example
 
 At the Home position, `WIN_NAV` is transparent:
 
 ```text
-WIN_NAV:  transparent, continue
-WIN_MODE: transparent, continue
-NAV:      Home, stop
+WIN_NAV: transparent, continue
+NAV:     Home, stop
 ```
 
-This keeps the existing NAV binding shared by macOS and Windows.
+The shared NAV binding handles the key.
 
-If NAV is also transparent at a position, lookup continues again:
+At a position where both `WIN_NAV` and NAV are transparent, lookup continues into `WIN_MODE` and then Base:
 
 ```text
 WIN_NAV:  transparent, continue
-WIN_MODE: transparent, continue
 NAV:      transparent, continue
-Base:     produce the key, stop
+WIN_MODE: Windows Base binding or transparent
+Base:     fallback binding
 ```
 
-A transparent binding passes through one layer at a time.
-The lookup loop keeps running while each visited layer returns `ZMK_BEHAVIOR_TRANSPARENT`.
-This behavior is implemented by `zmk_keymap_position_state_changed()` in `zmk/app/src/keymap.c` and the transparent behavior in `zmk/app/src/behaviors/behavior_transparent.c`.
+The lookup loop is `zmk_keymap_position_state_changed()` in `zmk/app/src/keymap.c`.
+The transparent behavior in `zmk/app/src/behaviors/behavior_transparent.c` tells that loop to continue.
 
-## Releasing NAV
+## Why WIN_MODE follows Base
 
-Releasing the NAV layer-tap deactivates `NAV`:
+`WIN_MODE` used to be a fully transparent state marker, so its layer number did not affect key output.
+It now contains real Base bindings for `LM0`, `LM1`, `RM0`, and `RM1`.
+
+If `WIN_MODE` remained above the functional layers, those Base bindings would mask their keys.
+For example, the `RM0` GUI/K binding could replace Fullscreen on NAV, `N6` on NUM, or `+` on PAD.
+
+Placing `WIN_MODE` directly above Base gives functional layers priority:
 
 ```text
-Active: Base, WIN_MODE
+Conditional Windows overlay
+Shared functional layer
+WIN_MODE
+Base
 ```
 
-The conditional-layer listener sees that NAV is no longer active and deactivates `WIN_NAV`.
-`WIN_MODE` remains active, so the Windows overrides return the next time NAV is held.
+A functional binding wins when present.
+A transparent functional position falls through to the Windows Base binding.
+This ordering avoids adding protective copies of every functional layer.
 
-`WIN_FUN` follows the same process while FUN is active.
-It currently overrides the macOS lock-screen shortcut with `Win+L`.
+## Leaving a layer
 
-## Why WIN_MODE is not directly above Base
-
-`WIN_MODE` could be placed directly after Base, and the design would still work.
-That ordering matters when a layer contains actual alternative base bindings that should have lower priority than NAV or FUN.
-
-`WIN_MODE` contains no alternative bindings.
-Its layer number therefore does not affect the result, as long as the conditional override layers have higher priority than the layers they override.
-Keeping it at layer 7 avoids renumbering the existing layers.
+Releasing a shared layer deactivates its conditional Windows overlay.
+For example, releasing NAV deactivates `WIN_NAV` while leaving `WIN_MODE` active.
+The Windows overrides return the next time NAV is held.

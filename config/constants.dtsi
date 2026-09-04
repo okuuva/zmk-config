@@ -41,15 +41,18 @@
 // Layers
 // Must match order in which they are defined
 #define ENT 0
-#define SYM 1
-#define NUM 2
-#define PAD 3
-#define NAV 4
-#define FUN 5
-#define MOU 6
-#define WIN_MODE 7
-#define WIN_NAV 8
-#define WIN_FUN 9
+#define WIN_MODE 1
+#define SYM 2
+#define NUM 3
+#define PAD 4
+#define NAV 5
+#define FUN 6
+#define MOU 7
+#define WIN_SYM 8
+#define WIN_NUM 9
+#define WIN_MOU 10
+#define WIN_NAV 11
+#define WIN_FUN 12
 
 // OS
 // https://github.com/urob/zmk-helpers/tree/main?tab=readme-ov-file#unicode-characters-and-language-collection
