@@ -18,6 +18,17 @@
 #define PrevPage RG(LEFT)
 #define NextPage RG(RIGHT)
 #define Fullscreen LG(LC(F))
+#define WNewTab LC(T)
+#define WPrevTab LC(LS(TAB))
+#define WNextTab LC(TAB)
+#define WSwitchApp LA(TAB)
+#define WPrevDesk LG(LC(LEFT))
+#define WNextDesk LG(LC(RIGHT))
+#define WShowDesk LG(D)
+#define WCloseWin LA(F4)
+#define WPrevPage LA(LEFT)
+#define WNextPage LA(RIGHT)
+#define WFullscreen F11
 #define TmuxPrefix LC(B)
 #define ZmxDetach LC(BACKSLASH)
 #define PrevWorkspc RG(RA(Q))
@@ -36,6 +47,9 @@
 #define NAV 4
 #define FUN 5
 #define MOU 6
+#define WIN_MODE 7
+#define WIN_NAV 8
+#define WIN_FUN 9
 
 // OS
 // https://github.com/urob/zmk-helpers/tree/main?tab=readme-ov-file#unicode-characters-and-language-collection
@@ -48,13 +62,19 @@
 #undef CUT
 #undef UNDO
 #undef REDO
-// TODO: make these OS agnostic
+// macOS defaults; Windows mode overrides these bindings in base.keymap.
 #define COPY LG(C)
 #define PASTE LG(V)
 #define CUT LG(X)
 #define UNDO LG(Z)
 #define REDO LS(LG(Z))
 #define LockScreen LC(LG(Q))
+#define WCOPY LC(C)
+#define WPASTE LC(V)
+#define WCUT LC(X)
+#define WUNDO LC(Z)
+#define WREDO LC(Y)
+#define WLockScreen LG(L)
 
 /* Global defaults */
 // See ../readme.md#troubleshooting
