@@ -10,6 +10,8 @@ parse_config:
     "&sys_reset": Reset
     "&bootloader": Boot
     "&caps_word": Caps Word
+    "&win_usb": Win + USB
+    "&mac_ble": Mac + BT
 
     "&bt BT_SEL 0": BT 1
     "&bt BT_SEL 1": BT 2

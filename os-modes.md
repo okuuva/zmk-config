@@ -1,8 +1,18 @@
 # Manual macOS and Windows modes
 
 The keymap starts in macOS mode.
-Hold `FUN` and press the leftmost thumb key to enable Windows mode, then repeat the chord to return to macOS mode.
-The selection lasts until it is toggled again or the keyboard restarts.
+Hold `FUN` and press the leftmost thumb key to enable Windows mode and prefer USB output.
+Repeat the chord to return to macOS mode and prefer Bluetooth output.
+Neither direction changes the Bluetooth slot or remembers the previous connection type.
+Any slot changes made in Windows mode remain in effect.
+
+Two native ZMK macros in `config/base.keymap` handle the switch.
+`FUN` binds `&win_usb`; the same key on `WIN_FUN` binds `&mac_ble`.
+Each toggles `WIN_MODE` and selects its output preference.
+ZMK can fall back to the other output if the preferred connection is unavailable.
+
+Windows mode resets to macOS on restart.
+ZMK persists output preference normally, so restarting in Windows mode may retain the USB preference.
 
 ## Modifier placement
 
