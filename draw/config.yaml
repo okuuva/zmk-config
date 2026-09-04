@@ -11,6 +11,8 @@ parse_config:
     "&bootloader": Boot
     "&caps_word": Caps Word
     "&kp LA(F4)": Close
+    "&win_usb": Win + USB
+    "&mac_ble": Mac + BT
 
     "&bt BT_SEL 0": BT 1
     "&bt BT_SEL 1": BT 2
