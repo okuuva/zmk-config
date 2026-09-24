@@ -25,7 +25,7 @@
 #define WPrevDesk LG(LC(LEFT))
 #define WNextDesk LG(LC(RIGHT))
 #define WShowDesk LG(D)
-#define WCloseWin LA(F4)
+#define WCloseWin LC(W)
 #define WPrevPage LA(LEFT)
 #define WNextPage LA(RIGHT)
 #define WFullscreen F11
