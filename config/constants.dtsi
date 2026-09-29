@@ -14,7 +14,7 @@
 #define PrevDesk RC(LEFT)
 #define NextDesk RC(RIGHT)
 #define ShowDesk RC(UP)
-#define CloseWin RG(W)
+#define CloseTab RG(W)
 #define PrevPage RG(LEFT)
 #define NextPage RG(RIGHT)
 #define Fullscreen LG(LC(F))
@@ -25,7 +25,7 @@
 #define WPrevDesk LG(LC(LEFT))
 #define WNextDesk LG(LC(RIGHT))
 #define WShowDesk LG(D)
-#define WCloseWin LC(W)
+#define WCloseTab LC(W)
 #define WPrevPage LA(LEFT)
 #define WNextPage LA(RIGHT)
 #define WFullscreen F11
