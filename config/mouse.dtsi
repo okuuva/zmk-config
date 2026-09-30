@@ -20,6 +20,10 @@
 };
 
 &mmv_input_listener {
+  ultra_precision {
+    layers = <FUN>;
+    input-processors = <&zip_xy_scaler 1 20>;
+  };
   precision {
     layers = <NAV>;
     input-processors = <&zip_xy_scaler 1 5>;
