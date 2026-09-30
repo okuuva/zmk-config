@@ -35,7 +35,7 @@ ZMK_MACRO(mac_ble,
            display-name = "Base";
            bindings = <
 //    ┌──────────┬────────────┬────────────┬──────────────┬────────────┬─────────────┐   ┌───────────────┬────────────┬─────────────┬────────────┬────────────┬─────┐
-//    │  mo FUN  │  lt MOU Q  │     Y      │      U       │     O      │      /      │   │       X       │     L      │      D      │     W      │     V      │  -  │
+//    │  mo FUN  │  q_mouse   │     Y      │      U       │     O      │      /      │   │       X       │     L      │      D      │     W      │     V      │  -  │
 //    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┼────────────┼─────┤
 //    │ k_cancel │ hml lctl C │ hml lalt I │ hmls lsft E  │ hml lgui A │      ,      │   │       K       │ hmr rgui H │ hmrs rsft T │ hmr ralt N │ hmr rctl S │     │
 //    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┼────────────┼─────┤
@@ -43,7 +43,7 @@ ZMK_MACRO(mac_ble,
 //    └──────────┴────────────┴────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┴────────────┴─────┘
 //                                         │ mt HYPER tab │ lt SYM spc │ cwt HYPER 0 │   │ nwt HYPER PAD │  lt NAV R  │ lt NUM esc  │
 //                                         └──────────────┴────────────┴─────────────┘   └───────────────┴────────────┴─────────────┘
-  &mo FUN        &lt MOU Q      &kp Y         &kp U           &kp O           &kp SLASH          &kp X            &kp L         &kp D           &kp W         &kp V          &kp MINUS
+  &mo FUN        &q_mouse       &kp Y         &kp U           &kp O           &kp SLASH          &kp X            &kp L         &kp D           &kp W         &kp V          &kp MINUS
   &kp K_CANCEL   &hml LCTRL C   &hml LALT I   &hmls LSHFT E   &hml LGUI A     &kp COMMA          &kp K            &hmr RGUI H   &hmrs RSHFT T   &hmr RALT N   &hmr RCTRL S   &none
   &tog MOU       &kp B          &kp Z         &kp SQT         &kp DOT         &kp ISO            &kp J            &kp M         &kp G           &kp P         &kp F          &none
                                               &mt HYPER TAB   &lt SYM SPACE   &cwt HYPER 0       &nwt HYPER PAD   &lt NAV R     &lt NUM ESC

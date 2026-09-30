@@ -101,6 +101,13 @@
   quick-tap-ms = <QUICK_TAP_MS>;
 };
 
+// Choose on Q press; modifiers added after entering Mouse still work normally.
+ZMK_MOD_MORPH(q_mouse,
+    bindings = <&lt MOU Q>, <&kp Q>;
+    mods = <(MOD_LCTL | MOD_LSFT | MOD_LALT | MOD_LGUI | MOD_RCTL | MOD_RSFT | MOD_RALT | MOD_RGUI)>;
+    keep-mods = <(MOD_LCTL | MOD_LSFT | MOD_LALT | MOD_LGUI | MOD_RCTL | MOD_RSFT | MOD_RALT | MOD_RGUI)>;
+)
+
 ZMK_CAPS_WORD(caps_word,
     continue-list = <
       UNDERSCORE MINUS
