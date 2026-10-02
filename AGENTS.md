@@ -1,113 +1,74 @@
 # Customization guide
 
-Instructions for working on this ZMK config — written for coding agents, but equally usable by
-humans adapting this repo as a starting point for their own keymap. For background on the keymap
-and the build pipeline, see the [README](README.md).
+This fork uses a 42-key Corne layout.
+The [README](README.md) describes the upstream configuration and build environment; its 34-key layout is not this fork's active keymap.
 
 ## Ground rules
 
-- **Building needs no local setup.** Pushing to a fork builds every target in `build.yaml` through
-  GitHub Actions (`.github/workflows/build-nix.yml`, triggered by pushes and PRs touching
-  `config/**` or `build.yaml`); the firmware is downloaded from the Actions tab. A fresh fork has
-  Actions disabled — enable them once from the fork's Actions tab.
-- **Building locally** requires the nix-based dev environment (nix + direnv, see the
-  [README](README.md#local-build-environment)) plus a one-time `just init`, which turns the
-  repository into a west workspace by pulling in ZMK, Zephyr and the modules. Then verify keymap
-  changes with `just build <target>` (`just list` shows valid targets, `just build all` builds
-  everything); compiled firmware lands in `firmware/`. If `just` or `west` are missing, the
-  environment isn't active — run commands through `nix develop --command <cmd>` or activate with
-  `direnv allow`.
-- `config/west.yml` is maintained by [pin-west](https://github.com/urob/pin-west): never hand-edit
-  pinned revisions, run `pin-west bump` instead. Adding or removing a module is fine — edit the
-  entry itself and re-run `pin-west pin` to (re)pin.
-- `dts-format` (packaged in the dev environment) formats devicetree files. It does not reformat
-  C-preprocessor macros, so on the keymaps it is close to a no-op — the hand-aligned grids inside
-  `ZMK_LAYER` are safe and need no guarding. It earns its keep on plain devicetree, i.e. when
-  developing modules or board definitions. Without arguments it recurses over the working
-  directory; pass files explicitly to narrow it.
-- After keymap changes that affect the layout, regenerate the diagrams with `just draw` (renders
-  `draw/base.svg` and `draw/overview.svg` from the 34-key base keymap).
-- `just test` is a snapshot-test harness for developing the ZMK **modules** checked out under
-  `modules/zmk/`. It does not test this repo's keymap; the keymap is validated by building.
+- GitHub Actions builds the targets in `build.yaml` on pushes and PRs touching `config/**` or `build.yaml`.
+  Enable Actions in a fresh fork before relying on those builds.
+- Local builds require the Nix/direnv development environment and a one-time `mise run init` to fetch ZMK, Zephyr and the modules.
+  If `just` or `west` is missing, activate the environment with `direnv allow` or run commands through `nix develop --command <cmd>`.
+- `config/west.yml` is maintained by [pin-west](https://github.com/urob/pin-west).
+  Never hand-edit pinned revisions; run `pin-west bump` instead.
+  To add or remove a module, edit its entry and run `pin-west pin`.
+- `dts-format` formats devicetree files but not C-preprocessor macros.
+  Pass files explicitly; without arguments it recurses over the working directory.
+- `just test` is a snapshot-test harness for modules under `modules/zmk/`, not this keymap.
+  Validate keymap changes by building firmware.
 
-## How the multi-board layout works
+## Firmware builds
 
-`config/base.keymap` defines all layers exactly once, for 34 keys, using the standardized key labels
-from [zmk-helpers](https://github.com/urob/zmk-helpers): `LT0`–`LT4`, `LM0`–`LM4`, `LB0`–`LB4` and
-`LH0`–`LH2` for the left top/middle/bottom rows and thumbs, mirrored with `R` on the right (`0` is
-innermost). HRM trigger positions, combos (`config/combos.dtsi`), the leader key and the mouse layer
-are all written against these labels — so they adapt to any board automatically.
+Finish all source edits, including comments, before the final build.
+For keymap changes, run `nvim --headless config/base.keymap +QMKFormat +wq` to refresh qmk.nvim formatting and previews, then review and include the generated changes.
+Do this before compiling so the user does not need to save the keymap to trigger qmk.nvim afterward.
+Run any formatter idempotence checks before compiling too: even a save with identical contents changes metadata and can invalidate mise's freshness check.
+The upstream `just draw` recipe and `draw/config.yaml` assume a 34-key layout; they need adapting before they can render this fork's 42-key layout.
 
-`base.keymap` intentionally includes **no** key-labels header itself. Each board has a small entry
-keymap that must, in this order:
+Compile firmware through `mise run build`, rather than invoking `just` or `west` directly.
+For the default Corne build, omit the target argument to match the `build` dependency used by `mise run flash`.
+Use the Nix/direnv development environment; outside it, run `nix develop --command mise run build`.
+Mise checks source freshness and the artifacts in `firmware/*.uf2`, not just compiled files under `.build/`.
+After the final build and version-control operations, run `mise run --dry-run --verbose flash` and confirm that `build` reports `sources up-to-date, skipping` before reporting firmware ready to flash.
+Any later source edit, formatting pass, or save requires repeating the build and freshness check, even if it only changes comments or leaves the version-control diff empty.
+If the check still schedules a build, investigate or report the blocker instead of claiming the firmware is ready; keep the freshness checks enabled.
 
-1. optionally `#define CONFIG_WIRELESS` (enables the Bluetooth keys on the Sys layer),
-2. define a `ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)` macro that places the eight
-   34-key blocks onto the board's full physical grid, filling leftover keys with `&none` or extra
-   bindings,
-3. include the matching key-labels header from zmk-helpers,
-4. `#include "base.keymap"`.
+## Layout and new boards
 
-`config/corneish_zen.keymap` is a minimal reference example; `config/planck_rev6.keymap` shows a
-non-split, wired board; `config/glove80.keymap` shows a much larger board.
+`config/corne.keymap` enables wireless bindings, includes the `zmk-helpers/key-labels/42.h` position header, then includes `base.keymap` and selects the six-column physical layout.
+`config/base.keymap` defines full 42-key layers, not upstream's `ZMK_BASE_LAYER` blocks.
+Key labels run from `LT0` to `LT5`, `LM0` to `LM5`, `LB0` to `LB5`, and `LH0` to `LH2`, mirrored with `R` on the right; `0` is innermost.
+The retained Planck and Glove80 adapters target upstream's layout and are not active build targets.
 
-## Adding a new board
+When adding a board:
 
-1. **Decide on the structure first.** The modular layout above only pays off across several
-   boards. If the new board is the only one you build for, consider dropping the indirection:
-   widen `base.keymap` to the board's full key count (turn the `ZMK_BASE_LAYER` calls into plain
-   `ZMK_LAYER` calls spanning every physical key), add the key-labels `#include` at its top, and
-   rename it to `<board>.keymap` so it becomes the entry point. Combos, HRM trigger positions and
-   the mouse layer keep working as long as the key labels do. (For a true 34-key board, no adapter
-   is needed either way — `base.keymap` has a pass-through fallback.) The steps below assume the
-   modular layout.
-
-2. **Identify the ZMK board/shield names** for the hardware (e.g. `nice_nano_v2` +
-   `corne_left`/`corne_right`), from the ZMK docs or the board's vendor config.
-
-3. **Check for an existing key-position header** in
-   `modules/zmk/helpers/include/zmk-helpers/key-labels/` (after `just init`; the same list is in
-   the [zmk-helpers repo](https://github.com/urob/zmk-helpers/tree/main/include/zmk-helpers/key-labels)).
-   Many layouts already have one, either by name (`glove80.h`, `sofle.h`, …) or by shape (`36.h`,
-   `42.h`, `4x12_wide.h`, …).
-
-   If none matches, write the key-position defines yourself — either at the top of the new entry
-   keymap or, better, as a new header contributed to zmk-helpers — following the naming and
-   mirroring conventions documented in
-   [key_labels.md](https://github.com/urob/zmk-helpers/blob/main/docs/key_labels.md#standardization).
-
-4. **Create `config/<board>.keymap`** following the four-step structure above. Start from
-   `corneish_zen.keymap` for wireless splits or `planck_rev6.keymap` for wired boards. When
-   mapping the blocks in `ZMK_BASE_LAYER`, keep the 34 base positions in their standard relative
-   locations and spend spare physical keys on duplicates or extras (the existing adapters use
-   `&kp LGUI` and `&smart_mouse`).
-
-5. **Create `config/<board>.conf`**, copying from an existing one: wireless boards want the sleep
-   and Bluetooth settings from `corneish_zen.conf`; all boards want `CONFIG_ZMK_POINTING=y` for
-   the mouse layer.
-
-6. **Register the build target** in `build.yaml` under `include:`, as `board:` (plus `shield:` for
-   shield-based hardware). Board revisions use ZMK's `name@rev//zmk` syntax — see the existing
-   entries.
-
-7. **Build and check**: `just build <name>` (any substring of the board/shield matches), then
-   confirm the artifact appears in `firmware/`.
+1. Identify its ZMK board/shield names from the ZMK docs or vendor configuration.
+2. Find its position header under `modules/zmk/helpers/include/zmk-helpers/key-labels/` after initialization.
+   If no header matches, follow the [key-label conventions](https://github.com/urob/zmk-helpers/blob/main/docs/key_labels.md#standardization).
+3. Create `config/<board>.keymap`, using `corne.keymap` as the entry-point example.
+   Adapt the full layer bindings and hold-tap/combo positions if the physical layout differs; the current layers do not adapt automatically.
+4. Create `config/<board>.conf` with the board's Bluetooth, display and sleep settings as needed.
+   The mouse layer requires `CONFIG_ZMK_POINTING=y`.
+5. Register the target in `build.yaml`, using the board/revision syntax supported by the pinned ZMK version.
+6. Run `mise run build <name>` and confirm the artifact appears in `firmware/`.
+   `just list` lists the available targets.
 
 ## Where to change what
 
-| Change                            | File                                                              |
-| --------------------------------- | ----------------------------------------------------------------- |
-| Layers, HRMs, thumb keys          | `config/base.keymap`                                              |
-| HRM timing                        | `config/base.keymap` (`tapping-term-ms`, `require-prior-idle-ms`; see README troubleshooting) |
-| Combos                            | `config/combos.dtsi` (position diagram at the top)                |
-| Leader sequences                  | `config/leader.dtsi`                                              |
-| Mouse layer                       | `config/mouse.dtsi`                                               |
-| Per-board keys, physical mapping  | `config/<board>.keymap`                                           |
-| Board settings (BT, sleep, mouse) | `config/<board>.conf`                                             |
-| Build targets                     | `build.yaml`                                                      |
-| ZMK/module versions               | `config/west.yml` (via `pin-west bump` only)                      |
-| Dev environment                   | `flake.nix`, `nix/` (test with `nix develop`)                     |
+| Change | File |
+| --- | --- |
+| Layers and thumb keys | `config/base.keymap` |
+| Layer numbers, shortcuts, HRMs and timing | `config/constants.dtsi` |
+| Global Enter combo | `config/constants.dtsi` |
+| FTL controls | `config/base.keymap`, `ftl.md` |
+| Mouse behavior | `config/mouse.dtsi` |
+| Board entry point and physical layout | `config/corne.keymap` |
+| Board settings | `config/corne.conf` |
+| Build targets | `build.yaml` |
+| Task wrappers | `mise-tasks.toml`, `mise-tasks/`, `Justfile` |
+| ZMK/module versions | `config/west.yml`, via pin-west |
+| Dev environment | `flake.nix`, `nix/`; check with `nix develop` |
 
-Removing a feature: delete its `#include` from `base.keymap` (and its bindings/combo references),
-and if it was the only consumer of a module, drop the module's entry from `config/west.yml`. The
-modules used per feature are commented at the top of `base.keymap`.
+`config/combos.dtsi` and `config/leader.dtsi` are retained upstream files, not included by the active keymap.
+To remove a feature, remove its bindings, declarations and includes.
+If no remaining feature uses its module, remove the module entry from `config/west.yml` and re-pin.
