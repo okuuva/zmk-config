@@ -25,6 +25,19 @@ ZMK_MACRO(mac_ble,
     bindings = <&tog WIN_MODE &out OUT_BLE>;
 )
 
+// Send Shift before any system key and keep it down between depower taps.
+ZMK_MACRO(ftl_depower,
+    wait-ms = <0>; tap-ms = <0>;
+    bindings = <&macro_press &kp LSHFT &mo FTL_DEPOWER>,
+               <&macro_pause_for_release>,
+               <&macro_release &mo FTL_DEPOWER &kp LSHFT>;
+)
+
+ZMK_TAP_DANCE(ftl_exit,
+    tapping-term-ms = <200>;
+    bindings = <&none>, <&tog FTL>;
+)
+
 /* Keymap */
 
 / {
@@ -154,19 +167,19 @@ ZMK_MACRO(mac_ble,
 
        fn_layer {
            bindings = <
-//    ┌────────┬────┬──────┬─────────┬────────────┬─────┐   ┌─────┬─────┬─────┬────┬──────────┬──────────┐
-//    │        │    │      │  bri-   │    bri+    │ pwr │   │     │ f7  │ f8  │ f9 │          │  bt_prv  │
-//    ├────────┼────┼──────┼─────────┼────────────┼─────┤   ├─────┼─────┼─────┼────┼──────────┼──────────┤
-//    │        │    │ mute │  vold   │    volu    │     │   │     │ f4  │ f5  │ f6 │ out_ usb │ out_ ble │
-//    ├────────┼────┼──────┼─────────┼────────────┼─────┤   ├─────┼─────┼─────┼────┼──────────┼──────────┤
-//    │ bt_clr │    │ prev │  play   │    next    │     │   │     │ f1  │ f2  │ f3 │          │  bt_nxt  │
-//    └────────┴────┴──────┼─────────┼────────────┼─────┤   ├─────┼─────┼─────┼────┴──────────┴──────────┘
-//                         │ Win+USB │ LockScreen │     │   │ f12 │ f11 │ f10 │
-//                         └─────────┴────────────┴─────┘   └─────┴─────┴─────┘
-  ___          ___   ___              &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER       ___       &kp F7    &kp F8    &kp F9   ___            &bt BT_PRV
-  ___          ___   &kp C_MUTE       &kp C_VOL_DN           &kp C_VOLUME_UP        ___               ___       &kp F4    &kp F5    &kp F6   &out OUT_USB   &out OUT_BLE
-  &bt BT_CLR   ___   &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             ___               ___       &kp F1    &kp F2    &kp F3   ___            &bt BT_NXT
-                                      &win_usb               &kp LockScreen         ___               &kp F12   &kp F11   &kp F10
+//    ┌────────┬─────┬──────┬─────────┬────────────┬─────┐   ┌─────┬─────┬─────┬────┬──────────┬──────────┐
+//    │        │     │      │  bri-   │    bri+    │ pwr │   │     │ f7  │ f8  │ f9 │          │  bt_prv  │
+//    ├────────┼─────┼──────┼─────────┼────────────┼─────┤   ├─────┼─────┼─────┼────┼──────────┼──────────┤
+//    │        │ FTL │ mute │  vold   │    volu    │     │   │     │ f4  │ f5  │ f6 │ out_ usb │ out_ ble │
+//    ├────────┼─────┼──────┼─────────┼────────────┼─────┤   ├─────┼─────┼─────┼────┼──────────┼──────────┤
+//    │ bt_clr │     │ prev │  play   │    next    │     │   │     │ f1  │ f2  │ f3 │          │  bt_nxt  │
+//    └────────┴─────┴──────┼─────────┼────────────┼─────┤   ├─────┼─────┼─────┼────┴──────────┴──────────┘
+//                          │ Win+USB │ LockScreen │     │   │ f12 │ f11 │ f10 │
+//                          └─────────┴────────────┴─────┘   └─────┴─────┴─────┘
+  ___          ___        ___              &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER       ___       &kp F7    &kp F8    &kp F9   ___            &bt BT_PRV
+  ___          &tog FTL   &kp C_MUTE       &kp C_VOL_DN           &kp C_VOLUME_UP        ___               ___       &kp F4    &kp F5    &kp F6   &out OUT_USB   &out OUT_BLE
+  &bt BT_CLR   ___        &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             ___               ___       &kp F1    &kp F2    &kp F3   ___            &bt BT_NXT
+                                           &win_usb               &kp LockScreen         ___               &kp F12   &kp F11   &kp F10
            >;
 
            label = "Function";
@@ -286,6 +299,63 @@ ZMK_MACRO(mac_ble,
                     &mac_ble   &kp WLockScreen   ___       ___   ___   ___
            >;
        };
+       // Left-hand FTL controls; see ../ftl.md. Right half stays unchanged.
+       ftl_layer {
+           display-name = "FTL";
+           bindings = <
+//    ┌──────────────┬──────────┬────────────┬─────────────┬───────────┬───────────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │   Settings   │   Send   │   Recall   │    Cloak    │   Mind    │   Hack    │   │    │    │    │    │    │    │
+//    ├──────────────┼──────────┼────────────┼─────────────┼───────────┼───────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │ mo Autofire  │ Weapon 1 │  Weapon 2  │  Weapon 3   │ Weapon 4  │ Crew home │   │    │    │    │    │    │    │
+//    ├──────────────┼──────────┼────────────┼─────────────┼───────────┼───────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │ tog Autofire │ Battery  │ Open doors │ Close doors │   Jump    │ Ship menu │   │    │    │    │    │    │    │
+//    └──────────────┴──────────┴────────────┼─────────────┼───────────┼───────────┤   ├────┼────┼────┼────┴────┴────┘
+//                                           │    Pause    │ mo Power- │ mo Power+ │   │    │    │    │
+//                                           └─────────────┴───────────┴───────────┘   └────┴────┴────┘
+  &kp FTL_SETTINGS       &kp FTL_SEND_CREW   &kp FTL_RECALL_CREW   &kp FTL_CLOAK         &kp FTL_MIND       &kp FTL_HACK            ___   ___   ___   ___   ___   ___
+  &kp FTL_MO_AUTOFIRE    &kp FTL_WEAPON_1    &kp FTL_WEAPON_2      &kp FTL_WEAPON_3      &kp FTL_WEAPON_4   &kp FTL_CREW_HOME       ___   ___   ___   ___   ___   ___
+  &kp FTL_TOG_AUTOFIRE   &kp FTL_BATTERY     &kp FTL_OPEN_DOORS    &kp FTL_CLOSE_DOORS   &kp FTL_JUMP       &kp FTL_SHIP_MENU       ___   ___   ___   ___   ___   ___
+                                                                   &kp FTL_PAUSE         &ftl_depower       &mo FTL_POWER           ___   ___   ___
+           >;
+       };
+
+       ftl_power_layer {
+           display-name = "FTL Power +";
+           bindings = <
+//    ┌─────────┬───────────┬───────────┬────────────┬───────────┬────────────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │ Drone 1 │ Teleport+ │ Teleport+ │   Cloak+   │   Mind+   │   Hack+    │   │    │    │    │    │    │    │
+//    ├─────────┼───────────┼───────────┼────────────┼───────────┼────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │ Drone 2 │ Weapon 1  │ Weapon 2  │  Weapon 3  │ Weapon 4  │ Artillery+ │   │    │    │    │    │    │    │
+//    ├─────────┼───────────┼───────────┼────────────┼───────────┼────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │ Drone 3 │ Shields+  │ Engines+  │ Med/Clone+ │    O2+    │  Exit 2x   │   │    │    │    │    │    │    │
+//    └─────────┴───────────┴───────────┼────────────┼───────────┼────────────┤   ├────┼────┼────┼────┴────┴────┘
+//                                      │   Pause    │ mo Power- │ mo Power+  │   │    │    │    │
+//                                      └────────────┴───────────┴────────────┘   └────┴────┴────┘
+  &kp FTL_DRONE_1   &kp FTL_POWER_TELEPORTER   &kp FTL_POWER_TELEPORTER   &kp FTL_POWER_CLOAK    &kp FTL_POWER_MIND   &kp FTL_POWER_HACK            ___   ___   ___   ___   ___   ___
+  &kp FTL_DRONE_2   &kp FTL_WEAPON_1           &kp FTL_WEAPON_2           &kp FTL_WEAPON_3       &kp FTL_WEAPON_4     &kp FTL_POWER_ARTILLERY       ___   ___   ___   ___   ___   ___
+  &kp FTL_DRONE_3   &kp FTL_POWER_SHIELDS      &kp FTL_POWER_ENGINES      &kp FTL_POWER_MEDBAY   &kp FTL_POWER_O2     &ftl_exit                     ___   ___   ___   ___   ___   ___
+                                                                          &kp FTL_PAUSE          &ftl_depower         &mo FTL_POWER                 ___   ___   ___
+           >;
+       };
+
+       ftl_depower_layer {
+           display-name = "FTL Power -";
+           bindings = <
+//    ┌──────────┬───────────┬───────────┬────────────┬───────────┬────────────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │ Drone 1- │ Teleport- │ Teleport- │   Cloak-   │   Mind-   │   Hack-    │   │    │    │    │    │    │    │
+//    ├──────────┼───────────┼───────────┼────────────┼───────────┼────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │ Drone 2- │ Weapon 1- │ Weapon 2- │ Weapon 3-  │ Weapon 4- │ Artillery- │   │    │    │    │    │    │    │
+//    ├──────────┼───────────┼───────────┼────────────┼───────────┼────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │ Drone 3- │ Shields-  │ Engines-  │ Med/Clone- │    O2-    │  Exit 2x   │   │    │    │    │    │    │    │
+//    └──────────┴───────────┴───────────┼────────────┼───────────┼────────────┤   ├────┼────┼────┼────┴────┴────┘
+//                                       │   Pause    │ mo Power- │ mo Power+  │   │    │    │    │
+//                                       └────────────┴───────────┴────────────┘   └────┴────┴────┘
+  &kp LS(FTL_DRONE_1)   &kp LS(FTL_POWER_TELEPORTER)   &kp LS(FTL_POWER_TELEPORTER)   &kp LS(FTL_POWER_CLOAK)    &kp LS(FTL_POWER_MIND)   &kp LS(FTL_POWER_HACK)            ___   ___   ___   ___   ___   ___
+  &kp LS(FTL_DRONE_2)   &kp LS(FTL_WEAPON_1)           &kp LS(FTL_WEAPON_2)           &kp LS(FTL_WEAPON_3)       &kp LS(FTL_WEAPON_4)     &kp LS(FTL_POWER_ARTILLERY)       ___   ___   ___   ___   ___   ___
+  &kp LS(FTL_DRONE_3)   &kp LS(FTL_POWER_SHIELDS)      &kp LS(FTL_POWER_ENGINES)      &kp LS(FTL_POWER_MEDBAY)   &kp LS(FTL_POWER_O2)     &ftl_exit                         ___   ___   ___   ___   ___   ___
+                                                                                      &kp FTL_PAUSE              &ftl_depower             &mo FTL_POWER                     ___   ___   ___
+           >;
+       };
    };
 };
 /*
@@ -340,7 +410,58 @@ qmk:json:start
       "WCOPY": "copy",
       "WPASTE": "paste",
       "WUNDO": "undo",
-      "WLockScreen": "LockScreen"
+      "WLockScreen": "LockScreen",
+      "FTL_SETTINGS": "Settings",
+      "FTL_PAUSE": "Pause",
+      "FTL_CLOAK": "Cloak",
+      "FTL_HACK": "Hack",
+      "FTL_MIND": "Mind",
+      "FTL_BATTERY": "Battery",
+      "FTL_JUMP": "Jump",
+      "FTL_MO_AUTOFIRE": "mo Autofire",
+      "FTL_TOG_AUTOFIRE": "tog Autofire",
+      "FTL_CREW_HOME": "Crew home",
+      "FTL_SHIP_MENU": "Ship menu",
+      "FTL_OPEN_DOORS": "Open doors",
+      "FTL_CLOSE_DOORS": "Close doors",
+      "FTL_SEND_CREW": "Send",
+      "FTL_RECALL_CREW": "Recall",
+      "FTL_WEAPON_1": "Weapon 1",
+      "LS%(FTL_WEAPON_1%)": "Weapon 1-",
+      "FTL_WEAPON_2": "Weapon 2",
+      "LS%(FTL_WEAPON_2%)": "Weapon 2-",
+      "FTL_WEAPON_3": "Weapon 3",
+      "LS%(FTL_WEAPON_3%)": "Weapon 3-",
+      "FTL_WEAPON_4": "Weapon 4",
+      "LS%(FTL_WEAPON_4%)": "Weapon 4-",
+      "FTL_DRONE_1": "Drone 1",
+      "LS%(FTL_DRONE_1%)": "Drone 1-",
+      "FTL_DRONE_2": "Drone 2",
+      "LS%(FTL_DRONE_2%)": "Drone 2-",
+      "FTL_DRONE_3": "Drone 3",
+      "LS%(FTL_DRONE_3%)": "Drone 3-",
+      "FTL_POWER_SHIELDS": "Shields+",
+      "LS%(FTL_POWER_SHIELDS%)": "Shields-",
+      "FTL_POWER_ENGINES": "Engines+",
+      "LS%(FTL_POWER_ENGINES%)": "Engines-",
+      "FTL_POWER_O2": "O2+",
+      "LS%(FTL_POWER_O2%)": "O2-",
+      "FTL_POWER_MEDBAY": "Med/Clone+",
+      "LS%(FTL_POWER_MEDBAY%)": "Med/Clone-",
+      "FTL_POWER_ARTILLERY": "Artillery+",
+      "LS%(FTL_POWER_ARTILLERY%)": "Artillery-",
+      "FTL_POWER_TELEPORTER": "Teleport+",
+      "LS%(FTL_POWER_TELEPORTER%)": "Teleport-",
+      "FTL_POWER_HACK": "Hack+",
+      "LS%(FTL_POWER_HACK%)": "Hack-",
+      "FTL_POWER_MIND": "Mind+",
+      "LS%(FTL_POWER_MIND%)": "Mind-",
+      "FTL_POWER_CLOAK": "Cloak+",
+      "LS%(FTL_POWER_CLOAK%)": "Cloak-",
+      "&mo FTL_POWER": "mo Power+",
+      "&ftl_depower": "mo Power-",
+      "&ftl_exit": "Exit 2x",
+      "&tog FTL": "FTL"
     }
   },
   "variant": "zmk"

@@ -38,6 +38,39 @@
 #define YEN LA(Y)
 #define TM LA(N2)
 
+// FTL actions. Power - applies LS() to the same weapon, drone and system keys.
+#define FTL_SETTINGS           ESC
+#define FTL_PAUSE              SPACE
+#define FTL_CLOAK              C
+#define FTL_HACK               N
+#define FTL_MIND               M
+#define FTL_BATTERY            B
+#define FTL_JUMP               V
+#define FTL_MO_AUTOFIRE        LALT
+#define FTL_TOG_AUTOFIRE       LCTRL
+#define FTL_CREW_HOME          TAB
+#define FTL_SHIP_MENU          U
+#define FTL_OPEN_DOORS         Z
+#define FTL_CLOSE_DOORS        X
+#define FTL_SEND_CREW          T
+#define FTL_RECALL_CREW        R
+#define FTL_WEAPON_1           N1
+#define FTL_WEAPON_2           N2
+#define FTL_WEAPON_3           N3
+#define FTL_WEAPON_4           N4
+#define FTL_DRONE_1            N5
+#define FTL_DRONE_2            N6
+#define FTL_DRONE_3            N7
+#define FTL_POWER_SHIELDS      A
+#define FTL_POWER_ENGINES      S
+#define FTL_POWER_O2           F
+#define FTL_POWER_MEDBAY       D
+#define FTL_POWER_ARTILLERY    Y
+#define FTL_POWER_TELEPORTER   G
+#define FTL_POWER_HACK         L
+#define FTL_POWER_MIND         K
+#define FTL_POWER_CLOAK        H
+
 // Layers
 // Must match order in which they are defined
 #define ENT 0
@@ -53,6 +86,9 @@
 #define WIN_MOU 10
 #define WIN_NAV 11
 #define WIN_FUN 12
+#define FTL 13
+#define FTL_POWER 14
+#define FTL_DEPOWER 15
 
 // OS
 // https://github.com/urob/zmk-helpers/tree/main?tab=readme-ov-file#unicode-characters-and-language-collection
