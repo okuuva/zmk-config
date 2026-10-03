@@ -38,7 +38,7 @@
 #define YEN LA(Y)
 #define TM LA(N2)
 
-// FTL actions. Power - applies LS() to the same weapon, drone and system keys.
+// FTL actions. Power - holds Left Shift while using the shared power layer.
 #define FTL_SETTINGS           ESC
 #define FTL_PAUSE              SPACE
 #define FTL_CLOAK              C
@@ -88,7 +88,6 @@
 #define WIN_FUN 12
 #define FTL 13
 #define FTL_POWER 14
-#define FTL_DEPOWER 15
 
 // OS
 // https://github.com/urob/zmk-helpers/tree/main?tab=readme-ov-file#unicode-characters-and-language-collection
