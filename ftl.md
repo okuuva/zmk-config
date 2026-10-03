@@ -39,8 +39,8 @@ All combat keys are immediate, with no tap/hold behavior.
 
 Hold the inner thumb for **mo Power+**, or the middle thumb for **mo Power-**.
 Release it to return to combat.
-The outer thumb pauses on all three layers.
-Both power layers use the same system positions, matching the combat keys for weapons, cloaking, mind control and hacking.
+The outer thumb pauses in both combat and power management.
+Both power thumbs activate one shared layer, matching the combat keys for weapons, cloaking, mind control and hacking.
 Both Send and Recall positions control teleporter power.
 
 ```text
@@ -51,8 +51,11 @@ Drone 3   Shields   Engines   Med/Clone O2        Exit 2x
                           Pause     mo Power- mo Power+
 ```
 
-The double-tap exit is available on both power layers.
-mo Power- takes priority if both power thumbs are held.
+The double-tap exit is available while holding either power thumb.
+
+Release the current power thumb before pressing the other.
+If the holds overlap, releasing either thumb deactivates the power layer even while the other is held, so subsequent keys can trigger combat actions instead.
+Release both thumbs and press the desired one again to recover.
 
 mo Power+ sends the default bindings: drones `5` through `7`, shields `A`, engines `S`, oxygen `F`, medbay or clone bay `D`, artillery `Y`, teleporter `G`, hacking `L`, mind control `K`, and cloaking `H`.
 mo Power- holds Left Shift from thumb press to thumb release, including between repeated system taps.
