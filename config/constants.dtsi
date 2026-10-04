@@ -38,17 +38,17 @@
 #define YEN LA(Y)
 #define TM LA(N2)
 
-// FTL actions. Power - holds Left Shift while using the shared power layer.
+// FTL Windows defaults; Store F9 is the one required custom game binding.
 #define FTL_SETTINGS           ESC
 #define FTL_PAUSE              SPACE
 #define FTL_CLOAK              C
 #define FTL_HACK               N
 #define FTL_MIND               M
 #define FTL_BATTERY            B
-#define FTL_JUMP               V
-#define FTL_MO_AUTOFIRE        LALT
-#define FTL_TOG_AUTOFIRE       LCTRL
-#define FTL_CREW_HOME          TAB
+#define FTL_JUMP               J
+#define FTL_MO_AUTOFIRE        LCTRL
+#define FTL_TOG_AUTOFIRE       V
+#define FTL_CREW_HOME          RET
 #define FTL_SHIP_MENU          U
 #define FTL_OPEN_DOORS         Z
 #define FTL_CLOSE_DOORS        X
@@ -70,6 +70,14 @@
 #define FTL_POWER_HACK         L
 #define FTL_POWER_MIND         K
 #define FTL_POWER_CLOAK        H
+#define FTL_POWER_WEAPONS      W
+#define FTL_POWER_DRONES       E
+#define FTL_SAVE_CREW          SLASH
+#define FTL_ALL_CREW           Q
+#define FTL_INVENTORY          I
+#define FTL_STORE              F9
+#define FTL_TEXT_SMALLER       EQUAL
+#define FTL_TEXT_LARGER        MINUS
 
 // Layers
 // Must match order in which they are defined
@@ -88,6 +96,12 @@
 #define WIN_FUN 12
 #define FTL 13
 #define FTL_POWER 14
+#define FTL_WEAPONS 15
+#define FTL_UTILITIES 16
+// Transparent pulses used only to terminate tri-state ownership.
+#define FTL_CANCEL 17
+#define FTL_WEAPONS_END 18
+#define FTL_UTILITIES_END 19
 
 // OS
 // https://github.com/urob/zmk-helpers/tree/main?tab=readme-ov-file#unicode-characters-and-language-collection
