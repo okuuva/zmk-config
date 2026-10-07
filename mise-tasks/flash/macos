@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+#MISE description="Flash the build firmware to the device"
+#MISE env={BUILD_DIR = "{{vars.out}}"}
+#MISE depends=["build"]
+
+shopt -s nullglob
+# Enable globstar if available (bash 4+)
+shopt -s globstar 2>/dev/null || true
+if test "$BASH" = "" || "$BASH" -uc "a=();true \"\${a[@]}\"" 2>/dev/null; then
+    # Bash 4.4, Zsh
+    set -euo pipefail
+else
+    # Bash 4.3 and older chokes on empty arrays with set -u.
+    set -eo pipefail
+fi
+
+require() { hash "$@" || exit 127; }
+require "diskutil"
+
+# Check if ripgrep is available, fallback to grep if not
+if hash rg 2>/dev/null; then
+    RG_CMD="rg -oNI"
+else
+    RG_CMD="grep -oE"
+fi
+
+available() {
+    # Method 1: Check all external disks for UF2 bootloaders by examining diskutil info
+    while read -r device; do
+        if [[ -n "$device" ]]; then
+            # Check if this device has "nRF UF2" as Device/Media Name and is mounted
+            local info=$(diskutil info "$device" 2>/dev/null)
+            if echo "$info" | grep -Fsq 'nRF UF2' && echo "$info" | grep -Fsq 'Mounted:               Yes'; then
+                echo "$info" | grep -F 'Mount Point:' | cut -d':' -f2 | tr -d '[:space:]'
+                return
+            fi
+            # Also check for common UF2 bootloader volume names
+            if echo "$info" | grep -E 'Volume Name:.*NICENANO|Volume Name:.*UF2|Volume Name:.*BOOT' >/dev/null 2>&1; then
+                if echo "$info" | grep -E 'File System Personality:.*FAT|Type \(Bundle\):.*msdos' >/dev/null 2>&1; then
+                    echo "$info" | grep -F 'Mount Point:' | cut -d':' -f2 | tr -d '[:space:]'
+                    return
+                fi
+            fi
+        fi
+    done < <(diskutil list | grep -oE '/dev/disk[0-9]+' | head -20)
+
+    # Method 2: Direct volume check for common UF2 bootloader names
+    for volume in /Volumes/NICENANO /Volumes/*UF2* /Volumes/BOOT /Volumes/RPI-RP2; do
+        if [[ -d "$volume" ]]; then
+            echo "$volume"
+            return
+        fi
+    done
+}
+
+firmwares=(
+    "$BUILD_DIR/corne_left+nice_view_adapter+nice_view-nice_nano_v2.uf2"
+    "$BUILD_DIR/corne_right+nice_view_adapter+nice_view-nice_nano_v2.uf2"
+)
+for firmware in "${firmwares[@]}"; do
+    if [[ ! -f "$firmware" ]]; then
+        echo "Missing Corne firmware: $firmware" >&2
+        exit 1
+    fi
+done
+
+for firmware in "${firmwares[@]}"; do
+    device="$(basename "$firmware" .uf2)"
+    echo -n "Double tap reset and plug in the $device keyboard via USB or press ^C to cancel."
+    mountpoint="$(available)"
+    while [[ -z "$mountpoint" ]]; do
+        echo -n .
+        sleep 1
+        mountpoint="$(available)"
+    done
+    echo
+
+    echo "Found $device at $mountpoint"
+    echo -n "Copying firmware to the $device..."
+    # FAT UF2 volumes cannot represent Unix metadata, so --no-preserve=all skips it.
+    # Separately, a successful data copy can reboot and unmount the device before cp returns.
+    if cp --no-preserve=all "$firmware" "$mountpoint/" 2>/dev/null || { sleep 1; [[ ! -d "$mountpoint" ]]; }; then
+        echo "Done"
+    else
+        echo "ERROR"
+        echo "There was a failure during firmware copy. Your keyboard might still be in 'bootload' mode!"
+        exit 1
+    fi
+
+    sleep 1
+
+    mountpoint=""
+done
