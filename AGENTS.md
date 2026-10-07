@@ -1,5 +1,8 @@
 # Customization guide
 
+For Corne layout, tooling, builds, or flashing, first read [the fork instructions](docs/personal.md).
+They take precedence over the upstream guidance below for those tasks.
+
 Instructions for working on this ZMK config — written for coding agents, but equally usable by
 humans adapting this repo as a starting point for their own keymap. For background on the keymap
 and the build pipeline, see the [README](README.md).
