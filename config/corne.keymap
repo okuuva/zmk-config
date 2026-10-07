@@ -1,0 +1,488 @@
+#define CONFIG_WIRELESS
+#include "zmk-helpers/key-labels/42.h"
+
+#include <behaviors.dtsi>
+#include <behaviors/num_word.dtsi>
+#include <behaviors/unicode.dtsi> // Requires zmk-unicode module.
+#include <zmk-helpers/helper.h> // Requires zmk-helpers module.
+#include <dt-bindings/zmk/keys.h>
+#ifdef CONFIG_WIRELESS
+  #include <dt-bindings/zmk/bt.h>
+  #include <dt-bindings/zmk/outputs.h>
+#endif
+
+#include "constants.dtsi"
+#include "corne-mouse.dtsi"
+
+/* see ../os-modes.md */
+ZMK_CONDITIONAL_LAYER(win_sym, WIN_MODE SYM, WIN_SYM)
+ZMK_CONDITIONAL_LAYER(win_num, WIN_MODE NUM, WIN_NUM)
+ZMK_CONDITIONAL_LAYER(win_mou, WIN_MODE MOU, WIN_MOU)
+ZMK_CONDITIONAL_LAYER(win_nav, WIN_MODE NAV, WIN_NAV)
+ZMK_CONDITIONAL_LAYER(win_fun, WIN_MODE FUN, WIN_FUN)
+
+ZMK_MACRO(win_usb,
+    wait-ms = <0>; tap-ms = <0>;
+    bindings = <&tog WIN_MODE &out OUT_USB>;
+)
+ZMK_MACRO(mac_ble,
+    wait-ms = <0>; tap-ms = <0>;
+    bindings = <&tog WIN_MODE &out OUT_BLE>;
+)
+
+#include "ftl.dtsi"
+
+/* Keymap */
+
+/ {
+   keymap {
+       compatible = "zmk,keymap";
+
+       base_layer {
+           display-name = "Base";
+           bindings = <
+//    ┌──────────┬────────────┬────────────┬──────────────┬────────────┬─────────────┐   ┌───────────────┬────────────┬─────────────┬────────────┬────────────┬───┐
+//    │  mo FUN  │  &q_mouse  │     Y      │      U       │     O      │      /      │   │       X       │     L      │      D      │     W      │     V      │ - │
+//    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┼────────────┼───┤
+//    │ k_cancel │ hml lctl C │ hml lalt I │ hmls lsft E  │ hml lgui A │      ,      │   │       K       │ hmr rgui H │ hmrs rsft T │ hmr ralt N │ hmr rctl S │   │
+//    ├──────────┼────────────┼────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┼────────────┼───┤
+//    │ tog MOU  │     B      │     Z      │      '       │     .      │      ä      │   │       J       │     M      │      G      │     P      │     F      │   │
+//    └──────────┴────────────┴────────────┼──────────────┼────────────┼─────────────┤   ├───────────────┼────────────┼─────────────┼────────────┴────────────┴───┘
+//                                         │ mt HYPER tab │ lt SYM spc │ cwt HYPER 0 │   │ nwt HYPER PAD │  lt NAV R  │ lt NUM esc  │
+//                                         └──────────────┴────────────┴─────────────┘   └───────────────┴────────────┴─────────────┘
+  &mo FUN        &q_mouse       &kp Y         &kp U           &kp O           &kp SLASH          &kp X            &kp L         &kp D           &kp W         &kp V          &kp MINUS
+  &kp K_CANCEL   &hml LCTRL C   &hml LALT I   &hmls LSHFT E   &hml LGUI A     &kp COMMA          &kp K            &hmr RGUI H   &hmrs RSHFT T   &hmr RALT N   &hmr RCTRL S   &none
+  &tog MOU       &kp B          &kp Z         &kp SQT         &kp DOT         &kp ISO            &kp J            &kp M         &kp G           &kp P         &kp F          &none
+                                              &mt HYPER TAB   &lt SYM SPACE   &cwt HYPER 0       &nwt HYPER PAD   &lt NAV R     &lt NUM ESC
+           >;
+       };
+
+       // see ../os-modes.md
+       win_mode_layer {
+           display-name = "Windows";
+           bindings = <
+//    ┌────┬────┬────┬────┬────────────┬────────────┐   ┌────────────┬────────────┬────┬────┬────┬────┐
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │ hml lctl A │ hml lgui , │   │ hmr rgui K │ hmr rctl H │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    └────┴────┴────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┴────┴────┘
+//                   │    │            │            │   │            │            │    │
+//                   └────┴────────────┴────────────┘   └────────────┴────────────┴────┘
+  ___   ___   ___   ___   ___            ___                   ___           ___            ___   ___   ___   ___
+  ___   ___   ___   ___   &hml LCTRL A   &hml LGUI COMMA       &hmr RGUI K   &hmr RCTRL H   ___   ___   ___   ___
+  ___   ___   ___   ___   ___            ___                   ___           ___            ___   ___   ___   ___
+                    ___   ___            ___                   ___           ___            ___
+           >;
+       };
+
+       sym_layer {
+           bindings = <
+//    ┌────┬────────────┬────────────┬─────────────┬────────────┬────┐   ┌───┬────────────┬─────────────┬────────────┬────────────┬─────┐
+//    │    │     (      │     <      │      >      │     )      │ ?  │   │ ` │     +      │      #      │     %      │     !      │ <3  │
+//    ├────┼────────────┼────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┼────────────┼─────┤
+//    │    │ hml lctl ^ │ hml lalt & │ hmls lsft * │ hml lgui $ │ ,  │   │ " │ hmr rgui - │ hmrs rsft _ │ hmr ralt = │ hmr rctl : │ del │
+//    ├────┼────────────┼────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┼────────────┼─────┤
+//    │    │     ~      │     /      │      |      │     .      │ ;  │   │ \ │     [      │      {      │     }      │     ]      │  ™  │
+//    └────┴────────────┴────────────┼─────────────┼────────────┼────┤   ├───┼────────────┼─────────────┼────────────┴────────────┴─────┘
+//                                   │             │            │    │   │ @ │    spc     │    bspc     │
+//                                   └─────────────┴────────────┴────┘   └───┴────────────┴─────────────┘
+  ___   &kp LEFT_PARENTHESIS   &kp LESS_THAN         &kp GREATER_THAN       &kp RIGHT_PARENTHESIS   &kp QUESTION        &kp GRAVE           &kp PLUS           &kp HASH                 &kp PERCENT       &kp EXCLAMATION     &lt3
+  ___   &hml LCTRL CARET       &hml LALT AMPERSAND   &hmls LSHFT ASTERISK   &hml LGUI DOLLAR        &kp COMMA           &kp DOUBLE_QUOTES   &hmr RGUI MINUS    &hmrs RSHFT UNDERSCORE   &hmr RALT EQUAL   &hmr RCTRL COLON    &kp DELETE
+  ___   &kp TILDE              &kp SLASH             &kp PIPE               &kp DOT                 &kp SEMICOLON       &kp BACKSLASH       &kp LEFT_BRACKET   &kp LEFT_BRACE           &kp RIGHT_BRACE   &kp RIGHT_BRACKET   &kp TM
+                                                     ___                    ___                     ___                 &kp AT_SIGN         &kp SPACE          &kp BACKSPACE
+           >;
+
+           label = "Symbols";
+       };
+
+       num_layer {
+           bindings = <
+//    ┌────┬────────────┬────────────┬─────────────┬────────────┬────────────┐   ┌────┬────────────┬─────────────┬────────────┬────────────┬────┐
+//    │    │     ¥      │     €      │      £      │     $      │            │   │ *  │     +      │      -      │     :      │     /      │    │
+//    ├────┼────────────┼────────────┼─────────────┼────────────┼────────────┤   ├────┼────────────┼─────────────┼────────────┼────────────┼────┤
+//    │    │ hml lctl 1 │ hml lalt 2 │ hmls lsft 3 │ hml lgui 4 │     5      │   │ 6  │ hmr rgui 7 │ hmrs rsft 8 │ hml ralt 9 │ hml rctl 0 │    │
+//    ├────┼────────────┼────────────┼─────────────┼────────────┼────────────┤   ├────┼────────────┼─────────────┼────────────┼────────────┼────┤
+//    │    │            │            │             │            │            │   │    │     =      │             │            │     :      │    │
+//    └────┴────────────┴────────────┼─────────────┼────────────┼────────────┤   ├────┼────────────┼─────────────┼────────────┴────────────┴────┘
+//                                   │  ZmxDetach  │    bspc    │ TmuxPrefix │   │    │            │             │
+//                                   └─────────────┴────────────┴────────────┘   └────┴────────────┴─────────────┘
+  ___   &kp YEN         &kp EURO       &kp POUNDS       &kp DOLLAR      ___                  &kp STAR   &kp PLUS       &kp MINUS        &kp COLON      &kp SLASH       ___
+  ___   &hml LCTRL N1   &hml LALT N2   &hmls LSHFT N3   &hml LGUI N4    &kp N5               &kp N6     &hmr RGUI N7   &hmrs RSHFT N8   &hml RALT N9   &hml RCTRL N0   ___
+  ___   ___             ___            ___              ___             ___                  ___        &kp EQUAL      ___              ___            &kp COLON       ___
+                                       &kp ZmxDetach    &kp BACKSPACE   &kp TmuxPrefix       ___        ___            ___
+           >;
+
+
+           label = "Numbers";
+       };
+
+       pad_layer {
+           display-name = "Numpad";
+           bindings = <
+//    ┌────┬────┬────┬────┬────┬────┐   ┌──────────┬──────────┬───┬───┬───┬────┐
+//    │    │ ¥  │ €  │ £  │ $  │    │   │    *     │    7     │ 8 │ 9 │ / │    │
+//    ├────┼────┼────┼────┼────┼────┤   ├──────────┼──────────┼───┼───┼───┼────┤
+//    │    │    │    │    │    │    │   │    +     │    4     │ 5 │ 6 │ - │    │
+//    ├────┼────┼────┼────┼────┼────┤   ├──────────┼──────────┼───┼───┼───┼────┤
+//    │    │    │    │    │    │    │   │    %     │    1     │ 2 │ 3 │ : │    │
+//    └────┴────┴────┼────┼────┼────┤   ├──────────┼──────────┼───┼───┴───┴────┘
+//                   │    │    │    │   │ k_cancel │ lt NAV 0 │ = │
+//                   └────┴────┴────┘   └──────────┴──────────┴───┘
+  ___   &kp YEN   &kp EURO   &kp POUNDS   &kp DOLLAR   ___       &kp STAR       &kp N7       &kp N8      &kp N9   &kp SLASH   ___
+  ___   ___       ___        ___          ___          ___       &kp PLUS       &kp N4       &kp N5      &kp N6   &kp MINUS   ___
+  ___   ___       ___        ___          ___          ___       &kp PERCENT    &kp N1       &kp N2      &kp N3   &kp COLON   ___
+                             ___          ___          ___       &kp K_CANCEL   &lt NAV N0   &kp EQUAL
+           >;
+
+           label = "Numpad";
+       };
+
+       nav_layer {
+           bindings = <
+//    ┌────┬───────────────────┬────────────────────┬────────────────────┬───────────────────┬────┐   ┌────────────┬──────┬──────┬───────┬──────┬──────┐
+//    │    │      PrevTab      │    PrevWorkspc     │    NextWorkspc     │      NextTab      │    │   │            │ home │ pgdn │ pgup  │ end  │ del  │
+//    ├────┼───────────────────┼────────────────────┼────────────────────┼───────────────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
+//    │    │ hml lctl PrevDesk │ hmls lalt ShowDesk │ hml lsft SwitchApp │ hml lgui NextDesk │    │   │ Fullscreen │ left │ down │  up   │ rght │ bspc │
+//    ├────┼───────────────────┼────────────────────┼────────────────────┼───────────────────┼────┤   ├────────────┼──────┼──────┼───────┼──────┼──────┤
+//    │    │     PrevPage      │       NewTab       │      CloseTab      │     NextPage      │    │   │    redo    │ copy │ cut  │ paste │ undo │      │
+//    └────┴───────────────────┴────────────────────┼────────────────────┼───────────────────┼────┤   ├────────────┼──────┼──────┼───────┴──────┴──────┘
+//                                                  │        del         │       bspc        │    │   │            │      │      │
+//                                                  └────────────────────┴───────────────────┴────┘   └────────────┴──────┴──────┘
+  ___   &kp PrevTab           &kp PrevWorkspc       &kp NextWorkspc        &kp NextTab          ___       ___              &kp HOME   &kp PG_DN   &kp PG_UP   &kp END     &kp DEL
+  ___   &hml LCTRL PrevDesk   &hmls LALT ShowDesk   &hml LSHFT SwitchApp   &hml LGUI NextDesk   ___       &kp Fullscreen   &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT   &kp BSPC
+  ___   &kp PrevPage          &kp NewTab            &kp CloseTab           &kp NextPage         ___       &kp REDO         &kp COPY   &kp CUT     &kp PASTE   &kp UNDO    ___
+                                                    &kp DEL                &kp BSPC             ___       ___              ___        ___
+           >;
+
+           label = "Navigation";
+       };
+
+       fn_layer {
+           bindings = <
+//    ┌────────┬─────────┬────────┬─────────┬────────────┬──────────┐   ┌─────┬─────┬─────┬────┬──────────┬──────────┐
+//    │        │ bt_prv  │ bt_nxt │  bri-   │    bri+    │   pwr    │   │     │ f7  │ f8  │ f9 │          │  bt_prv  │
+//    ├────────┼─────────┼────────┼─────────┼────────────┼──────────┤   ├─────┼─────┼─────┼────┼──────────┼──────────┤
+//    │        │ tog FTL │  mute  │  vold   │    volu    │ out_ ble │   │     │ f4  │ f5  │ f6 │ out_ usb │ out_ ble │
+//    ├────────┼─────────┼────────┼─────────┼────────────┼──────────┤   ├─────┼─────┼─────┼────┼──────────┼──────────┤
+//    │ bt_clr │         │  prev  │  play   │    next    │ out_ usb │   │     │ f1  │ f2  │ f3 │          │  bt_nxt  │
+//    └────────┴─────────┴────────┼─────────┼────────────┼──────────┤   ├─────┼─────┼─────┼────┴──────────┴──────────┘
+//                                │ Win+USB │ LockScreen │          │   │ f12 │ f11 │ f10 │
+//                                └─────────┴────────────┴──────────┘   └─────┴─────┴─────┘
+  ___          &bt BT_PRV   &bt BT_NXT       &kp C_BRIGHTNESS_DEC   &kp C_BRIGHTNESS_INC   &kp C_POWER        ___       &kp F7    &kp F8    &kp F9   ___            &bt BT_PRV
+  ___          &tog FTL     &kp C_MUTE       &kp C_VOL_DN           &kp C_VOLUME_UP        &out OUT_BLE       ___       &kp F4    &kp F5    &kp F6   &out OUT_USB   &out OUT_BLE
+  &bt BT_CLR   ___          &kp C_PREVIOUS   &kp C_PLAY_PAUSE       &kp C_NEXT             &out OUT_USB       ___       &kp F1    &kp F2    &kp F3   ___            &bt BT_NXT
+                                             &win_usb               &kp LockScreen         ___                &kp F12   &kp F11   &kp F10
+           >;
+
+           label = "Function";
+       };
+
+       mouse_layer {
+           bindings = <
+//    ┌────┬──────┬──────┬──────┬────────┬────────┐   ┌──────┬────────┬────────┬────────┬────────┬────┐
+//    │    │      │ rclk │ mclk │  lclk  │        │   │      │ SCRL_R │ SCRL_D │ SCRL_U │ SCRL_L │    │
+//    ├────┼──────┼──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┼────────┼────┤
+//    │    │ lctl │ lalt │ lsft │  lgui  │        │   │      │  MS_L  │  MS_D  │  MS_U  │  MS_R  │    │
+//    ├────┼──────┼──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┼────────┼────┤
+//    │    │      │      │      │        │        │   │      │        │        │        │        │    │
+//    └────┴──────┴──────┼──────┼────────┼────────┤   ├──────┼────────┼────────┼────────┴────────┴────┘
+//                       │ lctl │ mo NAV │ mo FUN │   │ mclk │  lclk  │  rclk  │
+//                       └──────┴────────┴────────┘   └──────┴────────┴────────┘
+  ___   ___         &mkp MB2   &mkp MB3    &mkp MB1   ___           ___        &msc SCRL_R   &msc SCRL_D   &msc SCRL_U   &msc SCRL_L   ___
+  ___   &kp LCTRL   &kp LALT   &kp LSHFT   &kp LGUI   ___           ___        &mmv MS_L     &mmv MS_D     &mmv MS_U     &mmv MS_R     ___
+  ___   ___         ___        ___         ___        ___           ___        ___           ___           ___           ___           ___
+                               &kp LCTRL   &mo NAV    &mo FUN       &mkp MB3   &mkp MB1      &mkp MB2
+           >;
+
+           label = "Mouse";
+       };
+
+       win_sym_layer {
+           display-name = "Windows Symbols";
+           bindings = <
+//    ┌────┬────┬────┬────┬────────────┬────────────┐   ┌────────────┬────────────┬────┬────┬────┬────┐
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │ hml lctl $ │ hml lgui , │   │ hmr rgui " │ hmr rctl - │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    └────┴────┴────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┴────┴────┘
+//                   │    │            │            │   │            │            │    │
+//                   └────┴────────────┴────────────┘   └────────────┴────────────┴────┘
+  ___   ___   ___   ___   ___                 ___                   ___                       ___                ___   ___   ___   ___
+  ___   ___   ___   ___   &hml LCTRL DOLLAR   &hml LGUI COMMA       &hmr RGUI DOUBLE_QUOTES   &hmr RCTRL MINUS   ___   ___   ___   ___
+  ___   ___   ___   ___   ___                 ___                   ___                       ___                ___   ___   ___   ___
+                    ___   ___                 ___                   ___                       ___                ___
+           >;
+       };
+
+       win_num_layer {
+           display-name = "Windows Numbers";
+           bindings = <
+//    ┌────┬────┬────┬────┬────────────┬────────────┐   ┌────────────┬────────────┬────┬────┬────┬────┐
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │ hml lctl 4 │ hml lgui 5 │   │ hmr rgui 6 │ hmr rctl 7 │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    └────┴────┴────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┴────┴────┘
+//                   │    │            │            │   │            │            │    │
+//                   └────┴────────────┴────────────┘   └────────────┴────────────┴────┘
+  ___   ___   ___   ___   ___             ___                ___            ___             ___   ___   ___   ___
+  ___   ___   ___   ___   &hml LCTRL N4   &hml LGUI N5       &hmr RGUI N6   &hmr RCTRL N7   ___   ___   ___   ___
+  ___   ___   ___   ___   ___             ___                ___            ___             ___   ___   ___   ___
+                    ___   ___             ___                ___            ___             ___
+           >;
+       };
+
+       win_mou_layer {
+           display-name = "Windows Mouse";
+           bindings = <
+//    ┌────┬────┬────┬────┬──────┬──────┐   ┌──────┬────┬────┬────┬────┬────┐
+//    │    │    │    │    │      │      │   │      │    │    │    │    │    │
+//    ├────┼────┼────┼────┼──────┼──────┤   ├──────┼────┼────┼────┼────┼────┤
+//    │    │    │    │    │ lctl │ lgui │   │ rgui │    │    │    │    │    │
+//    ├────┼────┼────┼────┼──────┼──────┤   ├──────┼────┼────┼────┼────┼────┤
+//    │    │    │    │    │      │      │   │      │    │    │    │    │    │
+//    └────┴────┴────┼────┼──────┼──────┤   ├──────┼────┼────┼────┴────┴────┘
+//                   │    │      │      │   │      │    │    │
+//                   └────┴──────┴──────┘   └──────┴────┴────┘
+  ___   ___   ___   ___   ___         ___            ___        ___   ___   ___   ___   ___
+  ___   ___   ___   ___   &kp LCTRL   &kp LGUI       &kp RGUI   ___   ___   ___   ___   ___
+  ___   ___   ___   ___   ___         ___            ___        ___   ___   ___   ___   ___
+                    ___   ___         ___            ___        ___   ___
+           >;
+       };
+
+       win_nav_layer {
+           display-name = "Windows Navigation";
+           bindings = <
+//    ┌────┬───────────────────┬─────────────────────┬───────────────────┬───────────────────┬────┐   ┌────────────┬──────┬─────┬───────┬──────┬────┐
+//    │    │      PrevTab      │                     │                   │      NextTab      │    │   │            │      │     │       │      │    │
+//    ├────┼───────────────────┼─────────────────────┼───────────────────┼───────────────────┼────┤   ├────────────┼──────┼─────┼───────┼──────┼────┤
+//    │    │ hml lctl PrevDesk │ hmls lalt SwitchApp │ hml lsft ShowDesk │ hml lctl NextDesk │    │   │ Fullscreen │      │     │       │      │    │
+//    ├────┼───────────────────┼─────────────────────┼───────────────────┼───────────────────┼────┤   ├────────────┼──────┼─────┼───────┼──────┼────┤
+//    │    │     PrevPage      │       NewTab        │     CloseTab      │     NextPage      │    │   │    redo    │ copy │ cut │ paste │ undo │    │
+//    └────┴───────────────────┴─────────────────────┼───────────────────┼───────────────────┼────┤   ├────────────┼──────┼─────┼───────┴──────┴────┘
+//                                                   │                   │                   │    │   │            │      │     │
+//                                                   └───────────────────┴───────────────────┴────┘   └────────────┴──────┴─────┘
+  ___   &kp WPrevTab           ___                     ___                    &kp WNextTab           ___       ___               ___         ___        ___          ___         ___
+  ___   &hml LCTRL WPrevDesk   &hmls LALT WSwitchApp   &hml LSHFT WShowDesk   &hml LCTRL WNextDesk   ___       &kp WFullscreen   ___         ___        ___          ___         ___
+  ___   &kp WPrevPage          &kp WNewTab             &kp WCloseTab          &kp WNextPage          ___       &kp WREDO         &kp WCOPY   &kp WCUT   &kp WPASTE   &kp WUNDO   ___
+                                                       ___                    ___                    ___       ___               ___         ___
+           >;
+       };
+
+       win_fun_layer {
+           display-name = "Windows Function";
+           bindings = <
+//    ┌────┬────┬────┬────────┬────────────┬────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │    │    │    │        │            │    │   │    │    │    │    │    │    │
+//    ├────┼────┼────┼────────┼────────────┼────┤   ├────┼────┼────┼────┼────┼────┤
+//    │    │    │    │        │            │    │   │    │    │    │    │    │    │
+//    ├────┼────┼────┼────────┼────────────┼────┤   ├────┼────┼────┼────┼────┼────┤
+//    │    │    │    │        │            │    │   │    │    │    │    │    │    │
+//    └────┴────┴────┼────────┼────────────┼────┤   ├────┼────┼────┼────┴────┴────┘
+//                   │ Mac+BT │ LockScreen │    │   │    │    │    │
+//                   └────────┴────────────┴────┘   └────┴────┴────┘
+  ___   ___   ___   ___        ___               ___       ___   ___   ___   ___   ___   ___
+  ___   ___   ___   ___        ___               ___       ___   ___   ___   ___   ___   ___
+  ___   ___   ___   ___        ___               ___       ___   ___   ___   ___   ___   ___
+                    &mac_ble   &kp WLockScreen   ___       ___   ___   ___
+           >;
+       };
+       // Left-hand FTL controls; see ../ftl.md. Right half stays unchanged.
+       ftl_combat_layer {
+           display-name = "FTL";
+           bindings = <
+//    ┌──────────┬──────────┬──────────┬───────────┬──────────────┬──────────────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │ Settings │ Autofire │  Cloak   │   Mind    │     Hack     │              │   │    │    │    │    │    │    │
+//    ├──────────┼──────────┼──────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │          │ Weapon 1 │ Weapon 2 │ Weapon 3  │   Weapon 4   │  Crew home   │   │    │    │    │    │    │    │
+//    ├──────────┼──────────┼──────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │          │ Drone 1  │ Drone 2  │  Drone 3  │ Recall/Send  │              │   │    │    │    │    │    │    │
+//    └──────────┴──────────┴──────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┴────┴────┘
+//                                     │ Sys− / W− │ Pause/Combat │ Sys+ / Utils │   │    │    │    │
+//                                     └───────────┴──────────────┴──────────────┘   └────┴────┴────┘
+  &kp FTL_SETTINGS   &ftl_autofire FTL_MO_AUTOFIRE FTL_TOG_AUTOFIRE   &kp FTL_CLOAK      &kp FTL_MIND       &kp FTL_HACK                                  &none                   ___   ___   ___   ___   ___   ___
+  &none              &kp FTL_WEAPON_1                                 &kp FTL_WEAPON_2   &kp FTL_WEAPON_3   &kp FTL_WEAPON_4                              &kp FTL_CREW_HOME       ___   ___   ___   ___   ___   ___
+  &none              &kp FTL_DRONE_1                                  &kp FTL_DRONE_2    &kp FTL_DRONE_3    &ftl_teleport FTL_SEND_CREW FTL_RECALL_CREW   &none                   ___   ___   ___   ___   ___   ___
+                                                                                         &ftl_minus 0 0     &ftl_pause                                    &ftl_plus 0 0           ___   ___   ___
+           >;
+       };
+
+       ftl_systems_layer {
+           display-name = "FTL Systems";
+           bindings = <
+//    ┌────────┬─────────┬─────────┬───────────┬──────────────┬──────────────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │ Cancel │ Battery │  Cloak  │   Mind    │     Hack     │              │   │    │    │    │    │    │    │
+//    ├────────┼─────────┼─────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │        │ Shields │ Engines │ Med/Clone │      O2      │   Weapons    │   │    │    │    │    │    │    │
+//    ├────────┼─────────┼─────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │        │         │         │ Artillery │   Teleport   │   Exit 2x    │   │    │    │    │    │    │    │
+//    └────────┴─────────┴─────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┴────┴────┘
+//                                 │ Sys− / W− │ Pause/Combat │ Sys+ / Utils │   │    │    │    │
+//                                 └───────────┴──────────────┴──────────────┘   └────┴────┴────┘
+  &ftl_cancel   &ftl_battery            &kp FTL_POWER_CLOAK     &kp FTL_POWER_MIND        &kp FTL_POWER_HACK         &none                       ___   ___   ___   ___   ___   ___
+  &none         &kp FTL_POWER_SHIELDS   &kp FTL_POWER_ENGINES   &kp FTL_POWER_MEDBAY      &kp FTL_POWER_O2           &kp FTL_POWER_WEAPONS       ___   ___   ___   ___   ___   ___
+  &none         &none                   &none                   &kp FTL_POWER_ARTILLERY   &kp FTL_POWER_TELEPORTER   &ftl_exit                   ___   ___   ___   ___   ___   ___
+                                                                &ftl_minus 0 0            &ftl_pause                 &ftl_plus 0 0               ___   ___   ___
+           >;
+       };
+
+       ftl_weapons_layer {
+           display-name = "FTL Weapons−";
+           bindings = <
+//    ┌───┬──────────┬──────────┬───────────┬──────────────┬──────────────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │   │          │          │           │              │              │   │    │    │    │    │    │    │
+//    ├───┼──────────┼──────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │   │ Weapon 1 │ Weapon 2 │ Weapon 3  │   Weapon 4   │   Weapons    │   │    │    │    │    │    │    │
+//    ├───┼──────────┼──────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │   │ Drone 1  │ Drone 2  │  Drone 3  │    Drones    │   Exit 2x    │   │    │    │    │    │    │    │
+//    └───┴──────────┴──────────┼───────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┴────┴────┘
+//                              │ Sys− / W− │ Pause/Combat │ Sys+ / Utils │   │    │    │    │
+//                              └───────────┴──────────────┴──────────────┘   └────┴────┴────┘
+  &none   &none              &none              &none              &none                  &none                       ___   ___   ___   ___   ___   ___
+  &none   &kp FTL_WEAPON_1   &kp FTL_WEAPON_2   &kp FTL_WEAPON_3   &kp FTL_WEAPON_4       &kp FTL_POWER_WEAPONS       ___   ___   ___   ___   ___   ___
+  &none   &kp FTL_DRONE_1    &kp FTL_DRONE_2    &kp FTL_DRONE_3    &kp FTL_POWER_DRONES   &ftl_exit                   ___   ___   ___   ___   ___   ___
+                                                &ftl_minus 0 0     &ftl_pause             &ftl_plus 0 0               ___   ___   ___
+           >;
+       };
+
+       ftl_utilities_layer {
+           display-name = "FTL Utilities";
+           bindings = <
+//    ┌────────┬──────────┬──────────────┬─────────────┬──────────────┬──────────────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │ Cancel │    f1    │      f2      │     f3      │      f4      │  Ship menu   │   │    │    │    │    │    │    │
+//    ├────────┼──────────┼──────────────┼─────────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │        │    f5    │      f6      │     f7      │      f8      │  Inventory   │   │    │    │    │    │    │    │
+//    ├────────┼──────────┼──────────────┼─────────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
+//    │        │ All crew │ Text smaller │ Text larger │   Save 2x    │  Shop / f9   │   │    │    │    │    │    │    │
+//    └────────┴──────────┴──────────────┼─────────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┴────┴────┘
+//                                       │  Sys− / W−  │ Pause/Combat │ Sys+ / Utils │   │    │    │    │
+//                                       └─────────────┴──────────────┴──────────────┘   └────┴────┴────┘
+  &ftl_cancel   &kp F1             &kp F2                 &kp F3                &kp F4       &kp FTL_SHIP_MENU       ___   ___   ___   ___   ___   ___
+  &none         &kp F5             &kp F6                 &kp F7                &kp F8       &kp FTL_INVENTORY       ___   ___   ___   ___   ___   ___
+  &none         &kp FTL_ALL_CREW   &kp FTL_TEXT_SMALLER   &kp FTL_TEXT_LARGER   &ftl_save    &kp FTL_STORE           ___   ___   ___   ___   ___   ___
+                                                          &ftl_minus 0 0        &ftl_pause   &ftl_plus 0 0           ___   ___   ___
+           >;
+       };
+
+   };
+};
+// These transparent signal layers are never persistent user-facing modes.
+ZMK_LAYER(ftl_cancel_signal, ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___)
+ZMK_LAYER(ftl_weapons_end_signal, ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___)
+ZMK_LAYER(ftl_utilities_end_signal, ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___)
+/{ chosen { zmk,physical-layout = &foostan_corne_6col_layout; }; };
+
+/*
+qmk:json:start
+{
+  "layout": [
+    "x x x x x x _ x x x x x x",
+    "x x x x x x _ x x x x x x",
+    "x x x x x x _ x x x x x x",
+    "_ _ _ x x x _ x x x _ _ _"
+  ],
+  "comment_preview": {
+    "position": "top",
+    "keymap_overrides": {
+      "___": "  ",
+      "&cwt": "cwt",
+      "&hml": "hml",
+      "&hmr": "hmr",
+      "&hmls": "hmls",
+      "&hmrs": "hmrs",
+      "&nwt": "nwt",
+      "&mmv ": "",
+      "&msc ": "",
+      "&num_word PAD": "numw",
+      "&num_word": "numw",
+      "&lt3": "<3",
+      "&win_usb": "Win+USB",
+      "&mac_ble": "Mac+BT",
+      "ISO": "ä",
+      "EURO": "€",
+      "POUNDS": "£",
+      "YEN": "¥",
+      "TM": "™",
+      "REDO": "redo",
+      "CUT": "cut",
+      "COPY": "copy",
+      "PASTE": "paste",
+      "UNDO": "undo",
+      "WNewTab": "NewTab",
+      "WPrevTab": "PrevTab",
+      "WNextTab": "NextTab",
+      "WSwitchApp": "SwitchApp",
+      "WPrevDesk": "PrevDesk",
+      "WNextDesk": "NextDesk",
+      "WShowDesk": "ShowDesk",
+      "WCloseTab": "CloseTab",
+      "WPrevPage": "PrevPage",
+      "WNextPage": "NextPage",
+      "WFullscreen": "Fullscreen",
+      "WREDO": "redo",
+      "WCUT": "cut",
+      "WCOPY": "copy",
+      "WPASTE": "paste",
+      "WUNDO": "undo",
+      "WLockScreen": "LockScreen",
+      "FTL_SETTINGS": "Settings",
+      "FTL_PAUSE": "Pause",
+      "FTL_CLOAK": "Cloak",
+      "FTL_HACK": "Hack",
+      "FTL_MIND": "Mind",
+      "FTL_BATTERY": "Battery",
+      "FTL_JUMP": "Jump",
+      "FTL_MO_AUTOFIRE": "mo Autofire",
+      "FTL_TOG_AUTOFIRE": "tog Autofire",
+      "FTL_CREW_HOME": "Crew home",
+      "FTL_SHIP_MENU": "Ship menu",
+      "FTL_OPEN_DOORS": "Open doors",
+      "FTL_CLOSE_DOORS": "Close doors",
+      "FTL_SEND_CREW": "Send",
+      "FTL_RECALL_CREW": "Recall",
+      "FTL_WEAPON_1": "Weapon 1",
+      "FTL_WEAPON_2": "Weapon 2",
+      "FTL_WEAPON_3": "Weapon 3",
+      "FTL_WEAPON_4": "Weapon 4",
+      "FTL_DRONE_1": "Drone 1",
+      "FTL_DRONE_2": "Drone 2",
+      "FTL_DRONE_3": "Drone 3",
+      "FTL_POWER_SHIELDS": "Shields",
+      "FTL_POWER_ENGINES": "Engines",
+      "FTL_POWER_O2": "O2",
+      "FTL_POWER_MEDBAY": "Med/Clone",
+      "FTL_POWER_ARTILLERY": "Artillery",
+      "FTL_POWER_TELEPORTER": "Teleport",
+      "FTL_POWER_HACK": "Hack",
+      "FTL_POWER_MIND": "Mind",
+      "FTL_POWER_CLOAK": "Cloak",
+      "&ftl_exit": "Exit 2x",
+      "&tog FTL": "tog FTL",
+      "&none": " ",
+      "&ftl_minus 0 0": "Sys− / W−",
+      "&ftl_plus 0 0": "Sys+ / Utils",
+      "&ftl_pause": "Pause/Combat",
+      "&ftl_cancel": "Cancel",
+      "&ftl_battery": "Battery",
+      "&ftl_autofire FTL_MO_AUTOFIRE FTL_TOG_AUTOFIRE": "Autofire",
+      "&ftl_teleport FTL_SEND_CREW FTL_RECALL_CREW": "Recall/Send",
+      "&ftl_save": "Save 2x",
+      "FTL_POWER_WEAPONS": "Weapons",
+      "FTL_POWER_DRONES": "Drones",
+      "FTL_ALL_CREW": "All crew",
+      "FTL_INVENTORY": "Inventory",
+      "FTL_STORE": "Shop / F9",
+      "FTL_TEXT_SMALLER": "Text smaller",
+      "FTL_TEXT_LARGER": "Text larger"
+    }
+  },
+  "variant": "zmk"
+}
+qmk:json:end
+*/

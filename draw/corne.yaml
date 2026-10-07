@@ -1,0 +1,6 @@
+parse_config:
+  zmk_additional_includes:
+    - "modules/zmk/helpers/include"
+  raw_binding_map:
+    "&win_usb": Win + USB
+    "&mac_ble": Mac + BT
