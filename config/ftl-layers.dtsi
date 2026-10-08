@@ -63,16 +63,16 @@
            display-name = "FTL Utilities";
            bindings = <
 //    ┌────────┬──────────┬──────────────┬─────────────┬──────────────┬──────────────┐   ┌────┬────┬────┬────┬────┬────┐
-//    │ Cancel │    f1    │      f2      │     f3      │      f4      │  Ship menu   │   │    │    │    │    │    │    │
+//    │ Cancel │    f5    │      f6      │     f7      │      f8      │  Ship menu   │   │    │    │    │    │    │    │
 //    ├────────┼──────────┼──────────────┼─────────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
-//    │        │    f5    │      f6      │     f7      │      f8      │  Inventory   │   │    │    │    │    │    │    │
+//    │        │    f1    │      f2      │     f3      │      f4      │  Inventory   │   │    │    │    │    │    │    │
 //    ├────────┼──────────┼──────────────┼─────────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┼────┼────┤
 //    │        │ All crew │ Text smaller │ Text larger │   Save 2x    │  Shop / f9   │   │    │    │    │    │    │    │
 //    └────────┴──────────┴──────────────┼─────────────┼──────────────┼──────────────┤   ├────┼────┼────┼────┴────┴────┘
 //                                       │  Sys− / W−  │ Pause/Combat │ Sys+ / Utils │   │    │    │    │
 //                                       └─────────────┴──────────────┴──────────────┘   └────┴────┴────┘
-  &ftl_cancel   &kp F1             &kp F2                 &kp F3                &kp F4       &kp FTL_SHIP_MENU       ___   ___   ___   ___   ___   ___
-  &none         &kp F5             &kp F6                 &kp F7                &kp F8       &kp FTL_INVENTORY       ___   ___   ___   ___   ___   ___
+  &ftl_cancel   &kp F5             &kp F6                 &kp F7                &kp F8       &kp FTL_SHIP_MENU       ___   ___   ___   ___   ___   ___
+  &none         &kp F1             &kp F2                 &kp F3                &kp F4       &kp FTL_INVENTORY       ___   ___   ___   ___   ___   ___
   &none         &kp FTL_ALL_CREW   &kp FTL_TEXT_SMALLER   &kp FTL_TEXT_LARGER   &ftl_save    &kp FTL_STORE           ___   ___   ___   ___   ___   ___
                                                           &ftl_minus 0 0        &ftl_pause   &ftl_plus 0 0           ___   ___   ___
            >;

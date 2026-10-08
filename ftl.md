@@ -141,8 +141,8 @@ Hold LH0; release it to return to combat.
 Entering Utilities clears previous mode-owned Shift.
 
 ```text
-Cancel Crew1/F1 Crew2/F2     Crew3/F3    Crew4/F4 Ship/U
-—      Crew5/F5 Crew6/F6     Crew7/F7    Crew8/F8 Inventory/I
+Cancel Crew5/F5 Crew6/F6     Crew7/F7    Crew8/F8 Ship/U
+—      Crew1/F1 Crew2/F2     Crew3/F3    Crew4/F4 Inventory/I
 —      All/Q    Text smaller Text larger Save2x   Shop/F9
 
                              Sys−/W−    Pause    Sys+/Utils
