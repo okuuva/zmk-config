@@ -18,17 +18,6 @@
 #define PrevPage RG(LEFT)
 #define NextPage RG(RIGHT)
 #define Fullscreen LG(LC(F))
-#define WNewTab LC(T)
-#define WPrevTab LC(LS(TAB))
-#define WNextTab LC(TAB)
-#define WSwitchApp LA(TAB)
-#define WPrevDesk LG(LC(LEFT))
-#define WNextDesk LG(LC(RIGHT))
-#define WShowDesk LG(D)
-#define WCloseTab LC(W)
-#define WPrevPage LA(LEFT)
-#define WNextPage LA(RIGHT)
-#define WFullscreen F11
 #define TmuxPrefix LC(B)
 #define ZmxDetach LC(BACKSLASH)
 #define PrevWorkspc RG(RA(Q))
@@ -41,18 +30,13 @@
 // Layers
 // Must match order in which they are defined
 #define ENT 0
-#define WIN_MODE 1
 #define SYM 2
 #define NUM 3
 #define PAD 4
 #define NAV 5
 #define FUN 6
 #define MOU 7
-#define WIN_SYM 8
-#define WIN_NUM 9
-#define WIN_MOU 10
-#define WIN_NAV 11
-#define WIN_FUN 12
+
 // OS
 // https://github.com/urob/zmk-helpers/tree/main?tab=readme-ov-file#unicode-characters-and-language-collection
 #define WINDOWS 0
@@ -64,19 +48,13 @@
 #undef CUT
 #undef UNDO
 #undef REDO
-// macOS defaults; Windows mode overrides these bindings in corne.keymap.
+// macOS defaults; Windows mode overrides these bindings in windows.dtsi.
 #define COPY LG(C)
 #define PASTE LG(V)
 #define CUT LG(X)
 #define UNDO LG(Z)
 #define REDO LS(LG(Z))
 #define LockScreen LC(LG(Q))
-#define WCOPY LC(C)
-#define WPASTE LC(V)
-#define WCUT LC(X)
-#define WUNDO LC(Z)
-#define WREDO LC(Y)
-#define WLockScreen LG(L)
 
 /* Global defaults */
 // See ../README.md#troubleshooting

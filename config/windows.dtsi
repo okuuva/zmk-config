@@ -1,0 +1,207 @@
+// Corne Windows mode; see ../os-modes.md.
+// Include after the shared layers and before the FTL layers.
+
+#define WNewTab LC(T)
+#define WPrevTab LC(LS(TAB))
+#define WNextTab LC(TAB)
+#define WSwitchApp LA(TAB)
+#define WPrevDesk LG(LC(LEFT))
+#define WNextDesk LG(LC(RIGHT))
+#define WShowDesk LG(D)
+#define WCloseTab LC(W)
+#define WPrevPage LA(LEFT)
+#define WNextPage LA(RIGHT)
+#define WFullscreen F11
+#define WCOPY LC(C)
+#define WPASTE LC(V)
+#define WCUT LC(X)
+#define WUNDO LC(Z)
+#define WREDO LC(Y)
+#define WLockScreen LG(L)
+
+// WIN_MODE's slot is reserved after Base in corne.keymap.
+#define WIN_MODE 1
+#define WIN_SYM 8
+#define WIN_NUM 9
+#define WIN_MOU 10
+#define WIN_NAV 11
+#define WIN_FUN 12
+
+/* see ../os-modes.md */
+ZMK_CONDITIONAL_LAYER(win_sym, WIN_MODE SYM, WIN_SYM)
+ZMK_CONDITIONAL_LAYER(win_num, WIN_MODE NUM, WIN_NUM)
+ZMK_CONDITIONAL_LAYER(win_mou, WIN_MODE MOU, WIN_MOU)
+ZMK_CONDITIONAL_LAYER(win_nav, WIN_MODE NAV, WIN_NAV)
+ZMK_CONDITIONAL_LAYER(win_fun, WIN_MODE FUN, WIN_FUN)
+
+ZMK_MACRO(win_usb,
+    wait-ms = <0>; tap-ms = <0>;
+    bindings = <&tog WIN_MODE &out OUT_USB>;
+)
+ZMK_MACRO(mac_ble,
+    wait-ms = <0>; tap-ms = <0>;
+    bindings = <&tog WIN_MODE &out OUT_BLE>;
+)
+
+/ {
+   keymap {
+       // see ../os-modes.md
+       win_mode_layer {
+           display-name = "Windows";
+           bindings = <
+//    ┌────┬────┬────┬────┬────────────┬────────────┐   ┌────────────┬────────────┬────┬────┬────┬────┐
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │ hml lctl A │ hml lgui , │   │ hmr rgui K │ hmr rctl H │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    └────┴────┴────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┴────┴────┘
+//                   │    │            │            │   │            │            │    │
+//                   └────┴────────────┴────────────┘   └────────────┴────────────┴────┘
+  ___   ___   ___   ___   ___            ___                   ___           ___            ___   ___   ___   ___
+  ___   ___   ___   ___   &hml LCTRL A   &hml LGUI COMMA       &hmr RGUI K   &hmr RCTRL H   ___   ___   ___   ___
+  ___   ___   ___   ___   ___            ___                   ___           ___            ___   ___   ___   ___
+                    ___   ___            ___                   ___           ___            ___
+           >;
+       };
+
+       win_sym_layer {
+           display-name = "Windows Symbols";
+           bindings = <
+//    ┌────┬────┬────┬────┬────────────┬────────────┐   ┌────────────┬────────────┬────┬────┬────┬────┐
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │ hml lctl $ │ hml lgui , │   │ hmr rgui " │ hmr rctl - │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    └────┴────┴────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┴────┴────┘
+//                   │    │            │            │   │            │            │    │
+//                   └────┴────────────┴────────────┘   └────────────┴────────────┴────┘
+  ___   ___   ___   ___   ___                 ___                   ___                       ___                ___   ___   ___   ___
+  ___   ___   ___   ___   &hml LCTRL DOLLAR   &hml LGUI COMMA       &hmr RGUI DOUBLE_QUOTES   &hmr RCTRL MINUS   ___   ___   ___   ___
+  ___   ___   ___   ___   ___                 ___                   ___                       ___                ___   ___   ___   ___
+                    ___   ___                 ___                   ___                       ___                ___
+           >;
+       };
+
+       win_num_layer {
+           display-name = "Windows Numbers";
+           bindings = <
+//    ┌────┬────┬────┬────┬────────────┬────────────┐   ┌────────────┬────────────┬────┬────┬────┬────┐
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │ hml lctl 4 │ hml lgui 5 │   │ hmr rgui 6 │ hmr rctl 7 │    │    │    │    │
+//    ├────┼────┼────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┼────┼────┤
+//    │    │    │    │    │            │            │   │            │            │    │    │    │    │
+//    └────┴────┴────┼────┼────────────┼────────────┤   ├────────────┼────────────┼────┼────┴────┴────┘
+//                   │    │            │            │   │            │            │    │
+//                   └────┴────────────┴────────────┘   └────────────┴────────────┴────┘
+  ___   ___   ___   ___   ___             ___                ___            ___             ___   ___   ___   ___
+  ___   ___   ___   ___   &hml LCTRL N4   &hml LGUI N5       &hmr RGUI N6   &hmr RCTRL N7   ___   ___   ___   ___
+  ___   ___   ___   ___   ___             ___                ___            ___             ___   ___   ___   ___
+                    ___   ___             ___                ___            ___             ___
+           >;
+       };
+
+       win_mou_layer {
+           display-name = "Windows Mouse";
+           bindings = <
+//    ┌────┬────┬────┬────┬──────┬──────┐   ┌──────┬────┬────┬────┬────┬────┐
+//    │    │    │    │    │      │      │   │      │    │    │    │    │    │
+//    ├────┼────┼────┼────┼──────┼──────┤   ├──────┼────┼────┼────┼────┼────┤
+//    │    │    │    │    │ lctl │ lgui │   │ rgui │    │    │    │    │    │
+//    ├────┼────┼────┼────┼──────┼──────┤   ├──────┼────┼────┼────┼────┼────┤
+//    │    │    │    │    │      │      │   │      │    │    │    │    │    │
+//    └────┴────┴────┼────┼──────┼──────┤   ├──────┼────┼────┼────┴────┴────┘
+//                   │    │      │      │   │      │    │    │
+//                   └────┴──────┴──────┘   └──────┴────┴────┘
+  ___   ___   ___   ___   ___         ___            ___        ___   ___   ___   ___   ___
+  ___   ___   ___   ___   &kp LCTRL   &kp LGUI       &kp RGUI   ___   ___   ___   ___   ___
+  ___   ___   ___   ___   ___         ___            ___        ___   ___   ___   ___   ___
+                    ___   ___         ___            ___        ___   ___
+           >;
+       };
+
+       win_nav_layer {
+           display-name = "Windows Navigation";
+           bindings = <
+//    ┌────┬───────────────────┬─────────────────────┬───────────────────┬───────────────────┬────┐   ┌────────────┬──────┬─────┬───────┬──────┬────┐
+//    │    │      PrevTab      │                     │                   │      NextTab      │    │   │            │      │     │       │      │    │
+//    ├────┼───────────────────┼─────────────────────┼───────────────────┼───────────────────┼────┤   ├────────────┼──────┼─────┼───────┼──────┼────┤
+//    │    │ hml lctl PrevDesk │ hmls lalt SwitchApp │ hml lsft ShowDesk │ hml lctl NextDesk │    │   │ Fullscreen │      │     │       │      │    │
+//    ├────┼───────────────────┼─────────────────────┼───────────────────┼───────────────────┼────┤   ├────────────┼──────┼─────┼───────┼──────┼────┤
+//    │    │     PrevPage      │       NewTab        │     CloseTab      │     NextPage      │    │   │    redo    │ copy │ cut │ paste │ undo │    │
+//    └────┴───────────────────┴─────────────────────┼───────────────────┼───────────────────┼────┤   ├────────────┼──────┼─────┼───────┴──────┴────┘
+//                                                   │                   │                   │    │   │            │      │     │
+//                                                   └───────────────────┴───────────────────┴────┘   └────────────┴──────┴─────┘
+  ___   &kp WPrevTab           ___                     ___                    &kp WNextTab           ___       ___               ___         ___        ___          ___         ___
+  ___   &hml LCTRL WPrevDesk   &hmls LALT WSwitchApp   &hml LSHFT WShowDesk   &hml LCTRL WNextDesk   ___       &kp WFullscreen   ___         ___        ___          ___         ___
+  ___   &kp WPrevPage          &kp WNewTab             &kp WCloseTab          &kp WNextPage          ___       &kp WREDO         &kp WCOPY   &kp WCUT   &kp WPASTE   &kp WUNDO   ___
+                                                       ___                    ___                    ___       ___               ___         ___
+           >;
+       };
+
+       win_fun_layer {
+           display-name = "Windows Function";
+           bindings = <
+//    ┌────┬────┬────┬────────┬────────────┬────┐   ┌────┬────┬────┬────┬────┬────┐
+//    │    │    │    │        │            │    │   │    │    │    │    │    │    │
+//    ├────┼────┼────┼────────┼────────────┼────┤   ├────┼────┼────┼────┼────┼────┤
+//    │    │    │    │        │            │    │   │    │    │    │    │    │    │
+//    ├────┼────┼────┼────────┼────────────┼────┤   ├────┼────┼────┼────┼────┼────┤
+//    │    │    │    │        │            │    │   │    │    │    │    │    │    │
+//    └────┴────┴────┼────────┼────────────┼────┤   ├────┼────┼────┼────┴────┴────┘
+//                   │ Mac+BT │ LockScreen │    │   │    │    │    │
+//                   └────────┴────────────┴────┘   └────┴────┴────┘
+  ___   ___   ___   ___        ___               ___       ___   ___   ___   ___   ___   ___
+  ___   ___   ___   ___        ___               ___       ___   ___   ___   ___   ___   ___
+  ___   ___   ___   ___        ___               ___       ___   ___   ___   ___   ___   ___
+                    &mac_ble   &kp WLockScreen   ___       ___   ___   ___
+           >;
+       };
+
+   };
+};
+
+/*
+qmk:json:start
+{
+  "layout": [
+    "x x x x x x _ x x x x x x",
+    "x x x x x x _ x x x x x x",
+    "x x x x x x _ x x x x x x",
+    "_ _ _ x x x _ x x x _ _ _"
+  ],
+  "comment_preview": {
+    "position": "top",
+    "keymap_overrides": {
+      "___": "  ",
+      "&hml": "hml",
+      "&hmr": "hmr",
+      "&hmls": "hmls",
+      "&hmrs": "hmrs",
+      "&mac_ble": "Mac+BT",
+      "WNewTab": "NewTab",
+      "WPrevTab": "PrevTab",
+      "WNextTab": "NextTab",
+      "WSwitchApp": "SwitchApp",
+      "WPrevDesk": "PrevDesk",
+      "WNextDesk": "NextDesk",
+      "WShowDesk": "ShowDesk",
+      "WCloseTab": "CloseTab",
+      "WPrevPage": "PrevPage",
+      "WNextPage": "NextPage",
+      "WFullscreen": "Fullscreen",
+      "WREDO": "redo",
+      "WCUT": "cut",
+      "WCOPY": "copy",
+      "WPASTE": "paste",
+      "WUNDO": "undo",
+      "WLockScreen": "LockScreen",
+      "&none": " "
+    }
+  },
+  "variant": "zmk"
+}
+qmk:json:end
+*/

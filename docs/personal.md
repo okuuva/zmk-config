@@ -6,7 +6,8 @@ Keep personal changes in the Corne files so upstream updates do not overlap the 
 
 ## Ownership
 
-- `config/corne.keymap`: layers, timings, home-row modifiers, OS modes, combos, and embedded qmk.nvim previews.
+- `config/corne.keymap`: shared layers, layer ordering, and embedded qmk.nvim previews.
+- `config/windows.dtsi`: Windows shortcuts, OS-mode switching, conditional overlays, and layer bindings with embedded qmk.nvim previews.
 - `config/constants.dtsi`, `config/corne-mouse.dtsi`: personal bindings and behaviors, included only by the Corne keymap.
 - `config/ftl-constants.dtsi`, `config/ftl.dtsi`, `config/ftl-layers.dtsi`: Corne-only FTL constants, behaviors, and layers with embedded qmk.nvim previews.
 - `config/corne.conf`: Corne firmware settings.
@@ -32,6 +33,7 @@ For Corne keymap changes, refresh qmk.nvim formatting and previews, then review 
 
 ```bash
 nvim --headless config/corne.keymap +QMKFormat +wq
+nvim --headless config/windows.dtsi +QMKFormat +wq
 nvim --headless config/ftl-layers.dtsi +QMKFormat +wq
 ```
 

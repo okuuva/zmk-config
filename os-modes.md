@@ -6,7 +6,7 @@ Repeat the chord to return to macOS mode and prefer Bluetooth output.
 Neither direction changes the Bluetooth slot or remembers the previous connection type.
 Any slot changes made in Windows mode remain in effect.
 
-Two native ZMK macros in `config/corne.keymap` handle the switch.
+Two native ZMK macros in `config/windows.dtsi` handle the switch.
 `FUN` binds `&win_usb`; the same key on `WIN_FUN` binds `&mac_ble`.
 Each toggles `WIN_MODE` and selects its output preference.
 ZMK can fall back to the other output if the preferred connection is unavailable.
@@ -34,7 +34,9 @@ Layer-specific actions still win where a position is used for navigation, media,
 
 ## Layers involved
 
-The layer numbers in `config/constants.dtsi` match their definition order in `config/corne.keymap`:
+Shared layer numbers live in `config/constants.dtsi`; Windows layer numbers and bindings live in `config/windows.dtsi`.
+`config/corne.keymap` reserves an empty `win_mode_layer` after Base, then includes `windows.dtsi` after the shared layers.
+Devicetree merges the Windows Base bindings into that reserved slot and appends the conditional overlays, preserving this order:
 
 | Layer | Number | Purpose |
 | --- | ---: | --- |
@@ -58,7 +60,7 @@ All unaffected positions remain transparent.
 
 ## Conditional overlays
 
-The conditional layers are declared in `config/corne.keymap`:
+The conditional layers are declared in `config/windows.dtsi`:
 
 ```c
 ZMK_CONDITIONAL_LAYER(win_sym, WIN_MODE SYM, WIN_SYM)
@@ -106,7 +108,7 @@ At the Copy position, `WIN_NAV` contains:
 &kp WCOPY
 ```
 
-`WCOPY` is defined as `LC(C)` in `config/constants.dtsi`.
+`WCOPY` is defined as `LC(C)` in `config/windows.dtsi`.
 That binding sends `Ctrl+C` and stops lookup, so the macOS `COPY` binding on NAV is never reached.
 
 ### Shared binding example
