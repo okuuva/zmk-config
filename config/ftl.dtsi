@@ -17,6 +17,10 @@ ZMK_MACRO(ftl_pause,
     wait-ms = <0>; tap-ms = <0>;
     bindings = <&mo FTL_CANCEL &ftl_key FTL_PAUSE>;
 )
+ZMK_MACRO(ftl_jump,
+    wait-ms = <0>; tap-ms = <0>;
+    bindings = <&mo FTL_CANCEL &ftl_key FTL_JUMP>;
+)
 ZMK_MACRO(ftl_battery,
     wait-ms = <0>; tap-ms = <0>;
     bindings = <&mo FTL_CANCEL &ftl_key FTL_BATTERY &ftl_systems>;
@@ -145,4 +149,4 @@ ZMK_HOLD_TAP(ftl_teleport,
 
 ZMK_COMBO(ftl_open, &kp FTL_OPEN_DOORS, LM4 LM3, FTL, 30)
 ZMK_COMBO(ftl_close, &kp FTL_CLOSE_DOORS, LM3 LM2, FTL, 30)
-ZMK_COMBO(ftl_jump, &kp FTL_JUMP, LM2 LM1, FTL, 30)
+ZMK_COMBO(ftl_jump, &ftl_jump, LM2 LM1, FTL_VIEWS, 30)

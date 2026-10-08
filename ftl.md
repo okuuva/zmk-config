@@ -60,12 +60,14 @@ Settings sends Escape; Crew home sends Return.
 Weapons send 1–4 and drones send 5–7.
 Cloak, Mind, and Hack send C, M, and N.
 
-The three adjacent weapon pairs use a 30 ms combat-only combo window:
-- Weapon1 + Weapon2: Open doors, Z.
-- Weapon2 + Weapon3: Close doors, X.
-- Weapon3 + Weapon4: Jump, J.
+The three adjacent home-row pairs use a 30 ms combo window:
+- LM4 + LM3, Weapon1 + Weapon2: Open doors, Z, combat only.
+- LM3 + LM2, Weapon2 + Weapon3: Close doors, X, combat only.
+- LM2 + LM1, Weapon3 + Weapon4: Jump, J, on Combat, Systems±, Weapons−, and Utilities.
 
-A near miss can select a weapon instead; rolling between adjacent weapons can trigger a combo.
+Jump cancels the active FTL submode and releases its owned Shift before sending J, returning to Combat.
+Normal typing layers do not enable these combos.
+A near miss sends the current layer's individual keys instead; rolling between combo keys can trigger a combo.
 Cloak, Hack, and Battery are not combo constituents.
 
 ### Autofire and teleport gestures
