@@ -1,13 +1,14 @@
 # Personal Corne configuration
 
-The personal 42-key layout is standalone in `config/corne.keymap`.
+The personal 42-key layout starts in `config/corne.keymap`.
 Upstream's `config/base.keymap`, board adapters, mouse layer, drawing files, and README remain upstream examples, not descriptions of this Corne.
 Keep personal changes in the Corne files so upstream updates do not overlap the layout.
 
 ## Ownership
 
 - `config/corne.keymap`: layers, timings, home-row modifiers, OS modes, combos, and embedded qmk.nvim previews.
-- `config/constants.dtsi`, `config/ftl.dtsi`, `config/corne-mouse.dtsi`: personal bindings and behaviors, included only by the Corne keymap.
+- `config/constants.dtsi`, `config/corne-mouse.dtsi`: personal bindings and behaviors, included only by the Corne keymap.
+- `config/ftl-constants.dtsi`, `config/ftl.dtsi`, `config/ftl-layers.dtsi`: Corne-only FTL constants, behaviors, and layers with embedded qmk.nvim previews.
 - `config/corne.conf`: Corne firmware settings.
 - `mise.toml`, `mise-tasks.toml`, `mise-tasks/`: personal tooling around the upstream Just recipes.
 - `draw/corne.yaml`: personal keymap-drawer parsing configuration.
@@ -31,6 +32,7 @@ For Corne keymap changes, refresh qmk.nvim formatting and previews, then review 
 
 ```bash
 nvim --headless config/corne.keymap +QMKFormat +wq
+nvim --headless config/ftl-layers.dtsi +QMKFormat +wq
 ```
 
 Run formatter idempotence checks before compiling too.

@@ -1,0 +1,53 @@
+// FTL Windows defaults; Store F9 is the one required custom game binding.
+#define FTL_SETTINGS           ESC
+#define FTL_PAUSE              SPACE
+#define FTL_CLOAK              C
+#define FTL_HACK               N
+#define FTL_MIND               M
+#define FTL_BATTERY            B
+#define FTL_JUMP               J
+#define FTL_MO_AUTOFIRE        LCTRL
+#define FTL_TOG_AUTOFIRE       V
+#define FTL_CREW_HOME          RET
+#define FTL_SHIP_MENU          U
+#define FTL_OPEN_DOORS         Z
+#define FTL_CLOSE_DOORS        X
+#define FTL_SEND_CREW          T
+#define FTL_RECALL_CREW        R
+#define FTL_WEAPON_1           N1
+#define FTL_WEAPON_2           N2
+#define FTL_WEAPON_3           N3
+#define FTL_WEAPON_4           N4
+#define FTL_DRONE_1            N5
+#define FTL_DRONE_2            N6
+#define FTL_DRONE_3            N7
+#define FTL_POWER_SHIELDS      A
+#define FTL_POWER_ENGINES      S
+#define FTL_POWER_O2           F
+#define FTL_POWER_MEDBAY       D
+#define FTL_POWER_ARTILLERY    Y
+#define FTL_POWER_TELEPORTER   G
+#define FTL_POWER_HACK         L
+#define FTL_POWER_MIND         K
+#define FTL_POWER_CLOAK        H
+#define FTL_POWER_WEAPONS      W
+#define FTL_POWER_DRONES       E
+#define FTL_SAVE_CREW          SLASH
+#define FTL_ALL_CREW           Q
+#define FTL_INVENTORY          I
+#define FTL_STORE              F9
+#define FTL_TEXT_SMALLER       EQUAL
+#define FTL_TEXT_LARGER        MINUS
+
+// Layers follow the ordinary layers in corne.keymap, in ftl-layers.dtsi order.
+#define FTL 13
+#define FTL_POWER 14
+#define FTL_WEAPONS 15
+#define FTL_UTILITIES 16
+// Transparent pulses used only to terminate tri-state ownership.
+#define FTL_CANCEL 17
+#define FTL_WEAPONS_END 18
+#define FTL_UTILITIES_END 19
+
+#define FTL_LEFT LT5 LT4 LT3 LT2 LT1 LT0 LM5 LM4 LM3 LM2 LM1 LM0 LB5 LB4 LB3 LB2 LB1 LB0 LH2 LH1 LH0
+#define FTL_VIEWS FTL FTL_POWER FTL_WEAPONS FTL_UTILITIES
