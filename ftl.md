@@ -100,7 +100,8 @@ Cancel Battery Cloak     Mind      Hack     —
 
 System outputs are Shields A, Engines S, Med/Clone D, O2 F, Cloak H, Mind K, Hack L, Artillery Y, Teleporter G, and Weapons W.
 Systems− therefore sends Shift with those keys, including Shift+W at LM0.
-Battery cancels the mode and releases its owned Shift before sending B.
+Battery cancels the current mode and releases its owned Shift before sending B, then selects Systems+.
+You can distribute the extra power without tapping Sys+ again; the usual Systems+ timeout still applies.
 New modes replace old modes; cancelling or releasing a held mode does not restore an older one.
 
 ### Accepted timer limitations

@@ -19,7 +19,7 @@ ZMK_MACRO(ftl_pause,
 )
 ZMK_MACRO(ftl_battery,
     wait-ms = <0>; tap-ms = <0>;
-    bindings = <&mo FTL_CANCEL &ftl_key FTL_BATTERY>;
+    bindings = <&mo FTL_CANCEL &ftl_key FTL_BATTERY &ftl_systems>;
 )
 ZMK_MACRO(ftl_toggle,
     wait-ms = <0>; tap-ms = <0>;
